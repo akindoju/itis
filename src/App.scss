@@ -1,0 +1,17 @@
+//Variables
+$font-primary: "Montserrat", sans-serif;
+$color-white: rgb(255, 249, 238);
+$color-neon: #39ff14;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; //10px/16px(browser default) = 62.5%
+}
