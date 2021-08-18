@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
+  height: 15vh;
   position: sticky;
   top: 0%;
   z-index: 9229.34;
@@ -17,15 +17,17 @@
 
 .navBar {
   &__title {
-    font-family: "Great Vibes", cursive;
+    font-family: $font-brand;
     font-size: 6rem;
-    color: $color-neon;
+    color: $color-main;
     margin-left: 8rem;
   }
 
   &__options {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 35%;
     list-style: none;
 
     &--3 {
@@ -40,8 +42,8 @@
       }
 
       &:hover > * {
-        fill: $color-neon;
-        color: $color-neon;
+        fill: $color-main;
+        color: $color-main;
       }
     }
 
@@ -50,13 +52,13 @@
       text-transform: uppercase;
       font-family: $font-primary;
       font-size: 1.5rem;
-      margin-left: 2rem;
+      // margin-left: 5rem;
       cursor: pointer;
       transition: all 0.2s;
       position: relative;
 
       &:hover {
-        color: $color-neon;
+        color: $color-main;
       }
 
       //for outwards underline
@@ -67,7 +69,7 @@
         left: 50%;
         bottom: -5px;
         height: 3px;
-        background: $color-neon;
+        background: $color-main;
         transition: width 0.3s ease 0s, left 0.3s ease 0s;
         width: 0;
         backface-visibility: none;
@@ -94,7 +96,7 @@
       transition: all 0.2s;
 
       &:hover {
-        fill: $color-neon;
+        fill: $color-main;
       }
     }
 
@@ -102,7 +104,7 @@
       position: relative;
 
       h6 {
-        background: $color-neon;
+        background: $color-main;
         font-size: 1rem;
         font-family: $font-primary;
         color: black;

@@ -1,12 +1,11 @@
 import React from "react";
-import NavBar from "../../components/NavBar/NavBar";
+import Header from "../../components/Header/Header";
 import "./Homepage.scss";
 
 const Homepage = () => {
   return (
     <div className="homepageContainer">
-      <NavBar />
-      <div></div>
+      <Header />
     </div>
   );
 };
