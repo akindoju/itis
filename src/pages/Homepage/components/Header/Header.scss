@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@import "../../../../App.scss";
 
 .header {
   height: 100vh;
@@ -40,15 +40,6 @@
     }
 
     &--sub {
-      &-btn {
-        background-color: $color-main;
-        color: black;
-
-        &::after {
-          background-color: $color-main;
-        }
-      }
-
       button {
         background-color: $color-main;
         padding: 1.5rem;
@@ -56,20 +47,24 @@
         border-radius: 5rem;
         cursor: pointer;
         transition: all 0.3s;
+        position: relative;
+        font-family: $font-motto;
+        font-weight: 600;
+        color: #332301;
 
         &:hover {
           transform: translateY(-3px);
           box-shadow: 0 3px 20px rgba($color-main, 0.3);
 
           &::after {
+            background-color: $color-main;
             transform: scaleX(1.4) scaleY(1.6);
             opacity: 0;
           }
         }
 
-        &:active,
-        &:focus {
-          transform: translate(1px);
+        &:active {
+          transform: scale(0.98);
           box-shadow: 0 5px 1rem rgba($color-main, 0.3);
         }
 

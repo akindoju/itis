@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@import "../../../../App.scss";
 
 .navBarContainer {
   background: transparent;
@@ -6,9 +6,10 @@
   justify-content: space-between;
   align-items: center;
   height: 15vh;
-  position: sticky;
+  width: 100%;
+  position: fixed;
   top: 0%;
-  z-index: 9229.34;
+  z-index: 10;
 }
 
 .navBarContainer.active {

@@ -1,0 +1,65 @@
+@import "../../../../App.scss";
+
+.brief {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(black, 0.5),
+      rgba(black, 0.5)
+    ),
+    url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+  display: flex;
+  flex-direction: column;
+
+  &__text {
+    padding: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      color: $color-white;
+      font-size: 5.5rem;
+      font-family: $font-brand;
+      font-weight: 200;
+    }
+
+    h4 {
+      margin-top: 2rem;
+      width: 60%;
+      font-family: $font-primary;
+      text-align: center;
+      font-size: 1.5rem;
+      line-height: 3rem;
+      color: $color-grey;
+    }
+  }
+
+  &__images {
+    padding: 0 3rem 8rem 3rem;
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3rem;
+
+    &--container {
+      overflow: hidden;
+      border-radius: 1rem;
+
+      img {
+        border-radius: 1rem;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        transition: all 2s;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      &--3 {
+        grid-column: 3/-1;
+      }
+    }
+  }
+}

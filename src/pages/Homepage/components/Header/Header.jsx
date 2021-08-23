@@ -13,7 +13,7 @@ const Header = () => {
         </div>
 
         <div className="header__content--sub">
-          <button className="header__content--sub-btn">Surprise Me!</button>
+          <button>Surprise Me!</button>
         </div>
       </div>
     </div>
