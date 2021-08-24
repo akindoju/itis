@@ -1,0 +1,26 @@
+@import "../App.scss";
+
+.scrollTopBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-main;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  svg {
+    fill: #332301;
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}

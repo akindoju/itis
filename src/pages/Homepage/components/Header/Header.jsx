@@ -3,7 +3,7 @@ import "./Header.scss";
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="header" id="top">
       <NavBar />
 
       <div className="header__content">
