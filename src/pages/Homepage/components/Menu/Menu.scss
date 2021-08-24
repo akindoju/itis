@@ -1,0 +1,79 @@
+@import "../../../../App.scss";
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  &__image {
+    height: 115vh;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__text {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(black, 0.5),
+        rgba(black, 0.5)
+      ),
+      url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 10rem;
+
+    &--heading {
+      color: $color-white;
+      font-family: $font-primary;
+      text-transform: uppercase;
+      font-size: 4rem;
+      margin-bottom: 5rem;
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-bottom: 8rem;
+      }
+
+      &--main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+
+        h4 {
+          color: $color-white;
+          font-family: $font-primary;
+          font-size: 1.8rem;
+        }
+
+        h5 {
+          span {
+            color: $color-grey;
+            text-decoration: line-through;
+            font-size: 1.3rem;
+            font-family: $font-primary;
+            margin-right: 0.4rem;
+          }
+
+          color: $color-main;
+          font-size: 1.5rem;
+          font-family: $font-primary;
+        }
+      }
+
+      &--sub {
+        color: $color-grey;
+        font-size: 1.3rem;
+        font-family: $font-primary;
+      }
+    }
+  }
+}

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Brief from "./components/Brief/Brief";
 import ScrollTopBtn from "../../components/ScrollTopBtn";
-import "./Homepage.scss";
 import MakeOrder from "./components/MakeOrder/MakeOrder";
+import Menu from "./components/Menu/Menu";
+import "./Homepage.scss";
 
 const Homepage = () => {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
@@ -20,6 +21,7 @@ const Homepage = () => {
       <Header />
       <Brief />
       <MakeOrder />
+      <Menu />
     </div>
   );
 };
