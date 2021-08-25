@@ -5,6 +5,7 @@ import ScrollTopBtn from "../../components/ScrollTopBtn";
 import MakeOrder from "./components/MakeOrder/MakeOrder";
 import Menu from "./components/Menu/Menu";
 import "./Homepage.scss";
+import Categories from "./components/Categories/Categories";
 
 const Homepage = () => {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
@@ -22,6 +23,7 @@ const Homepage = () => {
       <Brief />
       <MakeOrder />
       <Menu />
+      <Categories />
     </div>
   );
 };
