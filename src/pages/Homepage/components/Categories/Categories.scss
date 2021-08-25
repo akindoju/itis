@@ -1,1 +1,127 @@
 @import "../../../../App.scss";
+
+.categories {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(black, 0.8),
+      rgba(black, 0.8)
+    ),
+    url("https://images.unsplash.com/photo-1620314220867-90d1ba926c62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=416&q=80");
+  background-size: cover;
+  background-position: 50%;
+  background-attachment: fixed;
+  padding: 5rem 0;
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem;
+
+    h1 {
+      font-family: $font-brand;
+      font-size: 7rem;
+      color: $color-main;
+    }
+
+    &--btns {
+      margin-top: 2rem;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      button {
+        background: transparent;
+        border: none;
+        font-family: $font-primary;
+        font-size: 1.7rem;
+        cursor: pointer;
+        color: $color-white;
+        border-radius: 5rem;
+        padding: 0.5rem 2rem;
+        transition: all 0.2s;
+
+        &:hover {
+          background-color: $color-main;
+          color: $color-black;
+        }
+      }
+    }
+  }
+
+  &__grid {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 4rem;
+
+    &--item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        border-radius: 1rem;
+        height: 40rem;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      h1 {
+        color: $color-white;
+        font-family: $font-primary;
+        text-transform: uppercase;
+        font-weight: 100;
+        margin-top: 1.8rem;
+        font-size: 1.7rem;
+      }
+
+      h4 {
+        span {
+          color: $color-grey;
+          text-decoration: line-through;
+          font-size: 1.3rem;
+          font-family: $font-primary;
+          margin-right: 0.4rem;
+        }
+
+        color: $color-main;
+        font-size: 1.5rem;
+        font-family: $font-primary;
+      }
+    }
+  }
+
+  &__viewMore {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+
+    button {
+      background-color: $color-main;
+      padding: 1.5rem 3rem;
+      border: 3px solid $color-main;
+      border-radius: 5rem;
+      cursor: pointer;
+      font-family: $font-primary;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: $color-black;
+      transition: all 0.3s;
+      margin-top: 3rem;
+
+      &:hover {
+        background-color: transparent;
+        color: $color-main;
+      }
+
+      &:active {
+        outline: none;
+        transform: scale(0.98);
+      }
+    }
+  }
+}
