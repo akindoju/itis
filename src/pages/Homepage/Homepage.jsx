@@ -6,6 +6,7 @@ import MakeOrder from "./components/MakeOrder/MakeOrder";
 import Menu from "./components/Menu/Menu";
 import "./Homepage.scss";
 import Categories from "./components/Categories/Categories";
+import Contact from "./components/Contact/Contact";
 
 const Homepage = () => {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
@@ -24,6 +25,7 @@ const Homepage = () => {
       <MakeOrder />
       <Menu />
       <Categories />
+      <Contact />
     </div>
   );
 };
