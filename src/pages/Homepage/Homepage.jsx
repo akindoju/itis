@@ -7,6 +7,7 @@ import Menu from "./components/Menu/Menu";
 import "./Homepage.scss";
 import Categories from "./components/Categories/Categories";
 import Contact from "./components/Contact/Contact";
+import Gallery from "./components/Gallery/Gallery";
 
 const Homepage = () => {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
@@ -26,6 +27,7 @@ const Homepage = () => {
       <Menu />
       <Categories />
       <Contact />
+      <Gallery />
     </div>
   );
 };
