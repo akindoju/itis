@@ -8,6 +8,7 @@ import "./Homepage.scss";
 import Categories from "./components/Categories/Categories";
 import Contact from "./components/Contact/Contact";
 import Gallery from "./components/Gallery/Gallery";
+import Footer from "./components/Footer/Footer";
 
 const Homepage = () => {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
@@ -28,6 +29,7 @@ const Homepage = () => {
       <Categories />
       <Contact />
       <Gallery />
+      <Footer />
     </div>
   );
 };

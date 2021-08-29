@@ -1,0 +1,98 @@
+@import "../../../../App.scss";
+
+.footer {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(black, 0.5),
+      rgba(black, 0.5)
+    ),
+    url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 10rem;
+
+  &__logo {
+    font-family: $font-brand;
+    font-size: 10rem;
+    font-weight: 100;
+    color: $color-main;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 45%;
+    list-style: none;
+    margin-top: 2rem;
+
+    li {
+      color: $color-white;
+      text-transform: uppercase;
+      font-family: $font-primary;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+
+      &:hover {
+        color: $color-main;
+      }
+
+      //for outwards underline
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        height: 3px;
+        background: $color-main;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+        backface-visibility: none;
+      }
+
+      &:hover::after {
+        width: 80%;
+        left: 10%;
+      }
+    }
+  }
+
+  &__newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+
+    h1 {
+      color: $color-main;
+      font-size: 4rem;
+      font-family: $font-brand;
+      margin-bottom: 1.5rem;
+    }
+
+    &--entry {
+      display: flex;
+      align-items: center;
+
+      input {
+        width: 100%;
+        padding: 1.5rem;
+        background: transparent;
+        border: 2px solid $color-grey;
+        margin-bottom: 3rem;
+        color: $color-grey;
+
+        font-size: 1.5rem;
+        &:active,
+        &:focus {
+          outline: none;
+          border: 2px solid $color-main;
+        }
+      }
+    }
+  }
+}
