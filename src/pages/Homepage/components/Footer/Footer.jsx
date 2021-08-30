@@ -20,7 +20,14 @@ const Footer = () => {
         <h1>Newsletter</h1>
 
         <div className="footer__newsletter--entry">
-          <input type="text" placeholder="Your Email Address" value={email} />
+          <input
+            type="text"
+            placeholder="Your Email Address"
+            value={email}
+            onChange={({ target }) => {
+              setEmail(target.value);
+            }}
+          />
           <button>
             <svg
               version="1.1"
@@ -66,13 +73,13 @@ const Footer = () => {
           height="20"
           viewBox="0 0 20 20"
         >
-          <title>mail</title>
-          <path d="M1.574 5.286c0.488 0.262 7.248 3.894 7.5 4.029s0.578 0.199 0.906 0.199c0.328 0 0.654-0.064 0.906-0.199s7.012-3.767 7.5-4.029c0.489-0.263 0.951-1.286 0.054-1.286h-16.919c-0.897 0-0.435 1.023 0.053 1.286zM18.613 7.489c-0.555 0.289-7.387 3.849-7.727 4.027s-0.578 0.199-0.906 0.199-0.566-0.021-0.906-0.199-7.133-3.739-7.688-4.028c-0.39-0.204-0.386 0.035-0.386 0.219s0 7.293 0 7.293c0 0.42 0.566 1 1 1h16c0.434 0 1-0.58 1-1 0 0 0-7.108 0-7.292s0.004-0.423-0.387-0.219z"></path>
+          <title>Email</title>
+          <path d="M18 2c1.105 0 2 0.895 2 2v0 12c0 1.105-0.895 2-2 2v0h-16c-1.105 0-2-0.895-2-2v0-12c0-1.1 0.9-2 2-2h16zM13.63 11.1l6.37 4.9v-2l-5.12-3.9 5.12-4.1v-2l-10 8-10-8v2l5.12 4.1-5.12 3.9v2l6.37-4.9 3.63 2.9 3.63-2.9z"></path>
         </svg>
       </div>
 
       <div className="footer__disclaimer">
-        This site was created as a clone for learning purposes and nothing more!
+        This site was created as a clone for learning purposes.
       </div>
     </div>
   );
