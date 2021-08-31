@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import CategoriesPopup from "../CategoriesPopup/CategoriesPopup";
 import "./NavBar.scss";
 
 const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
+  const [isCategoriesHovered, setIsCategoriesHovered] = useState(false);
 
   const settingNavBar = () => {
     window.scrollY > 150 ? setNavBarActive(true) : setNavBarActive(false);
@@ -18,7 +20,15 @@ const NavBar = () => {
 
       <ul className="navBar__options">
         <li>Home</li>
-        <div className="navBar__options--3">
+        <div
+          className="navBar__options--3"
+          onMouseEnter={() => {
+            setIsCategoriesHovered(true);
+          }}
+          onMouseLeave={() => {
+            setIsCategoriesHovered(false);
+          }}
+        >
           <li>Categories</li>
           <svg
             version="1.1"
@@ -110,6 +120,7 @@ const NavBar = () => {
           <path d="M12 16h-10v-4h10v-4l6 6-6 6zM32 0v26l-12 6v-6h-12v-8h2v6h10v-18l8-4h-18v8h-2v-10z"></path>
         </svg>
       </div>
+      {isCategoriesHovered ? <CategoriesPopup /> : null}
     </div>
   );
 };

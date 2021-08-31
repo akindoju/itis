@@ -51,6 +51,7 @@
         font-family: $font-motto;
         font-weight: 600;
         color: $color-black;
+        justify-self: center;
 
         &:hover {
           transform: translateY(-3px);
