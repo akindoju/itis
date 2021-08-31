@@ -9,6 +9,7 @@ import Categories from "./components/Categories/Categories";
 import Contact from "./components/Contact/Contact";
 import Gallery from "./components/Gallery/Gallery";
 import Footer from "./components/Footer/Footer";
+import MapContainer from "./components/MapContainer/MapContainer";
 
 const Homepage = () => {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
@@ -29,6 +30,7 @@ const Homepage = () => {
       <Categories />
       <Contact />
       <Gallery />
+      <MapContainer />
       <Footer />
     </div>
   );
