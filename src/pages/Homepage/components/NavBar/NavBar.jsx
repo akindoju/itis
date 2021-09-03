@@ -22,7 +22,7 @@ const NavBar = () => {
         <li>Home</li>
         <div
           className="navBar__options--3"
-          onMouseEnter={() => {
+          onMouseOver={() => {
             setIsCategoriesHovered(true);
           }}
           onMouseLeave={() => {
