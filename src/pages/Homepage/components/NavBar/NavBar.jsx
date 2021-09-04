@@ -22,10 +22,10 @@ const NavBar = () => {
         <li>Home</li>
         <div
           className="navBar__options--3"
-          onMouseOver={() => {
+          onPointerOver={() => {
             setIsCategoriesHovered(true);
           }}
-          onMouseLeave={() => {
+          onPointerOut={() => {
             setIsCategoriesHovered(false);
           }}
         >
