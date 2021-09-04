@@ -17,6 +17,8 @@ const Categories = () => {
 
       <div className="categories__grid">
         <div className="categories__grid--item">
+          <div className="categories__grid--item--percent">-20%</div>
+          <div className="categories__grid--item--new">New</div>
           <div className="categories__grid--item--img categories__grid--item--img-1" />
           <h1>Pancake</h1>
           <h4>
@@ -28,13 +30,11 @@ const Categories = () => {
         <div className="categories__grid--item">
           <div className="categories__grid--item--img categories__grid--item--img-2" />
           <h1>Burger and Chips</h1>
-          <h4>
-            <span>₦12,000</span>
-            ₦7,500
-          </h4>
+          <h4>₦7,500</h4>
         </div>
 
         <div className="categories__grid--item">
+          <div className="categories__grid--item--percent">-20%</div>
           <div className="categories__grid--item--img categories__grid--item--img-3" />
           <h1>Assorted Fruits</h1>
           <h4>
@@ -44,6 +44,8 @@ const Categories = () => {
         </div>
 
         <div className="categories__grid--item">
+          <div className="categories__grid--item--percent">-20%</div>
+          <div className="categories__grid--item--new">New</div>
           <div className="categories__grid--item--img categories__grid--item--img-4" />
           <h1>Spring Rolls</h1>
           <h4>
@@ -53,6 +55,8 @@ const Categories = () => {
         </div>
 
         <div className="categories__grid--item">
+          <div className="categories__grid--item--percent">-20%</div>
+          <div className="categories__grid--item--new">New</div>
           <div className="categories__grid--item--img categories__grid--item--img-5" />
           <h1>Steak</h1>
           <h4>
@@ -64,13 +68,12 @@ const Categories = () => {
         <div className="categories__grid--item">
           <div className="categories__grid--item--img categories__grid--item--img-6" />
           <h1>Bread and Soup</h1>
-          <h4>
-            <span>₦5,500</span>
-            ₦3,500
-          </h4>
+          <h4>₦3,500</h4>
         </div>
 
         <div className="categories__grid--item">
+          <div className="categories__grid--item--percent">-20%</div>
+          <div className="categories__grid--item--new">New</div>
           <div className="categories__grid--item--img categories__grid--item--img-7" />
           <h1>Pasta</h1>
           <h4>
@@ -80,6 +83,7 @@ const Categories = () => {
         </div>
 
         <div className="categories__grid--item">
+          <div className="categories__grid--item--percent">-20%</div>
           <div className="categories__grid--item--img categories__grid--item--img-8" />
           <h1>Strawberry Cocktail</h1>
           <h4>
