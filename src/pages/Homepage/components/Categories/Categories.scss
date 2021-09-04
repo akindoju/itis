@@ -90,6 +90,99 @@
         left: 2rem;
       }
 
+      &--hovered {
+        opacity: 0;
+      }
+
+      &--search {
+        background-color: $color-main;
+        height: 4rem;
+        width: 4rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 2rem;
+        cursor: pointer;
+        right: 2rem;
+
+        svg {
+          height: 2rem;
+          width: 2rem;
+          fill: $color-black;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: all 0.2s;
+
+          &:hover {
+            fill: $color-white;
+          }
+        }
+      }
+
+      &--heart {
+        background-color: $color-main;
+        height: 4rem;
+        width: 4rem;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s;
+
+        &:hover {
+          transform: translateY(-3px);
+        }
+
+        &:hover svg {
+          fill: $color-white;
+        }
+
+        svg {
+          height: 2.3rem;
+          width: 2.3rem;
+          fill: $color-black;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      &--btns {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 8rem;
+        left: 16%;
+        width: 100%;
+
+        button {
+          background-color: rgba($color-black, 0.8);
+          padding: 0.9rem;
+          border: none;
+          border-radius: 5rem;
+          cursor: pointer;
+          font-family: $font-primary;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: $color-white;
+          transition: all 0.3s;
+          margin-right: 0.2rem;
+          width: 50%;
+
+          &:hover {
+            transform: translateY(-3px);
+            color: $color-main;
+            background-color: $color-black;
+          }
+
+          &:active {
+            outline: none;
+            transform: scale(0.98);
+          }
+        }
+      }
+
       &--img {
         height: 40rem;
         width: 100%;
@@ -217,4 +310,9 @@
       }
     }
   }
+}
+
+.categories__grid--item:hover .categories__grid--item--hovered {
+  opacity: 1;
+  transition-duration: 0.4s;
 }
