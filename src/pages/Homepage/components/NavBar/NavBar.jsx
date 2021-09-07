@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import Authentication from "../Authentication/Authentication";
 import CategoriesPopup from "../CategoriesPopup/CategoriesPopup";
 import "./NavBar.scss";
 
 const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
   const [isCategoriesHovered, setIsCategoriesHovered] = useState(false);
+  const [isAuthClicked, setIsAuthClicked] = useState(false);
 
   const settingNavBar = () => {
     window.scrollY > 150 ? setNavBarActive(true) : setNavBarActive(false);
@@ -115,12 +117,26 @@ const NavBar = () => {
           width="32"
           height="32"
           viewBox="0 0 32 32"
+          onClick={() => setIsAuthClicked(!isAuthClicked)}
         >
-          <title>Log out</title>
+          <title>Log In</title>
           <path d="M12 16h-10v-4h10v-4l6 6-6 6zM32 0v26l-12 6v-6h-12v-8h2v6h10v-18l8-4h-18v8h-2v-10z"></path>
         </svg>
+
+        {/* log out icon to be used when functionality is added */}
+        {/* <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <title>Log Out</title>
+          <path d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>
+        </svg> */}
       </div>
       {isCategoriesHovered ? <CategoriesPopup /> : null}
+      {isAuthClicked ? <Authentication /> : null}
     </div>
   );
 };

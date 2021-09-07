@@ -1,0 +1,48 @@
+@import "../../../../App.scss";
+
+.authentication {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(black, 0.9);
+  position: fixed;
+  top: 7.5rem;
+  right: 0;
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 2rem;
+    // padding: 2rem 2rem 1rem 2rem;
+
+    &--register,
+    &--login {
+      width: 50%;
+      padding: 2rem;
+    }
+
+    &--login {
+      border-bottom: 2px solid red;
+    }
+
+    &--register {
+      border-bottom: 2px solid blue;
+    }
+
+    h1 {
+      color: $color-grey;
+    }
+  }
+
+  &__forms {
+    padding: 0rem 3rem 3rem 3rem;
+  }
+
+  &__login,
+  &__register {
+    display: flex;
+    flex-direction: column;
+  }
+}
