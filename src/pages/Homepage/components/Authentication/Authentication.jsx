@@ -10,12 +10,8 @@ const Authentication = () => {
   return (
     <div className="authentication">
       <div className="authentication__heading">
-        <div className="authentication__heading--login">
-          <h1>Log In</h1>
-        </div>
-        <div className="authentication__heading--register">
-          <h1>Register</h1>
-        </div>
+        <button className="authentication__heading--login">Log In</button>
+        <button className="authentication__heading--register">Register</button>
       </div>
 
       <div className="authentication__forms">
