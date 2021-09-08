@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-scroll";
 import Authentication from "../Authentication/Authentication";
 import CategoriesPopup from "../CategoriesPopup/CategoriesPopup";
 import "./NavBar.scss";
@@ -44,7 +45,9 @@ const NavBar = () => {
           </svg>
         </div>
         <li>About</li>
-        <li>Contact</li>
+        <Link to="contact" smooth duration={1000}>
+          <li>Contact</li>
+        </Link>
       </ul>
 
       <div className="navBar__utilities">
