@@ -15,7 +15,7 @@ const Authentication = () => {
       </div>
 
       <div className="authentication__forms">
-        <div className="authentication__login">
+        {/* <div className="authentication__login">
           <input
             type="email"
             placeholder="Email"
@@ -36,12 +36,12 @@ const Authentication = () => {
 
           <button>Login</button>
           <p>Forgot Password?</p>
-        </div>
+        </div> */}
 
         <div className="authentication__register">
           <input
-            type="password"
-            placeholder="Password"
+            type="text"
+            placeholder="Full Name"
             value={fullName}
             onChange={({ target }) => {
               setFullName(target.value);
@@ -68,16 +68,19 @@ const Authentication = () => {
 
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Confirm Password"
             value={confirmPassword}
             onChange={({ target }) => {
               setConfirmPassword(target.value);
             }}
           />
 
-          <select name="TC" id="">
-            I agree to the terms and conditions
-          </select>
+          <div className="authentication__register--tc">
+            <input type="checkbox" name="terms and conditions" />
+            <label htmlFor="terms and conditions">
+              I agree to the Terms and Condtions
+            </label>
+          </div>
 
           <button>Register</button>
         </div>
