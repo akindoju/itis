@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { Link } from "react-scroll";
 import Authentication from "../Authentication/Authentication";
 import CategoriesPopup from "../CategoriesPopup/CategoriesPopup";
@@ -8,6 +9,8 @@ const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
   const [isCategoriesHovered, setIsCategoriesHovered] = useState(false);
   const [isAuthClicked, setIsAuthClicked] = useState(false);
+
+  const history = useHistory();
 
   const settingNavBar = () => {
     window.scrollY > 150 ? setNavBarActive(true) : setNavBarActive(false);
@@ -22,7 +25,13 @@ const NavBar = () => {
       <div className="navBar__title">Itis</div>
 
       <ul className="navBar__options">
-        <li>Home</li>
+        <li
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          Home
+        </li>
         <div
           className="navBar__options--3"
           onPointerOver={() => {
@@ -44,7 +53,13 @@ const NavBar = () => {
             <path d="M6.984 9.984h10.031l-5.016 5.016z"></path>
           </svg>
         </div>
-        <li>About</li>
+        <li
+          onClick={() => {
+            history.push("/about");
+          }}
+        >
+          About
+        </li>
         <Link to="contact" smooth duration={1000}>
           <li>Contact</li>
         </Link>

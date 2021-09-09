@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
 // import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
@@ -44,8 +43,6 @@ const Header = () => {
 
   return (
     <div className="header" id="top">
-      <NavBar />
-
       {/* <Slider {...settings}> */}
       <div className="header__content">
         <div className="header__content--main">

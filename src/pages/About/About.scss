@@ -1,0 +1,94 @@
+@import "../../App.scss";
+
+.about {
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    &--image {
+      height: 20vh;
+      background-image: linear-gradient(
+          to bottom,
+          rgba(black, 0.7),
+          rgba(black, 0.7)
+        ),
+        url("https://images.unsplash.com/photo-1577308856961-8e9ec50d0c67?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+      background-size: cover;
+      background-position: 50%;
+    }
+
+    &--text {
+      height: 80vh;
+      background-image: linear-gradient(
+          to bottom,
+          rgba(black, 0.5),
+          rgba(black, 0.5)
+        ),
+        url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15rem;
+
+      h1 {
+        color: $color-main;
+        font-family: $font-primary;
+        font-size: 4rem;
+        margin-bottom: 2rem;
+      }
+
+      p {
+        color: $color-white;
+        font-size: 1.5rem;
+        font-family: $font-primary;
+        font-weight: 100;
+        text-align: center;
+      }
+    }
+  }
+
+  &__temp {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    &--image {
+      height: 85vh;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &--text {
+      background-image: linear-gradient(
+          to bottom,
+          rgba(black, 0.5),
+          rgba(black, 0.5)
+        ),
+        url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5rem;
+
+      h1 {
+        color: $color-main;
+        font-family: $font-motto;
+        font-weight: 100;
+        text-transform: uppercase;
+        font-size: 4rem;
+        margin-bottom: 5rem;
+      }
+
+      p {
+        color: $color-white;
+        font-size: 1.5rem;
+        font-family: $font-primary;
+        text-align: center;
+      }
+    }
+  }
+}
