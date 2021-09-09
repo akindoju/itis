@@ -50,8 +50,15 @@
   }
 
   &__temp {
+    padding: 8rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(black, 0.5),
+        rgba(black, 0.5)
+      ),
+      url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
 
     &--image {
       height: 85vh;

@@ -41,7 +41,8 @@ const About = ({ isNotAtTop, setIsNotAtTop }) => {
       <div className="about__temp">
         <div className="about__temp--image">
           <img
-            src="https://images.unsplash.com/photo-1622711321771-4a00d2bc0350?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+            src="
+            https://images.unsplash.com/photo-1568717099337-5aaecc090548?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
             alt="Our Store"
           />
         </div>
@@ -79,13 +80,19 @@ const About = ({ isNotAtTop, setIsNotAtTop }) => {
         </div>
 
         <div className="about__temp--image">
-          <img src="" alt="" />
+          <img
+            src="https://images.unsplash.com/photo-1622711321771-4a00d2bc0350?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+            alt="Mission Statement"
+          />
         </div>
       </div>
 
       <div className="about__temp">
         <div className="about__temp--image">
-          <img src="" alt="" />
+          <img
+            src="https://images.unsplash.com/photo-1608219994488-cc269412b3e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+            alt="Our Story"
+          />
         </div>
 
         <div className="about__temp--text">
