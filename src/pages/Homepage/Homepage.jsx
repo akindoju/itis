@@ -5,7 +5,6 @@ import MakeOrder from "../../components/MakeOrder/MakeOrder";
 import Menu from "../../components/Menu/Menu";
 import "./Homepage.scss";
 import Categories from "../../components/Categories/Categories";
-import Contact from "../../components/Contact/Contact";
 import Gallery from "../../components/Gallery/Gallery";
 import Footer from "../../components/Footer/Footer";
 import MapContainer from "../../components/MapContainer/MapContainer";
@@ -28,7 +27,6 @@ const Homepage = ({ isNotAtTop, setIsNotAtTop }) => {
       <MakeOrder />
       <Menu />
       <Categories />
-      {/* <Contact /> */}
       <MapContainer />
       <Gallery />
       <Footer />
