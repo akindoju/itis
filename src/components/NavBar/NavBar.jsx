@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-scroll";
+import { Link as newPageLink } from "react-router-dom";
 import Authentication from "../Authentication/Authentication";
 import CategoriesPopup from "../CategoriesPopup/CategoriesPopup";
 import "./NavBar.scss";
@@ -60,8 +61,15 @@ const NavBar = () => {
         >
           About
         </li>
+
         <Link to="contact" smooth duration={1000}>
-          <li>Contact</li>
+          <li
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            Contact
+          </li>
         </Link>
       </ul>
 

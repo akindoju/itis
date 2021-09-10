@@ -28,9 +28,9 @@ const Homepage = ({ isNotAtTop, setIsNotAtTop }) => {
       <MakeOrder />
       <Menu />
       <Categories />
-      <Contact />
-      <Gallery />
+      {/* <Contact /> */}
       <MapContainer />
+      <Gallery />
       <Footer />
     </div>
   );
