@@ -15,7 +15,7 @@ const Authentication = () => {
         <button
           className={
             isLoginClicked
-              ? "authentication__heading--login isActive"
+              ? "authentication__heading--login isAuthActive"
               : "authentication__heading--login"
           }
           onClick={() => {

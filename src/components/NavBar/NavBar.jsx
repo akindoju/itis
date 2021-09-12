@@ -132,17 +132,19 @@ const NavBar = () => {
           <h6>0</h6>
         </div>
 
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          onClick={() => setIsAuthClicked(!isAuthClicked)}
-        >
-          <title>Log In</title>
-          <path d="M12 16h-10v-4h10v-4l6 6-6 6zM32 0v26l-12 6v-6h-12v-8h2v6h10v-18l8-4h-18v8h-2v-10z"></path>
-        </svg>
+        <div className={isAuthClicked ? "isUtilActive" : null}>
+          <svg
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            onClick={() => setIsAuthClicked(!isAuthClicked)}
+          >
+            <title>Log In</title>
+            <path d="M12 16h-10v-4h10v-4l6 6-6 6zM32 0v26l-12 6v-6h-12v-8h2v6h10v-18l8-4h-18v8h-2v-10z"></path>
+          </svg>
+        </div>
 
         {/* log out icon to be used when functionality is added */}
         {/* <svg
@@ -155,9 +157,9 @@ const NavBar = () => {
           <title>Log Out</title>
           <path d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>
         </svg> */}
+        {isCategoriesHovered ? <CategoriesPopup /> : null}
+        {isAuthClicked ? <Authentication /> : null}
       </div>
-      {isCategoriesHovered ? <CategoriesPopup /> : null}
-      {isAuthClicked ? <Authentication /> : null}
     </div>
   );
 };
