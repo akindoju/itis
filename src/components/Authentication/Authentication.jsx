@@ -8,6 +8,7 @@ const Authentication = () => {
   const [fullName, setFullName] = useState("");
   const [isLoginClicked, setIsLoginClicked] = useState(true);
   const [isRegisterClicked, setIsRegisterClicked] = useState(false);
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   return (
     <div className="authentication">
@@ -26,7 +27,11 @@ const Authentication = () => {
           Log In
         </button>
         <button
-          className="authentication__heading--register"
+          className={
+            isRegisterClicked
+              ? "authentication__heading--register isAuthActive"
+              : "authentication__heading--register"
+          }
           onClick={() => {
             setIsLoginClicked(false);
             setIsRegisterClicked(true);
@@ -101,13 +106,24 @@ const Authentication = () => {
             />
 
             <div className="authentication__register--tc">
-              <input type="checkbox" name="terms and conditions" />
+              <input
+                type="checkbox"
+                id="terms and conditions"
+                onClick={() => {
+                  setIsCheckboxChecked(!isCheckboxChecked);
+                }}
+              />
               <label htmlFor="terms and conditions">
                 I agree to the Terms and Condtions
               </label>
             </div>
 
-            <button>Register</button>
+            <button
+              disabled={!isCheckboxChecked}
+              className={!isCheckboxChecked ? "notChecked" : null}
+            >
+              Register
+            </button>
           </div>
         ) : null}
       </div>
