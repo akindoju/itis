@@ -2,13 +2,21 @@ import React from "react";
 import Footer from "../../components/Footer/Footer";
 import MapContainer from "../../components/MapContainer/MapContainer";
 import NavBar from "../../components/NavBar/NavBar";
+import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
 import "./Contact.scss";
 
-const Contact = () => {
+const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
+  const settingScrollTopBtn = () => {
+    window.scrollY > 150 ? setIsNotAtTop(true) : setIsNotAtTop(false);
+  };
+
+  window.addEventListener("scroll", settingScrollTopBtn);
+
   return (
     <div>
+      {isNotAtTop && <ScrollTopBtn />}
       <NavBar />
-      <div className="contact" id="contact">
+      <div className="contact" id="top">
         <div className="contact__intro--image" />
 
         <div className="contact__info">
