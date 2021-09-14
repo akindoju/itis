@@ -89,7 +89,6 @@ const NavBar = () => {
             x="0px"
             y="0px"
             viewBox="0 0 512 512"
-            ref={authIconRef}
           >
             <title>Meals</title>
             <g>
@@ -141,6 +140,7 @@ const NavBar = () => {
             width="32"
             height="32"
             viewBox="0 0 32 32"
+            ref={authIconRef}
             onClick={() => setIsAuthClicked(!isAuthClicked)}
           >
             <title>Log In</title>
