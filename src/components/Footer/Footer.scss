@@ -3,14 +3,15 @@
 .footer {
   background-image: linear-gradient(
       to bottom,
-      rgba(black, 0.5),
-      rgba(black, 0.5)
+      rgba(black, 0.95),
+      rgba(black, 0.95)
     ),
-    url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+    url("https://images.unsplash.com/photo-1568733873715-f9d497a47ea0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem 10rem;
+  padding: 10rem;
+  background-size: cover;
 
   &__logo {
     font-family: $font-brand;

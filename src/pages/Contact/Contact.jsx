@@ -1,4 +1,6 @@
 import React from "react";
+import Footer from "../../components/Footer/Footer";
+import MapContainer from "../../components/MapContainer/MapContainer";
 import NavBar from "../../components/NavBar/NavBar";
 import "./Contact.scss";
 
@@ -78,6 +80,9 @@ const Contact = () => {
           />
           <button>Send</button>
         </div>
+
+        <MapContainer />
+        <Footer />
       </div>
     </div>
   );

@@ -104,7 +104,7 @@
 
     &--heading {
       color: $color-white;
-      font-family: $font-motto;
+      font-family: $font-primary;
       text-transform: uppercase;
       font-size: 4rem;
       margin-bottom: 5rem;
@@ -112,7 +112,7 @@
 
     input,
     textarea {
-      width: 100%;
+      width: 60%;
       padding: 1.5rem;
       background: transparent;
       border: 2px solid $color-grey;
