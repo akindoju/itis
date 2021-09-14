@@ -50,7 +50,7 @@
   }
 
   &__temp {
-    padding: 8rem;
+    padding: rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     background-image: linear-gradient(
@@ -79,6 +79,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       padding: 5rem;
 
       h1 {
