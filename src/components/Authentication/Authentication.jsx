@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./Authentication.scss";
 
-const Authentication = () => {
+const Authentication = ({ isAuthClicked, setIsAuthClicked, authIconRef }) => {
+  const wrapperRef = useRef(null);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -10,8 +13,14 @@ const Authentication = () => {
   const [isRegisterClicked, setIsRegisterClicked] = useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
+  const hideAuth = () => {
+    setIsAuthClicked(!isAuthClicked);
+  };
+
+  useOutsideAlerter(wrapperRef, hideAuth, authIconRef);
+
   return (
-    <div className="authentication">
+    <div className="authentication" ref={wrapperRef}>
       <div className="authentication__heading">
         <button
           className={

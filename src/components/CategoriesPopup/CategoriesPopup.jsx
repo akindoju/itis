@@ -1,8 +1,22 @@
+import { useRef } from "react";
+import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./CategoriesPopup.scss";
 
-const CategoriesPopup = () => {
+const CategoriesPopup = ({
+  categoriesRef,
+  isCategoriesClicked,
+  setIsCategoriesClicked,
+}) => {
+  const wrapperRef = useRef(null);
+
+  const hideCategoriesPopup = () => {
+    setIsCategoriesClicked(!isCategoriesClicked);
+  };
+
+  useOutsideAlerter(wrapperRef, hideCategoriesPopup, categoriesRef);
+
   return (
-    <div className="categoriesPopup">
+    <div className="categoriesPopup" ref={wrapperRef}>
       <div className="variety">
         <div className="variety__item">
           <h4>Pizza</h4>

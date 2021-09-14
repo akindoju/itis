@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import Authentication from "../Authentication/Authentication";
 import CategoriesPopup from "../CategoriesPopup/CategoriesPopup";
@@ -6,7 +6,7 @@ import "./NavBar.scss";
 
 const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
-  const [isCategoriesHovered, setIsCategoriesHovered] = useState(false);
+  const [isCategoriesClicked, setIsCategoriesClicked] = useState(false);
   const [isAuthClicked, setIsAuthClicked] = useState(false);
 
   const history = useHistory();
@@ -16,6 +16,9 @@ const NavBar = () => {
   };
 
   window.addEventListener("scroll", settingNavBar);
+
+  const authIconRef = useRef(null);
+  const categoriesRef = useRef(null);
 
   return (
     <div
@@ -33,12 +36,10 @@ const NavBar = () => {
         </li>
         <div
           className="navBar__options--3"
-          onPointerOver={() => {
-            setIsCategoriesHovered(true);
+          onClick={() => {
+            setIsCategoriesClicked(!isCategoriesClicked);
           }}
-          onPointerOut={() => {
-            setIsCategoriesHovered(false);
-          }}
+          ref={categoriesRef}
         >
           <li>Categories</li>
           <svg
@@ -88,6 +89,7 @@ const NavBar = () => {
             x="0px"
             y="0px"
             viewBox="0 0 512 512"
+            ref={authIconRef}
           >
             <title>Meals</title>
             <g>
@@ -157,8 +159,20 @@ const NavBar = () => {
           <title>Log Out</title>
           <path d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>
         </svg> */}
-        {isCategoriesHovered ? <CategoriesPopup /> : null}
-        {isAuthClicked ? <Authentication /> : null}
+        {isCategoriesClicked ? (
+          <CategoriesPopup
+            categoriesRef={categoriesRef}
+            isCategoriesClicked={isCategoriesClicked}
+            setIsCategoriesClicked={setIsCategoriesClicked}
+          />
+        ) : null}
+        {isAuthClicked ? (
+          <Authentication
+            isAuthClicked={isAuthClicked}
+            setIsAuthClicked={setIsAuthClicked}
+            authIconRef={authIconRef}
+          />
+        ) : null}
       </div>
     </div>
   );
