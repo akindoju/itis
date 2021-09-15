@@ -84,6 +84,7 @@
         border: 1px solid rgb(133, 133, 133);
         padding: 1.5rem;
         border-radius: 0.5rem 0 0 0.5rem;
+        height: 4.7rem;
         width: 50rem;
         color: $color-grey;
 
@@ -125,6 +126,14 @@
     align-items: center;
     justify-content: space-between;
     width: 13%;
+
+    @media only screen and (max-width: 1000px) {
+      width: 18%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      width: 24%;
+    }
 
     svg {
       fill: $color-grey;

@@ -24,7 +24,14 @@ const NavBar = () => {
     <div
       className={navBarActive ? "navBarContainer active" : "navBarContainer"}
     >
-      <div className="navBar__title">Itis</div>
+      <div
+        className="navBar__title"
+        onClick={() => {
+          history.push("/");
+        }}
+      >
+        Itis
+      </div>
 
       <ul className="navBar__options">
         <li

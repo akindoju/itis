@@ -19,6 +19,10 @@ $color-main: #f0c360;
 html {
   box-sizing: border-box;
   font-size: 62.5%; //10px/16px(browser default) = 62.5%
+
+  @media only screen and (max-width: 850px) {
+    font-size: 50%;
+  }
 }
 
 ::-webkit-scrollbar {

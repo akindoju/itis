@@ -22,13 +22,14 @@
     font-size: 6rem;
     color: $color-main;
     margin-left: 8rem;
+    cursor: pointer;
   }
 
   &__options {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 35%;
+    width: 42%;
     list-style: none;
 
     &--3 {
