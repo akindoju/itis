@@ -9,11 +9,11 @@ const Footer = () => {
       <h1 className="footer__logo">Itis</h1>
 
       <ul className="footer__list">
-        <li>Home</li>
-        <li>Menu</li>
-        <li>Features</li>
-        <li>About</li>
-        <li>Contact</li>
+        <li>Support</li>
+        <li>Legal</li>
+        <li>Payments</li>
+        <li>FAQ</li>
+        <li>Follow Us</li>
       </ul>
 
       <div className="footer__newsletter">
