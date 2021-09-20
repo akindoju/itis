@@ -50,18 +50,31 @@
   }
 
   &__temp {
-    padding: rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     background-image: linear-gradient(
         to bottom,
         rgba(black, 0.5),
         rgba(black, 0.5)
       ),
       url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 8rem;
+
+    @media only screen and (max-width: 900px) {
+      padding: 8rem 4rem;
+    }
 
     &--image {
       height: 85vh;
+
+      &:nth-child(1) {
+        margin-right: 3rem;
+      }
+
+      &:not(:nth-child(1)) {
+        margin-left: 3rem;
+      }
+
       img {
         height: 100%;
         width: 100%;
@@ -82,6 +95,10 @@
       justify-content: center;
       padding: 5rem;
 
+      // @media only screen and (max-width: 900px) {
+      //   padding: 2rem;
+      // }
+
       h1 {
         color: $color-main;
         font-family: $font-motto;
@@ -89,6 +106,7 @@
         text-transform: uppercase;
         font-size: 4rem;
         margin-bottom: 5rem;
+        text-align: center;
       }
 
       p {
@@ -96,6 +114,7 @@
         font-size: 1.5rem;
         font-family: $font-primary;
         text-align: center;
+        // width: 80%;
       }
     }
   }
