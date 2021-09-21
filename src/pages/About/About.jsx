@@ -39,7 +39,7 @@ const About = ({ isNotAtTop, setIsNotAtTop }) => {
       </div>
 
       <div className="about__temp">
-        <div className="about__temp--image">
+        <div className="about__temp--image about__temp--image--1">
           <img
             src="
             https://images.unsplash.com/photo-1568717099337-5aaecc090548?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
@@ -50,15 +50,12 @@ const About = ({ isNotAtTop, setIsNotAtTop }) => {
         <div className="about__temp--text">
           <h1>Our Store</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-            tempora odit nisi sequi amet earum ea ratione repellendus, quibusdam
-            commodi beatae sunt a possimus magni reiciendis incidunt et facilis
-            minus nobis provident voluptate veritatis! Id autem porro nemo,
-            perferendis, repudiandae impedit quasi itaque esse commodi hic a
-            praesentium necessitatibus, consequuntur expedita officia culpa
-            animi enim recusandae minus vero corrupti voluptate quae. Nobis quas
-            necessitatibus inventore. Eveniet, delectus. Ex tempora deserunt
-            atque nihil ab enim velit ullam, voluptate placeat laudantium ipsum.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. In
+            recusandae, itaque repudiandae dicta eum blanditiis numquam dolore,
+            fuga facilis enim magnam voluptates pariatur? Animi eveniet sunt
+            tempora facere soluta excepturi voluptatum nobis, id labore, ipsum,
+            et distinctio cumque velit nisi perferendis fugiat. Velit ducimus
+            voluptas ab aspernatur! Minima, modi perferendis.
           </p>
         </div>
       </div>
@@ -67,19 +64,17 @@ const About = ({ isNotAtTop, setIsNotAtTop }) => {
         <div className="about__temp--text">
           <h1>Mission Statement</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-            tempora odit nisi sequi amet earum ea ratione repellendus, quibusdam
-            commodi beatae sunt a possimus magni reiciendis incidunt et facilis
-            minus nobis provident voluptate veritatis! Id autem porro nemo,
-            perferendis, repudiandae impedit quasi itaque esse commodi hic a
-            praesentium necessitatibus, consequuntur expedita officia culpa
-            animi enim recusandae minus vero corrupti voluptate quae. Nobis quas
-            necessitatibus inventore. Eveniet, delectus. Ex tempora deserunt
-            atque nihil ab enim velit ullam, voluptate placeat laudantium ipsum.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro qui
+            officiis beatae deleniti. Nisi eveniet laboriosam architecto
+            officiis suscipit laudantium deserunt illo omnis! Aperiam officiis
+            dicta at! Deserunt quasi molestiae quibusdam beatae fugit vitae
+            atque sit tempora, sapiente ducimus aliquid commodi aperiam
+            necessitatibus! Eius dolor culpa fugiat? Aliquam, quidem tempora ex
+            dolores alias perspiciatis optio!
           </p>
         </div>
 
-        <div className="about__temp--image">
+        <div className="about__temp--image about__temp--image--2">
           <img
             src="https://images.unsplash.com/photo-1622711321771-4a00d2bc0350?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
             alt="Mission Statement"
@@ -88,7 +83,7 @@ const About = ({ isNotAtTop, setIsNotAtTop }) => {
       </div>
 
       <div className="about__temp">
-        <div className="about__temp--image">
+        <div className="about__temp--image about__temp--image--3">
           <img
             src="https://images.unsplash.com/photo-1608219994488-cc269412b3e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
             alt="Our Story"
@@ -98,15 +93,13 @@ const About = ({ isNotAtTop, setIsNotAtTop }) => {
         <div className="about__temp--text">
           <h1>Our Story</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-            tempora odit nisi sequi amet earum ea ratione repellendus, quibusdam
-            commodi beatae sunt a possimus magni reiciendis incidunt et facilis
-            minus nobis provident voluptate veritatis! Id autem porro nemo,
-            perferendis, repudiandae impedit quasi itaque esse commodi hic a
-            praesentium necessitatibus, consequuntur expedita officia culpa
-            animi enim recusandae minus vero corrupti voluptate quae. Nobis quas
-            necessitatibus inventore. Eveniet, delectus. Ex tempora deserunt
-            atque nihil ab enim velit ullam, voluptate placeat laudantium ipsum.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa odit
+            officia harum qui deserunt modi, necessitatibus vero? Voluptas
+            doloremque praesentium cumque maxime libero ullam ex accusantium
+            esse a facere aspernatur odio, vel excepturi reiciendis ut harum
+            officiis placeat aliquid sed eaque! Dolore, iste accusamus id, rerum
+            repudiandae at doloremque sequi illum quis voluptas minus nobis
+            cupiditate magni laborum incidunt expedita?
           </p>
         </div>
       </div>
