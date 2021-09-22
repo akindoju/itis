@@ -1,15 +1,15 @@
 import React from "react";
+import Menu from "../../components/Menu/Menu";
+import Brief from "../../components/Brief/Brief";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar/NavBar";
-import MakeOrder from "../../components/MakeOrder/MakeOrder";
-import Menu from "../../components/Menu/Menu";
-import "./Homepage.scss";
-import Categories from "../../components/Categories/Categories";
 import Gallery from "../../components/Gallery/Gallery";
-import Footer from "../../components/Footer/Footer";
+import MakeOrder from "../../components/MakeOrder/MakeOrder";
+import Categories from "../../components/Categories/Categories";
 import MapContainer from "../../components/MapContainer/MapContainer";
 import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
-import Brief from "../../components/Brief/Brief";
+import "./Homepage.scss";
 
 const Homepage = ({ isNotAtTop, setIsNotAtTop }) => {
   const settingScrollTopBtn = () => {
