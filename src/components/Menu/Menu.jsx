@@ -4,12 +4,7 @@ import "./Menu.scss";
 const Menu = () => {
   return (
     <div className="menu">
-      <div className="menu__image">
-        <img
-          src="https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=401&q=80"
-          alt="Menu"
-        />
-      </div>
+      <div className="menu__image" />
 
       <div className="menu__text">
         <h1 className="menu__text--heading">Menu</h1>
