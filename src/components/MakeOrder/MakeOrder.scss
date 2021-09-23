@@ -14,11 +14,16 @@
   align-items: center;
   justify-content: center;
 
+  // @media only screen and (max-width: 400px) {
+  //   padding: 8rem;
+  // }
+
   h1 {
     font-family: $font-primary;
     font-size: 5rem;
     color: $color-black;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
 
   h4 {
@@ -26,7 +31,7 @@
     font-size: 3rem;
     font-weight: 100;
     color: $color-black;
-    margin-bottom: 2rem;
+    text-align: center;
   }
 
   button {
@@ -40,7 +45,7 @@
     font-weight: 600;
     color: $color-white;
     transition: all 0.3s;
-    margin-top: 3rem;
+    margin-top: 4rem;
 
     &:hover {
       transform: translateY(-3px);

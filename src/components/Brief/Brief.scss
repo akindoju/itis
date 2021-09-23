@@ -25,6 +25,7 @@
       font-size: 5.5rem;
       font-family: $font-brand;
       font-weight: 200;
+      text-align: center;
 
       @media only screen and (max-width: 720px) {
         font-size: 5rem;
@@ -32,6 +33,10 @@
 
       @media only screen and (max-width: 620px) {
         font-size: 4.5rem;
+      }
+
+      @media only screen and (max-width: 500px) {
+        font-size: 4rem;
       }
     }
 
