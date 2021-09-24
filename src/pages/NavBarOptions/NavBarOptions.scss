@@ -1,5 +1,13 @@
+@import "../../App.scss";
+
 .navBarOptionsContainer {
-  background-color: rgb(236, 236, 236);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(black, 0.95),
+      rgba(black, 0.95)
+    ),
+    url("https://images.unsplash.com/photo-1568733873715-f9d497a47ea0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+  background-size: cover;
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +23,7 @@
     position: absolute;
     top: 5rem;
     right: 5rem;
-    fill: #5c5c5c;
+    fill: $color-white;
     width: 4rem;
     height: 4rem;
   }
@@ -32,10 +40,10 @@
 }
 
 .navBarOptions {
-  &__akindoju {
-    color: #333;
-    font-size: 6rem;
-    font-family: "Qwigley", cursive;
+  &__title {
+    color: $color-main;
+    font-size: 10rem;
+    font-family: $font-brand;
     text-align: center;
   }
 
@@ -43,7 +51,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #333;
+    color: $color-white;
     text-transform: uppercase;
     list-style: none;
     display: flex;
