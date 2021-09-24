@@ -1,28 +1,31 @@
+import "./App.scss";
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Homepage from "./pages/Homepage/Homepage";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
-import "./App.scss";
+import Homepage from "./pages/Homepage/Homepage";
+import StartAtTop from "./components/StartAtTop";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
 
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact>
-          <Homepage isNotAtTop={isNotAtTop} setIsNotAtTop={setIsNotAtTop} />
-        </Route>
+      <StartAtTop>
+        <Switch>
+          <Route path="/" exact>
+            <Homepage isNotAtTop={isNotAtTop} setIsNotAtTop={setIsNotAtTop} />
+          </Route>
 
-        <Route path="/about" exact>
-          <About isNotAtTop={isNotAtTop} setIsNotAtTop={setIsNotAtTop} />
-        </Route>
+          <Route path="/about" exact>
+            <About isNotAtTop={isNotAtTop} setIsNotAtTop={setIsNotAtTop} />
+          </Route>
 
-        <Route path="/contact" exact>
-          <Contact isNotAtTop={isNotAtTop} setIsNotAtTop={setIsNotAtTop} />
-        </Route>
-      </Switch>
+          <Route path="/contact" exact>
+            <Contact isNotAtTop={isNotAtTop} setIsNotAtTop={setIsNotAtTop} />
+          </Route>
+        </Switch>
+      </StartAtTop>
     </Router>
   );
 }
