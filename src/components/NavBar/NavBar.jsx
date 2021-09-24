@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router";
+import NavBarOptions from "../../pages/NavBarOptions/NavBarOptions";
 import Authentication from "../Authentication/Authentication";
 import CategoriesPopup from "../CategoriesPopup/CategoriesPopup";
 import "./NavBar.scss";
@@ -8,6 +9,8 @@ const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
   const [isCategoriesClicked, setIsCategoriesClicked] = useState(false);
   const [isAuthClicked, setIsAuthClicked] = useState(false);
+  const [isNavBarOptionsBtnClicked, setIsNavBarOptionsBtnClicked] =
+    useState(false);
 
   const history = useHistory();
 
@@ -20,10 +23,42 @@ const NavBar = () => {
   const authIconRef = useRef(null);
   const categoriesRef = useRef(null);
 
+  const useViewport = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleWindowResize = () => setWidth(window.innerWidth);
+      window.addEventListener("resize", handleWindowResize);
+      //remove event listener to avoid memory leak
+      return window.removeEventListener("resize", handleWindowResize);
+    }, []);
+
+    //returning an object with width in it
+    return { width };
+  };
+
+  const { width } = useViewport();
+
+  const breakPoint = 600;
+
   return (
     <div
       className={navBarActive ? "navBarContainer active" : "navBarContainer"}
     >
+      {width <= breakPoint && (
+        <svg
+          className="navBar__svg"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          onClick={() => setIsNavBarOptionsBtnClicked(true)}
+        >
+          <title>menu</title>
+          <path d="M3 6h18v2.016h-18v-2.016zM3 12.984v-1.969h18v1.969h-18zM3 18v-2.016h18v2.016h-18z"></path>
+        </svg>
+      )}
       <div
         className="navBar__title"
         onClick={() => {
@@ -33,48 +68,50 @@ const NavBar = () => {
         Itis
       </div>
 
-      <ul className="navBar__options">
-        <li
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          Home
-        </li>
-        <div
-          className="navBar__options--3"
-          onClick={() => {
-            setIsCategoriesClicked(!isCategoriesClicked);
-          }}
-          ref={categoriesRef}
-        >
-          <li>Categories</li>
-          <svg
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+      {width > breakPoint && (
+        <ul className="navBar__options">
+          <li
+            onClick={() => {
+              history.push("/");
+            }}
           >
-            <title>arrow_drop_down</title>
-            <path d="M6.984 9.984h10.031l-5.016 5.016z"></path>
-          </svg>
-        </div>
-        <li
-          onClick={() => {
-            history.push("/about");
-          }}
-        >
-          About
-        </li>
-        <li
-          onClick={() => {
-            history.push("/contact");
-          }}
-        >
-          Contact
-        </li>
-      </ul>
+            Home
+          </li>
+          <div
+            className="navBar__options--3"
+            onClick={() => {
+              setIsCategoriesClicked(!isCategoriesClicked);
+            }}
+            ref={categoriesRef}
+          >
+            <li>Categories</li>
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <title>arrow_drop_down</title>
+              <path d="M6.984 9.984h10.031l-5.016 5.016z"></path>
+            </svg>
+          </div>
+          <li
+            onClick={() => {
+              history.push("/about");
+            }}
+          >
+            About
+          </li>
+          <li
+            onClick={() => {
+              history.push("/contact");
+            }}
+          >
+            Contact
+          </li>
+        </ul>
+      )}
 
       <div className="navBar__utilities">
         <svg
@@ -180,6 +217,11 @@ const NavBar = () => {
             authIconRef={authIconRef}
           />
         ) : null}
+        {isNavBarOptionsBtnClicked && (
+          <NavBarOptions
+            setIsNavBarOptionsBtnClicked={setIsNavBarOptionsBtnClicked}
+          />
+        )}
       </div>
     </div>
   );
