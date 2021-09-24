@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -40,6 +40,38 @@ const Gallery = () => {
     nextArrow: NextArrow,
     prevArrow: PrevArrow,
   };
+
+  const useViewport = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleWindowResize = () => setWidth(window.innerWidth);
+      window.addEventListener("resize", handleWindowResize);
+      //remove event listener to avoid memory leak
+      return window.removeEventListener("resize", handleWindowResize);
+    }, []);
+
+    //returning an object with width in it
+    return { width };
+  };
+
+  const { width } = useViewport();
+
+  const setGalleryWidth = (width) => {
+    if (width < 901) {
+      settings.slidesToShow = 3;
+    }
+
+    if (width < 601) {
+      settings.slidesToShow = 2;
+    }
+
+    if (width < 301) {
+      settings.slidesToShow = 1;
+    }
+  };
+
+  setGalleryWidth(width);
 
   return (
     <div className="gallery">
