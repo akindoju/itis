@@ -55,8 +55,7 @@
   &__grid {
     padding: 2rem;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     grid-gap: 4rem;
 
     &--item {
@@ -190,6 +189,11 @@
         border-radius: 1rem;
         cursor: pointer;
         transition: all 0.2s;
+
+        @media only screen and (max-width: 463px) {
+          height: 50rem;
+          background-position: 50%;
+        }
 
         &-1 {
           background-image: url("https://images.unsplash.com/photo-1620314220867-90d1ba926c62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=416&q=80");
