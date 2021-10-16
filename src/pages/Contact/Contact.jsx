@@ -135,7 +135,7 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
                       value={values.name}
                       required
                     />
-                    {errors.message && touched.message ? (
+                    {errors.name && touched.name ? (
                       <h3 className="errMsg">{errors.name}</h3>
                     ) : null}
                   </div>
@@ -150,7 +150,7 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
                       value={values.email}
                       required
                     />
-                    {errors.message && touched.message ? (
+                    {errors.email && touched.email ? (
                       <h3 className="errMsg">{errors.email}</h3>
                     ) : null}
                   </div>
