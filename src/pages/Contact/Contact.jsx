@@ -1,16 +1,33 @@
 import React from "react";
+import * as Yup from "yup";
+import { Formik } from "formik";
+import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import MapContainer from "../../components/MapContainer/MapContainer";
-import NavBar from "../../components/NavBar/NavBar";
 import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
 import "./Contact.scss";
+import axios from "axios";
 
 const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
+  const validateSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(2, "Name should be at least 2 characters")
+      .required("Name is required"),
+    email: Yup.string().email("Invalid Email").required("Email is required"),
+    message: Yup.string()
+      .min(2, "Your message should be at least 2 characters")
+      .required("Your message is required"),
+  });
+
   const settingScrollTopBtn = () => {
     window.scrollY > 150 ? setIsNotAtTop(true) : setIsNotAtTop(false);
   };
 
   window.addEventListener("scroll", settingScrollTopBtn);
+
+  const errMessage = (errors, credential) => {
+    return <h3>{errors.credential}</h3>;
+  };
 
   return (
     <div>
@@ -75,19 +92,86 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
           </div>
         </div>
 
-        <div className="contact__form">
-          <h1 className="contact__form--heading">Contact Us</h1>
+        <Formik
+          initialValues={{
+            name: "",
+            email: "",
+            message: "",
+          }}
+          validationSchema={validateSchema}
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
+            setSubmitting(true);
+            try {
+              // const { data } = await axios.post("https://");
+            } catch (error) {
+              console.log(error);
+              setSubmitting(false);
+            }
 
-          <input type="text" placeholder="Name" />
-          <input type="text" placeholder="Email" />
-          <textarea
-            name="message"
-            placeholder="How can we help :)?"
-            cols="30"
-            rows="10"
-          />
-          <button>Send</button>
-        </div>
+            setSubmitting(false);
+          }}
+        >
+          {({
+            handleBlur,
+            handleChange,
+            handleSubmit,
+            touched,
+            values,
+            errors,
+            // isSubmitting,
+          }) => {
+            return (
+              <form onSubmit={handleSubmit}>
+                <div className="contact__form">
+                  <h1 className="contact__form--heading">Contact Us</h1>
+
+                  <div className="contact__form--input">
+                    <input
+                      name="name"
+                      type="text"
+                      placeholder="Name"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.name}
+                      required
+                    />
+                    {errors.name && touched.name ? errors.name : null}
+                  </div>
+
+                  <div className="contact__form--input">
+                    <input
+                      name="email"
+                      type="text"
+                      placeholder="Email"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                      required
+                    />
+                    {errors.email && touched.email ? errors.email : null}
+                  </div>
+
+                  <div className="contact__form--input">
+                    <textarea
+                      name="message"
+                      placeholder="How can we help :)?"
+                      cols="30"
+                      rows="10"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.message}
+                      required
+                    />
+                    {errors.message && touched.message ? (
+                      <h3 className="errMsg">errors.message</h3>
+                    ) : null}
+                    <button>Send</button>
+                  </div>
+                </div>
+              </form>
+            );
+          }}
+        </Formik>
 
         <MapContainer />
         <Footer />

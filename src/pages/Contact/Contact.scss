@@ -153,36 +153,42 @@
       }
     }
 
-    input,
-    textarea {
+    &--input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 60%;
-      padding: 1.5rem;
-      background: transparent;
-      border: 2px solid $color-grey;
-      margin-bottom: 3rem;
-      color: $color-grey;
-      font-size: 1.5rem;
-
-      &:active,
-      &:focus {
-        outline: none;
-        border: 2px solid $color-main;
-      }
-
-      @media only screen and (max-width: 1000px) {
-        width: 70%;
-      }
-
-      @media only screen and (max-width: 600px) {
-        width: 75%;
-      }
-
-      @media only screen and (max-width: 600px) {
-        width: 85%;
-      }
-
-      @media only screen and (max-width: 300px) {
+      input,
+      textarea {
         width: 100%;
+        padding: 1.5rem;
+        background: transparent;
+        border: 2px solid $color-grey;
+        margin-bottom: 3rem;
+        color: $color-grey;
+        font-size: 1.5rem;
+
+        &:active,
+        &:focus {
+          outline: none;
+          border: 2px solid $color-main;
+        }
+
+        @media only screen and (max-width: 1000px) {
+          width: 70%;
+        }
+
+        @media only screen and (max-width: 600px) {
+          width: 75%;
+        }
+
+        @media only screen and (max-width: 600px) {
+          width: 85%;
+        }
+
+        @media only screen and (max-width: 300px) {
+          width: 100%;
+        }
       }
     }
 
@@ -210,4 +216,8 @@
       }
     }
   }
+}
+
+.errMsg {
+  color: red;
 }
