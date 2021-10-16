@@ -219,5 +219,8 @@
 }
 
 .errMsg {
-  color: red;
+  font-family: $font-primary;
+  font-size: 1.5rem;
+  color: rgb(255, 64, 64);
+  margin: -2rem 0 2rem 0;
 }
