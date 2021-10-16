@@ -203,7 +203,6 @@
       font-weight: 600;
       color: $color-black;
       transition: all 0.3s;
-      margin-top: 3rem;
 
       &:hover {
         background-color: transparent;
@@ -222,5 +221,6 @@
   font-family: $font-primary;
   font-size: 1.5rem;
   color: rgb(255, 64, 64);
-  margin: -2rem 0 2rem 0;
+  margin: -1rem 0 2rem 0;
+  height: 1rem;
 }

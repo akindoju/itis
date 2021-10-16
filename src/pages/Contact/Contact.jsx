@@ -137,7 +137,9 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
                     />
                     {errors.name && touched.name ? (
                       <h3 className="errMsg">{errors.name}</h3>
-                    ) : null}
+                    ) : (
+                      <div className="errMsg" />
+                    )}
                   </div>
 
                   <div className="contact__form--input">
@@ -152,7 +154,9 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
                     />
                     {errors.email && touched.email ? (
                       <h3 className="errMsg">{errors.email}</h3>
-                    ) : null}
+                    ) : (
+                      <div className="errMsg" />
+                    )}
                   </div>
 
                   <div className="contact__form--input">
@@ -168,7 +172,9 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
                     />
                     {errors.message && touched.message ? (
                       <h3 className="errMsg">{errors.message}</h3>
-                    ) : null}
+                    ) : (
+                      <div className="errMsg" />
+                    )}
                     <button>Send</button>
                   </div>
                 </div>
