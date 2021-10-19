@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import NavBar from "../../components/NavBar/NavBar";
@@ -9,6 +9,9 @@ import "./Contact.scss";
 import axios from "axios";
 
 const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
+  const [isEmailSent, setIsEmailSent] = useState(false);
+  const [isEmailFailed, setIsEmailFailed] = useState(false);
+
   const validateSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, "Name should be at least 2 characters")
@@ -24,10 +27,6 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
   };
 
   window.addEventListener("scroll", settingScrollTopBtn);
-
-  const errMessage = (errors, credential) => {
-    return <h3>{errors.credential}</h3>;
-  };
 
   return (
     <div>
@@ -102,10 +101,27 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
           onSubmit={async (values, { setSubmitting, resetForm }) => {
             setSubmitting(true);
             try {
-              // const { data } = await axios.post("https://");
+              const { data } = await axios.post(
+                "https://i5dtwctpml.execute-api.us-edast-1.amazonaws.com",
+                {
+                  name: values.name,
+                  email: values.email,
+                  message: values.message,
+                }
+              );
+              setIsEmailSent(true);
+              resetForm();
+              setTimeout(() => {
+                setIsEmailSent(false);
+              }, 3000);
             } catch (error) {
-              console.log(error);
+              setIsEmailFailed(true);
+              resetForm();
+              setTimeout(() => {
+                setIsEmailFailed(false);
+              }, 3000);
               setSubmitting(false);
+              setIsEmailSent(false);
             }
 
             setSubmitting(false);
@@ -175,7 +191,13 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
                     ) : (
                       <div className="errMsg" />
                     )}
-                    <button>Send</button>
+                    <button type="submit">Send</button>
+                    {isEmailSent && (
+                      <h3 className="sentEmail">Email Successfully sent</h3>
+                    )}
+                    {isEmailFailed && (
+                      <h3 className="errMsg">Oops, something went wrong</h3>
+                    )}
                   </div>
                 </div>
               </form>
