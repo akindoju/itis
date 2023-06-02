@@ -1,47 +1,85 @@
 @import "../../App.scss";
 
-.navBarContainer {
+.navBar {
   background: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 15vh;
   width: 100%;
   position: fixed;
   top: 0%;
   z-index: 10;
-}
+  padding: 3.5rem 3rem;
 
-.navBarContainer.active {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.navBar {
-  &__svg {
-    width: 5rem;
-    height: 5rem;
-    fill: $color-white;
-    margin-left: 2rem;
+  &.active {
+    background: rgba(0, 0, 0, 0.8);
   }
 
-  &__title {
-    font-family: $font-brand;
-    font-size: 6rem;
-    color: $color-main;
-    margin-left: 8rem;
-    cursor: pointer;
+  &__utilities {
+    display: flex;
+    align-items: center;
 
-    @media only screen and (max-width: 500px) {
+    svg {
+      cursor: pointer;
+      fill: white;
+      height: 3.5rem;
+      width: 3.5rem;
+      margin-right: 3rem;
+      transition: all 0.2s;
+
+      &:last-child {
+        height: 3rem;
+        width: 3rem;
+      }
+
+      &:hover,
+      &:focus {
+        fill: $color-main;
+      }
+    }
+
+    &--meals {
+      position: relative;
+
+      &-cart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $color-main;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        padding: 0.4rem;
+        font-size: 1.2rem;
+        font-family: $font-primary;
+        color: black;
+      }
+    }
+  }
+
+  &__menu {
+    width: 3.2rem;
+    height: 3.2rem;
+    fill: $color-white;
+
+    @media (min-width: 600px) {
       display: none;
     }
   }
 
   &__options {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
-    width: 42%;
+    width: 50%;
     list-style: none;
+
+    @media (min-width: 600px) {
+      display: flex;
+    }
 
     &--3 {
       position: relative;
@@ -90,44 +128,6 @@
       &:hover::after {
         width: 80%;
         left: 10%;
-      }
-    }
-  }
-
-  &__utilities {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-    svg {
-      cursor: pointer;
-      margin-right: 3rem;
-      fill: white;
-      height: 3rem;
-      width: 3rem;
-      transition: all 0.2s;
-
-      &:hover {
-        fill: $color-main;
-      }
-    }
-
-    &--meals {
-      position: relative;
-
-      h6 {
-        background: $color-main;
-        font-size: 1.2rem;
-        font-family: $font-primary;
-        color: black;
-        position: absolute;
-        top: -3px;
-        right: 2.2rem;
-        padding: 0.4rem;
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        text-align: center;
       }
     }
   }

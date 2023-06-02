@@ -1,18 +1,17 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import NavBarOptions from "../../pages/NavBarOptions/NavBarOptions";
+import React, { useRef, useState } from "react";
+import NavBarOptions from "../NavBarOptions/NavBarOptions";
 import Authentication from "../Authentication/Authentication";
 import CategoriesPopup from "../CategoriesPopup/CategoriesPopup";
+import { useHistory } from "react-router";
 import "./NavBar.scss";
 
 const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
   const [isCategoriesClicked, setIsCategoriesClicked] = useState(false);
   const [isAuthClicked, setIsAuthClicked] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isNavBarOptionsBtnClicked, setIsNavBarOptionsBtnClicked] =
     useState(false);
-
-  const history = useHistory();
 
   const settingNavBar = () => {
     window.scrollY > 150 ? setNavBarActive(true) : setNavBarActive(false);
@@ -23,106 +22,20 @@ const NavBar = () => {
   const authIconRef = useRef(null);
   const categoriesRef = useRef(null);
 
-  const useViewport = () => {
-    const [width, setWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-      const handleWindowResize = () => setWidth(window.innerWidth);
-      window.addEventListener("resize", handleWindowResize);
-      //remove event listener to avoid memory leak
-      return window.removeEventListener("resize", handleWindowResize);
-    }, []);
-
-    //returning an object with width in it
-    return { width };
-  };
-
-  const { width } = useViewport();
-
-  const breakPoint = 600;
+  const history = useHistory;
 
   return (
-    <div
-      className={navBarActive ? "navBarContainer active" : "navBarContainer"}
-    >
-      {width <= breakPoint && (
+    <div className={navBarActive ? "navBar active" : "navBar"}>
+      <div className="navBar__utilities">
         <svg
-          className="navBar__svg"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           viewBox="0 0 24 24"
-          onClick={() => setIsNavBarOptionsBtnClicked(true)}
         >
-          <title>menu</title>
-          <path d="M3 6h18v2.016h-18v-2.016zM3 12.984v-1.969h18v1.969h-18zM3 18v-2.016h18v2.016h-18z"></path>
-        </svg>
-      )}
-      <div
-        className="navBar__title"
-        onClick={() => {
-          history.push("/");
-        }}
-      >
-        Itis
-      </div>
-
-      {width > breakPoint && (
-        <ul className="navBar__options">
-          <li
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            Home
-          </li>
-          <div
-            className="navBar__options--3"
-            onClick={() => {
-              setIsCategoriesClicked(!isCategoriesClicked);
-            }}
-            ref={categoriesRef}
-          >
-            <li>Categories</li>
-            <svg
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <title>arrow_drop_down</title>
-              <path d="M6.984 9.984h10.031l-5.016 5.016z"></path>
-            </svg>
-          </div>
-          <li
-            onClick={() => {
-              history.push("/about");
-            }}
-          >
-            About
-          </li>
-          <li
-            onClick={() => {
-              history.push("/contact");
-            }}
-          >
-            Contact
-          </li>
-        </ul>
-      )}
-
-      <div className="navBar__utilities">
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-        >
-          <title>search</title>
-          <path d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.622-1.029-2.299-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.299l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"></path>
+          <title>search1</title>
+          <path d="M9.516 14.016q1.875 0 3.188-1.313t1.313-3.188-1.313-3.188-3.188-1.313-3.188 1.313-1.313 3.188 1.313 3.188 3.188 1.313zM15.516 14.016l4.969 4.969-1.5 1.5-4.969-4.969v-0.797l-0.281-0.281q-1.781 1.547-4.219 1.547-2.719 0-4.617-1.875t-1.898-4.594 1.898-4.617 4.617-1.898 4.594 1.898 1.875 4.617q0 0.984-0.469 2.227t-1.078 1.992l0.281 0.281h0.797z"></path>
         </svg>
 
         <div className="navBar__utilities--meals">
@@ -174,55 +87,105 @@ const NavBar = () => {
             <g></g>
           </svg>
 
-          <h6>0</h6>
+          <div className="navBar__utilities--meals-cart">0</div>
         </div>
 
         <div className={isAuthClicked ? "isUtilActive" : null}>
-          <svg
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            ref={authIconRef}
-            onClick={() => setIsAuthClicked(!isAuthClicked)}
-          >
-            <title>Log In</title>
-            <path d="M12 16h-10v-4h10v-4l6 6-6 6zM32 0v26l-12 6v-6h-12v-8h2v6h10v-18l8-4h-18v8h-2v-10z"></path>
-          </svg>
+          {isLoggedIn ? (
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+            >
+              <title>Log Out</title>
+              <path d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>
+            </svg>
+          ) : (
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              ref={authIconRef}
+              onClick={() => setIsAuthClicked(!isAuthClicked)}
+            >
+              <title>Log In</title>
+              <path d="M12 16h-10v-4h10v-4l6 6-6 6zM32 0v26l-12 6v-6h-12v-8h2v6h10v-18l8-4h-18v8h-2v-10z"></path>
+            </svg>
+          )}
         </div>
-
-        {/* log out icon to be used when functionality is added */}
-        {/* <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-        >
-          <title>Log Out</title>
-          <path d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>
-        </svg> */}
-        {isCategoriesClicked ? (
-          <CategoriesPopup
-            categoriesRef={categoriesRef}
-            isCategoriesClicked={isCategoriesClicked}
-            setIsCategoriesClicked={setIsCategoriesClicked}
-          />
-        ) : null}
-        {isAuthClicked ? (
-          <Authentication
-            isAuthClicked={isAuthClicked}
-            setIsAuthClicked={setIsAuthClicked}
-            authIconRef={authIconRef}
-          />
-        ) : null}
-        {isNavBarOptionsBtnClicked && (
-          <NavBarOptions
-            setIsNavBarOptionsBtnClicked={setIsNavBarOptionsBtnClicked}
-          />
-        )}
       </div>
+
+      <ul className="navBar__options">
+        <li
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          Home
+        </li>
+        <li
+          onClick={() => {
+            setIsCategoriesClicked(!isCategoriesClicked);
+          }}
+          ref={categoriesRef}
+        >
+          Categories
+        </li>
+
+        <li
+          onClick={() => {
+            history.push("/about");
+          }}
+        >
+          About
+        </li>
+        <li
+          onClick={() => {
+            history.push("/contact");
+          }}
+        >
+          Contact
+        </li>
+      </ul>
+
+      <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        className="navBar__menu"
+        onClick={() => setIsNavBarOptionsBtnClicked(true)}
+      >
+        <title>menu</title>
+        <path d="M3 13h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 7h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 19h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1z"></path>
+      </svg>
+
+      {isCategoriesClicked ? (
+        <CategoriesPopup
+          categoriesRef={categoriesRef}
+          isCategoriesClicked={isCategoriesClicked}
+          setIsCategoriesClicked={setIsCategoriesClicked}
+        />
+      ) : null}
+
+      {isAuthClicked ? (
+        <Authentication
+          isAuthClicked={isAuthClicked}
+          setIsAuthClicked={setIsAuthClicked}
+          authIconRef={authIconRef}
+        />
+      ) : null}
+
+      {isNavBarOptionsBtnClicked && (
+        <NavBarOptions
+          setIsNavBarOptionsBtnClicked={setIsNavBarOptionsBtnClicked}
+        />
+      )}
     </div>
   );
 };
