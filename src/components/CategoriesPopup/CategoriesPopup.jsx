@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./CategoriesPopup.scss";
+import axios from "axios";
 
 const CategoriesPopup = ({
   categoriesRef,
@@ -15,10 +16,28 @@ const CategoriesPopup = ({
 
   useOutsideAlerter(wrapperRef, hideCategoriesPopup, categoriesRef);
 
+  const fetchCategoriesHandler = async () => {
+    try {
+      const result = await axios.get(
+        "https://www.themealdb.com/api/json/v1/1/randomselection.php"
+      );
+
+      console.log({ result });
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
   return (
     <div className="categoriesPopup" ref={wrapperRef}>
       <div className="variety">
-        <div className="variety__item">
+        <div
+          className="variety__item"
+          onClick={() => {
+            console.log("clicked");
+            fetchCategoriesHandler();
+          }}
+        >
           <h4>Pizza</h4>
           <img
             src="https://c4.wallpaperflare.com/wallpaper/319/711/651/pizza-vegetables-cheese-piece-wallpaper-preview.jpg"

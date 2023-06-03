@@ -22,7 +22,7 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      margin-bottom: 8rem;
+      margin-bottom: 2.5rem;
 
       h1 {
         font-family: $font-brand;
@@ -34,8 +34,9 @@
 
       h4 {
         font-family: $font-motto;
+        font-weight: 100;
         color: white;
-        font-size: 1.8rem;
+        font-size: 2.5rem;
       }
     }
 
@@ -48,9 +49,10 @@
         cursor: pointer;
         transition: all 0.3s;
         position: relative;
-        font-family: $font-motto;
+        font-family: $font-primary;
         font-weight: 600;
         color: $color-black;
+        font-size: 1.5rem;
         justify-self: center;
 
         &:hover {

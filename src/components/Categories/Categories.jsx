@@ -3,7 +3,7 @@ import "./Categories.scss";
 
 const Categories = () => {
   return (
-    <div className="categories" id="categories">
+    <div className="categories" id="ready-to-eat">
       <div className="categories__heading">
         <h1>Our Many Varieties</h1>
         <div className="categories__heading--btns">

@@ -57,18 +57,18 @@
     color: $color-main;
     margin-bottom: 1rem;
 
-    &::after {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 50%;
-      bottom: 20rem;
-      transform: translateX(-50%);
-      height: 1px;
-      background: #5c5c5c;
-      width: 90%;
-      backface-visibility: none;
-    }
+    // &::after {
+    //   content: "";
+    //   display: block;
+    //   position: absolute;
+    //   left: 50%;
+    //   bottom: 20rem;
+    //   transform: translateX(-50%);
+    //   height: 1px;
+    //   background: #5c5c5c;
+    //   width: 90%;
+    //   backface-visibility: none;
+    // }
   }
 
   &__content {
