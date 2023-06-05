@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import MapContainer from "../../components/MapContainer/MapContainer";
-import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
 import "./Contact.scss";
 import axios from "axios";
 
@@ -30,8 +28,6 @@ const Contact = ({ setIsNotAtTop, isNotAtTop }) => {
 
   return (
     <div>
-      {isNotAtTop && <ScrollTopBtn />}
-      <NavBar />
       <div className="contact" id="top">
         <div className="contact__intro--image" />
 

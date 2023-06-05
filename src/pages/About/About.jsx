@@ -1,21 +1,10 @@
 import React from "react";
 import Footer from "../../components/Footer/Footer";
-import NavBar from "../../components/NavBar/NavBar";
-import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
 import "./About.scss";
 
 const About = ({ isNotAtTop, setIsNotAtTop }) => {
-  const settingScrollTopBtn = () => {
-    window.scrollY > 150 ? setIsNotAtTop(true) : setIsNotAtTop(false);
-  };
-
-  window.addEventListener("scroll", settingScrollTopBtn);
-
   return (
     <div id="top">
-      {isNotAtTop && <ScrollTopBtn />}
-      <NavBar />
-
       <div className="about__intro">
         <div className="about__intro--image" />
 

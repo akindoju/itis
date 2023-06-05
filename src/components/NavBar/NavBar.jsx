@@ -3,6 +3,7 @@ import NavBarOptions from "../NavBarOptions/NavBarOptions";
 import Authentication from "../Authentication/Authentication";
 import { Link, useLocation } from "react-router-dom";
 import "./NavBar.scss";
+import { createPortal } from "react-dom";
 import { Link as Scroll } from "react-scroll";
 
 const NavBar = () => {
@@ -15,6 +16,8 @@ const NavBar = () => {
   const authIconRef = useRef(null);
   const location = useLocation();
 
+  const authModal = document.getElementById("auth");
+
   useEffect(() => {
     const settingNavBar = () => {
       window.scrollY > 150 ? setNavBarActive(true) : setNavBarActive(false);
@@ -26,6 +29,14 @@ const NavBar = () => {
       window.removeEventListener("scroll", settingNavBar);
     };
   }, []);
+
+  useEffect(() => {
+    if (isAuthClicked && authModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  }, [isAuthClicked, authModal]);
 
   return (
     <div className={navBarActive ? "navBar active" : "navBar"}>
@@ -60,7 +71,6 @@ const NavBar = () => {
           }
           onSubmit={(e) => {
             e.preventDefault();
-            console.log("Submitetd");
           }}
         >
           <input placeholder="Search meal" />
@@ -180,13 +190,16 @@ const NavBar = () => {
         </div>
       </div>
 
-      {isAuthClicked ? (
-        <Authentication
-          isAuthClicked={isAuthClicked}
-          setIsAuthClicked={setIsAuthClicked}
-          authIconRef={authIconRef}
-        />
-      ) : null}
+      {isAuthClicked && authModal
+        ? createPortal(
+            <Authentication
+              isAuthClicked={isAuthClicked}
+              setIsAuthClicked={setIsAuthClicked}
+              authIconRef={authIconRef}
+            />,
+            authModal
+          )
+        : null}
 
       {isNavBarOptionsBtnClicked && (
         <NavBarOptions
