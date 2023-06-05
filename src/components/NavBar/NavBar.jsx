@@ -5,18 +5,22 @@ import { Link, useLocation } from "react-router-dom";
 import "./NavBar.scss";
 import { createPortal } from "react-dom";
 import { Link as Scroll } from "react-scroll";
+import Cart from "../Cart/Cart";
 
 const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
   const [isAuthClicked, setIsAuthClicked] = useState(false);
+  const [isCartClicked, setIsCartClicked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isNavBarOptionsBtnClicked, setIsNavBarOptionsBtnClicked] =
     useState(false);
 
   const authIconRef = useRef(null);
+  const cartIconRef = useRef(null);
   const location = useLocation();
 
   const authModal = document.getElementById("auth");
+  const cartModal = document.getElementById("cart");
 
   useEffect(() => {
     const settingNavBar = () => {
@@ -31,12 +35,12 @@ const NavBar = () => {
   }, []);
 
   useEffect(() => {
-    if (isAuthClicked && authModal) {
+    if ((isAuthClicked && authModal) || (isCartClicked && cartModal)) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "scroll";
     }
-  }, [isAuthClicked, authModal]);
+  }, [isAuthClicked, authModal, isCartClicked, cartModal]);
 
   return (
     <div className={navBarActive ? "navBar active" : "navBar"}>
@@ -89,7 +93,11 @@ const NavBar = () => {
         </form>
 
         <div className="navBar__utilities--icons">
-          <div className="navBar__utilities--icons-meals">
+          <div
+            onClick={() => setIsCartClicked(!isCartClicked)}
+            className="navBar__utilities--icons-meals"
+            ref={cartIconRef}
+          >
             <svg
               version="1.1"
               id="Layer_1"
@@ -155,6 +163,8 @@ const NavBar = () => {
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"
+                ref={authIconRef}
+                onClick={() => setIsAuthClicked(!isAuthClicked)}
               >
                 <title>Log Out</title>
                 <path d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>
@@ -193,11 +203,20 @@ const NavBar = () => {
       {isAuthClicked && authModal
         ? createPortal(
             <Authentication
-              isAuthClicked={isAuthClicked}
               setIsAuthClicked={setIsAuthClicked}
               authIconRef={authIconRef}
             />,
             authModal
+          )
+        : null}
+
+      {isCartClicked && cartModal
+        ? createPortal(
+            <Cart
+              setIsCartClicked={setIsCartClicked}
+              cartIconRef={cartIconRef}
+            />,
+            cartModal
           )
         : null}
 

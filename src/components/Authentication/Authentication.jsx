@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./Authentication.scss";
 
-const Authentication = ({ isAuthClicked, setIsAuthClicked, authIconRef }) => {
+const Authentication = ({ setIsAuthClicked, authIconRef }) => {
   const wrapperRef = useRef(null);
 
   const [email, setEmail] = useState("");

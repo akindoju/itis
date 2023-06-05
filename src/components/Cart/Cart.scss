@@ -1,0 +1,97 @@
+@import "../../App.scss";
+
+.cartItemWrapper {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  img {
+    height: 8rem;
+    width: 8rem;
+    border-radius: 1rem;
+    margin-right: 2rem;
+  }
+
+  &__text {
+    font-family: $font-primary;
+
+    &--name {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    &--price {
+      color: $color-grey;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+  }
+
+  &__close {
+    color: $color-grey;
+    font-size: 2.2rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+      color: $color-main;
+    }
+
+    &:active {
+      outline: none;
+      transform: scale(0.98);
+    }
+  }
+}
+
+.cart {
+  padding: 2rem;
+
+  &__items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    max-height: 30rem;
+
+    &:last-child {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__total {
+    color: white;
+    font-family: $font-primary;
+    font-size: 1.5rem;
+    margin-block: 3rem;
+  }
+
+  &__button {
+    width: 90%;
+    padding: 1.5rem;
+    background-image: linear-gradient(
+        to bottom,
+        rgba($color-main, 0.9),
+        rgba($color-main, 0.9)
+      ),
+      url("https://media.istockphoto.com/vectors/fast-food-seamless-pattern-with-vector-line-icons-of-hamburger-pizza-vector-id1182393436?k=6&m=1182393436&s=612x612&w=0&h=GnXwUJdhPJyS2Gt8Omo-mQo4fwRnt995b1Qv375Dtkk=");
+    border: none;
+    cursor: pointer;
+    font-family: $font-primary;
+
+    &:active {
+      outline: none;
+      transform: scale(0.98);
+    }
+  }
+}
