@@ -8,12 +8,10 @@ import MakeOrder from "../../components/MakeOrder/MakeOrder";
 import Categories from "../../components/Categories/Categories";
 import MapContainer from "../../components/MapContainer/MapContainer";
 import "./Homepage.scss";
-import NavBar from "../../components/NavBar/NavBar";
 
 const Homepage = ({ isNotAtTop, setIsNotAtTop }) => {
   return (
     <div className="homepage">
-      <NavBar />
       <Header />
       <Brief />
       <MakeOrder />

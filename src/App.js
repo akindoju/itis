@@ -25,9 +25,9 @@ function App() {
 
   return (
     <Router>
-      {/* <NavBar /> */}
       <StartAtTop>
         {isNotAtTop && <ScrollTopBtn />}
+        <NavBar />
         <Switch>
           <Route path="/" exact>
             <Homepage />

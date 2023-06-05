@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-// import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
+import React, { useRef, useState } from "react";
+import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./Authentication.scss";
 
 const Authentication = ({ isAuthClicked, setIsAuthClicked, authIconRef }) => {
-  // const wrapperRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,15 +13,16 @@ const Authentication = ({ isAuthClicked, setIsAuthClicked, authIconRef }) => {
   const [isRegisterClicked, setIsRegisterClicked] = useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
-  // useOutsideAlerter(wrapperRef, hideAuth, authIconRef);
+  const hideAuth = () => setIsAuthClicked(false);
+
+  useOutsideAlerter(wrapperRef, hideAuth, authIconRef);
 
   return (
     <div
-      // ref={wrapperRef}
       className="overlay"
-      onClick={() => setIsAuthClicked(false)}
+      // onClick={() => setIsAuthClicked(false)}÷
     >
-      <div className="authentication">
+      <div className="authentication" ref={wrapperRef}>
         <div className="authentication__heading">
           <button
             className={
