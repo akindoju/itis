@@ -53,7 +53,8 @@
         font-size: 1.2rem;
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: $color-main;
       }
 
@@ -71,7 +72,8 @@
         backface-visibility: none;
       }
 
-      &:hover::after {
+      &:hover,
+      &:focus::after {
         width: 80%;
         left: 10%;
       }
@@ -132,7 +134,8 @@
         border: none;
         background-color: $color-main;
 
-        &:hover {
+        &:hover,
+        &:focus {
           background: #e0b14b;
         }
 
@@ -178,7 +181,8 @@
       cursor: pointer;
       transition: all 0.5s;
 
-      &:hover {
+      &:hover,
+      &:focus {
         fill: $color-main;
       }
     }

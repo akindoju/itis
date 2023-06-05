@@ -55,7 +55,8 @@
         font-size: 1.5rem;
         justify-self: center;
 
-        &:hover {
+        &:hover,
+        &:focus {
           transform: translateY(-3px);
           box-shadow: 0 3px 20px rgba($color-main, 0.3);
 

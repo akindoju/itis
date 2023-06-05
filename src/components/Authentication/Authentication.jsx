@@ -18,10 +18,7 @@ const Authentication = ({ isAuthClicked, setIsAuthClicked, authIconRef }) => {
   useOutsideAlerter(wrapperRef, hideAuth, authIconRef);
 
   return (
-    <div
-      className="overlay"
-      // onClick={() => setIsAuthClicked(false)}÷
-    >
+    <div className="overlay">
       <div className="authentication" ref={wrapperRef}>
         <div className="authentication__heading">
           <button

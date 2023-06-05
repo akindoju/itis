@@ -59,6 +59,7 @@
   }
 
   &:hover,
+  &:focus,
   &:active {
     background-color: $color-main;
   }
@@ -100,7 +101,8 @@
     }
 
     &.slick-active,
-    &:hover {
+    &:hover,
+    &:focus {
       button {
         border-color: tomato;
         &:before {

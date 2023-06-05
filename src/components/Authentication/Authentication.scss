@@ -4,16 +4,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(black, 0.9);
-  border: 1px solid $color-main;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(black, 0.5),
+      rgba(black, 0.5)
+    ),
+    url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+  background-size: cover;
   border-radius: 0.5rem;
+  max-width: 60rem;
+  width: 80%;
 
   &__heading {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%;
     margin-bottom: 2rem;
+    width: 100%;
 
     &--register,
     &--login {
@@ -33,20 +40,23 @@
   }
 
   &__forms {
-    padding: 0rem 3rem 3rem 3rem;
+    width: 100%;
+    padding-block: 4rem;
   }
 
   &__login,
   &__register {
     display: flex;
     flex-direction: column;
+    width: 90%;
+    align-self: center;
+    margin: auto;
 
     input {
-      width: 100%;
       padding: 1.5rem;
       background: transparent;
       border: 1px solid $color-grey;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       color: $color-grey;
       font-size: 1.5rem;
 
@@ -59,7 +69,12 @@
 
     button {
       padding: 1.5rem;
-      background-color: $color-main;
+      background-image: linear-gradient(
+          to bottom,
+          rgba($color-main, 0.9),
+          rgba($color-main, 0.9)
+        ),
+        url("https://media.istockphoto.com/vectors/fast-food-seamless-pattern-with-vector-line-icons-of-hamburger-pizza-vector-id1182393436?k=6&m=1182393436&s=612x612&w=0&h=GnXwUJdhPJyS2Gt8Omo-mQo4fwRnt995b1Qv375Dtkk=");
       border: none;
       cursor: pointer;
 
@@ -70,14 +85,15 @@
     }
 
     p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      font-size: 1.5rem;
       font-family: $font-primary;
       cursor: pointer;
       color: $color-grey;
       transition: all 0.2s;
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: $color-main;
         cursor: pointer;
       }
@@ -89,7 +105,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
 
       input {
         cursor: pointer;

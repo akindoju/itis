@@ -72,6 +72,7 @@
         transition: all 0.2s;
 
         &:hover,
+        &:focus,
         &:focus {
           fill: $color-main;
         }
@@ -148,7 +149,8 @@
         cursor: pointer;
       }
 
-      &:hover > * {
+      &:hover,
+      &:focus > * {
         fill: $color-main;
         color: $color-main;
       }
@@ -166,7 +168,8 @@
       text-decoration: none;
       cursor: pointer;
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: $color-main;
       }
 
@@ -184,7 +187,8 @@
         backface-visibility: none;
       }
 
-      &:hover::after {
+      &:hover,
+      &:focus::after {
         width: 80%;
         left: 10%;
       }
