@@ -19,19 +19,17 @@
     display: flex;
     align-items: center;
 
-    @media (max-width: 750px) {
-      justify-content: space-between;
-      width: 100%;
-    }
-
     &--icons {
       display: flex;
       align-items: center;
 
-      svg {
+      svg,
+      &-menu {
         cursor: pointer;
         fill: white;
         transition: all 0.2s;
+        height: 3.5rem;
+        width: 3.5rem;
 
         &:hover,
         &:focus,
@@ -46,11 +44,6 @@
 
       &-meals {
         position: relative;
-
-        svg {
-          height: 3.5rem;
-          width: 3.5rem;
-        }
 
         &-cart {
           display: flex;
@@ -78,11 +71,7 @@
       }
 
       &-menu {
-        height: 3.6rem;
-        width: 3.6rem;
-        transform: translateY(-0.2rem);
-
-        @media (min-width: 750px) {
+        @media (min-width: 650px) {
           display: none;
         }
       }
@@ -93,10 +82,10 @@
     display: none;
     align-items: center;
     justify-content: space-between;
-    width: 45%;
+    width: 55%;
     list-style: none;
 
-    @media (min-width: 750px) {
+    @media (min-width: 650px) {
       display: flex;
     }
 

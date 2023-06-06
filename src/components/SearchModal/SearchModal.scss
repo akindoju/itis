@@ -1,17 +1,24 @@
 @import "../../App.scss";
-
-.search {
-  padding-block: 15rem;
+.search-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
   z-index: 99;
+  padding-block: 15rem;
+}
+
+.search {
+  max-width: 90rem;
+  width: 90%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: flex-start;
 
   form {
     display: flex;
@@ -27,7 +34,6 @@
     padding: 1rem 2rem;
     border-radius: 2rem;
     border: 1px solid $color-grey;
-    justify-self: flex-start;
 
     input,
     button {
@@ -66,21 +72,24 @@
         rgba(black, 0.5)
       ),
       url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
-    width: 90%;
+    width: 100%;
     padding: 2rem 2rem 0 2rem;
     border-radius: 1rem;
     margin-top: 2rem;
     max-height: 70rem;
     overflow-y: scroll;
-    max-width: 90rem;
 
     &--item {
       display: flex;
       align-items: center;
       flex-direction: column;
       margin-bottom: 2rem;
-      border-bottom: 0.5px solid $color-grey;
+
       padding: 1rem;
+
+      &:not(:last-child) {
+        border-bottom: 0.5px solid $color-grey;
+      }
 
       &-details {
         display: flex;
