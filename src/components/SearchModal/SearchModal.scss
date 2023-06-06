@@ -1,0 +1,177 @@
+@import "../../App.scss";
+
+.search {
+  padding-block: 15rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  form {
+    display: flex;
+    align-items: center;
+    max-width: 40rem;
+    width: 90%;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(black, 0.5),
+        rgba(black, 0.5)
+      ),
+      url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    border: 1px solid $color-grey;
+    justify-self: flex-start;
+
+    input,
+    button {
+      color: white;
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    input {
+      width: 100%;
+      margin-right: 1.5rem;
+    }
+
+    svg {
+      fill: white;
+    }
+
+    button {
+      &:hover,
+      &:focus {
+        fill: $color-main;
+      }
+
+      &:active {
+        outline: none;
+        transform: scale(0.92);
+      }
+    }
+  }
+
+  &__result {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(black, 0.5),
+        rgba(black, 0.5)
+      ),
+      url("https://rubiktheme.com/demo/rb_bakery_demo/themes/mr_bakery/assets/img/bg_footer.jpg");
+    width: 90%;
+    padding: 2rem 2rem 0 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    max-height: 70rem;
+    overflow-y: scroll;
+    max-width: 90rem;
+
+    &--item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      border-bottom: 0.5px solid $color-grey;
+      padding: 1rem;
+
+      &-details {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+
+        &-main {
+          display: flex;
+          align-items: center;
+          margin-bottom: 2rem;
+
+          img {
+            height: 8rem;
+            width: 8rem;
+            border-radius: 1rem;
+            margin-right: 2rem;
+          }
+
+          &-text {
+            font-family: $font-primary;
+
+            &-name {
+              color: white;
+              font-size: 1.5rem;
+            }
+
+            &-price {
+              color: $color-grey;
+              font-size: 1.2rem;
+              margin-top: 1rem;
+            }
+          }
+        }
+
+        &-btns {
+          display: flex;
+
+          p {
+            color: white;
+            font-size: 1.8rem;
+            margin-inline: 2rem;
+            font-family: $font-primary;
+          }
+
+          button {
+            background-color: transparent;
+            border: none;
+            margin: 0;
+
+            &:active {
+              outline: none;
+              transform: scale(0.92);
+            }
+          }
+
+          &-active {
+            fill: $color-main;
+          }
+
+          &-inactive {
+            fill: $color-grey;
+          }
+        }
+      }
+
+      &-cart {
+        background-color: rgba($color-black, 0.8);
+        padding: 0.9rem;
+        border: none;
+        border-radius: 1rem;
+        cursor: pointer;
+        font-family: $font-primary;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $color-white;
+        transition: all 0.3s;
+        width: 20rem;
+
+        &:hover,
+        &:focus {
+          transform: translateY(-3px);
+          color: $color-main;
+          background-color: $color-black;
+        }
+
+        &:active {
+          outline: none;
+          transform: scale(0.98);
+        }
+      }
+    }
+  }
+}

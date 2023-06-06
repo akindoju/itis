@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
-import "./Authentication.scss";
+import "./AuthModal.scss";
 
-const Authentication = ({ setIsAuthClicked, authIconRef }) => {
+const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const wrapperRef = useRef(null);
 
   const [email, setEmail] = useState("");
@@ -140,4 +140,4 @@ const Authentication = ({ setIsAuthClicked, authIconRef }) => {
   );
 };
 
-export default Authentication;
+export default AuthModal;

@@ -1,26 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 import NavBarOptions from "../NavBarOptions/NavBarOptions";
-import Authentication from "../Authentication/Authentication";
+import AuthModal from "../AuthModal/AuthModal";
 import { Link, useLocation } from "react-router-dom";
 import "./NavBar.scss";
 import { createPortal } from "react-dom";
 import { Link as Scroll } from "react-scroll";
-import Cart from "../Cart/Cart";
+import CartModal from "../CartModal/CartModal";
+import SearchModal from "../SearchModal/SearchModal";
 
 const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
   const [isAuthClicked, setIsAuthClicked] = useState(false);
   const [isCartClicked, setIsCartClicked] = useState(false);
+  const [isSearchClicked, setIsSearchClicked] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isNavBarOptionsBtnClicked, setIsNavBarOptionsBtnClicked] =
     useState(false);
 
   const authIconRef = useRef(null);
   const cartIconRef = useRef(null);
+  const searchIconRef = useRef(null);
+
   const location = useLocation();
 
   const authModal = document.getElementById("auth");
   const cartModal = document.getElementById("cart");
+  const searchModal = document.getElementById("search");
 
   useEffect(() => {
     const settingNavBar = () => {
@@ -76,6 +81,7 @@ const NavBar = () => {
           onSubmit={(e) => {
             e.preventDefault();
           }}
+          onClick={() => setIsSearchClicked(true)}
         >
           <input placeholder="Search meal" />
           <button type="submit">
@@ -202,7 +208,7 @@ const NavBar = () => {
 
       {isAuthClicked && authModal
         ? createPortal(
-            <Authentication
+            <AuthModal
               setIsAuthClicked={setIsAuthClicked}
               authIconRef={authIconRef}
             />,
@@ -212,11 +218,21 @@ const NavBar = () => {
 
       {isCartClicked && cartModal
         ? createPortal(
-            <Cart
+            <CartModal
               setIsCartClicked={setIsCartClicked}
               cartIconRef={cartIconRef}
             />,
             cartModal
+          )
+        : null}
+
+      {isSearchClicked && searchModal
+        ? createPortal(
+            <SearchModal
+              setIsSearchClicked={setIsSearchClicked}
+              searchIconRef={searchIconRef}
+            />,
+            searchModal
           )
         : null}
 
