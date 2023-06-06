@@ -1,9 +1,8 @@
-import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import { Link as Scroll } from "react-scroll";
 import "./NavBarOptions.scss";
 
 const NavBarOptions = ({ setIsNavBarOptionsBtnClicked }) => {
-  const history = useHistory();
-
   return (
     <div className="navBarOptionsContainer">
       <svg
@@ -22,29 +21,25 @@ const NavBarOptions = ({ setIsNavBarOptionsBtnClicked }) => {
         <div className="navBarOptions__title">Itis</div>
         <div>
           <ul className="navBarOptions__items">
-            <li
-              onClick={() => {
-                history.push("/");
-              }}
-            >
-              Home
+            <li>
+              <Link to="/">Home</Link>
             </li>
-            <li
-              onClick={() => {
-                history.push("/about");
-              }}
-            >
-              About
+
+            {/* {location.pathname === "/" ? ( */}
+            <li>
+              <Scroll to="ready-to-eat" smooth={true} duration={1000}>
+                Ready-to-Eat
+              </Scroll>
             </li>
-            <li
-              onClick={() => {
-                history.push("/contact");
-              }}
-            >
-              Contact
+            {/* ) : null} */}
+
+            <li>
+              <Link to="/about">About</Link>
             </li>
-            <li>Payments</li>
-            <li>FAQ</li>
+
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
           </ul>
         </div>
       </div>

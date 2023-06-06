@@ -7,10 +7,12 @@ const Brief = () => {
       <div className="brief__text">
         <h1>From The Kitchen With Love</h1>
         <h4>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis eos
-          saepe consequatur et eaque, minus commodi, hic, qui voluptatem
-          suscipit harum fuga expedita ullam iusto eveniet debitis maiores
-          aspernatur minima.
+          A culinary journey that combines mouthwatering flavors with a sprinkle
+          of pop culture magic! Our team of talented chefs and food enthusiasts
+          is dedicated to bringing you a delightful dining experience that will
+          make your taste buds sing. We don't just cook food – we serve
+          happiness on a plate. Bon appétit, and may the <span>force</span>{" "}
+          flavor be with you!
         </h4>
       </div>
 
