@@ -13,50 +13,15 @@
   padding: 5rem 0;
 
   &__heading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5rem;
+    color: $color-white;
+    font-size: 5rem;
+    font-family: $font-brand;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 2rem;
 
-    h1 {
-      font-weight: 100;
-      color: $color-white;
-      font-family: $font-brand;
-      font-size: 7rem;
-      text-align: center;
-    }
-
-    &--btns {
-      margin-top: 2rem;
-      width: 80%;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-
-      button {
-        background: transparent;
-        border: none;
-        font-family: $font-primary;
-        font-size: 1.7rem;
-        cursor: pointer;
-        color: $color-white;
-        border-radius: 5rem;
-        padding: 0.5rem 2rem;
-        transition: all 0.2s;
-
-        @media only screen and (max-width: 463px) {
-          &:first-child {
-            display: none;
-          }
-        }
-
-        &:hover,
-        &:focus,
-        &:focus {
-          background-color: $color-main;
-          color: $color-black;
-        }
-      }
+    @media only screen and (min-width: 720px) {
+      font-size: 5.5rem;
     }
   }
 
@@ -77,19 +42,7 @@
         display: none;
       }
 
-      &--percent {
-        background-color: rgb(253, 84, 84);
-        padding: 0.5rem 0.8rem;
-        border-radius: 1rem;
-        color: $color-white;
-        font-family: $font-primary;
-        font-size: 1.1rem;
-        position: absolute;
-        top: 2rem;
-        left: 2rem;
-      }
-
-      &--new {
+      &--fresh {
         background-color: rgb(120, 177, 252);
         padding: 0.5rem 0.8rem;
         border-radius: 1rem;
@@ -97,7 +50,7 @@
         font-family: $font-primary;
         font-size: 1.1rem;
         position: absolute;
-        top: 5rem;
+        top: 2rem;
         left: 2rem;
       }
 
@@ -168,7 +121,7 @@
 
         button {
           background-color: rgba($color-black, 0.8);
-          padding: 0.9rem;
+          padding: 1.5rem 0.9rem;
           border: none;
           border-radius: 5rem;
           cursor: pointer;
@@ -178,7 +131,7 @@
           color: $color-white;
           transition: all 0.3s;
           margin-right: 0.2rem;
-          width: 50%;
+          width: 68%;
 
           &:hover,
           &:focus {
