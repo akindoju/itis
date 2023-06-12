@@ -4,7 +4,7 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Homepage from "./pages/Homepage/Homepage";
 import StartAtTop from "./components/StartAtTop";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import ScrollTopBtn from "./components/ScrollTopBtn/ScrollTopBtn";
 
@@ -28,19 +28,13 @@ function App() {
       <StartAtTop>
         {isNotAtTop && <ScrollTopBtn />}
         <NavBar />
-        <Switch>
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
 
-          <Route path="/about" exact>
-            <About />
-          </Route>
+          <Route path="/about" element={<About />} />
 
-          <Route path="/contact" exact>
-            <Contact />
-          </Route>
-        </Switch>
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </StartAtTop>
     </Router>
   );

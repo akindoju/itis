@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import glr2 from "../../Images/glr-2.webp";
+import glr3 from "../../Images/glr-3.webp";
+import glr4 from "../../Images/glr-4.webp";
+import glr5 from "../../Images/glr-5.webp";
+import glr6 from "../../Images/glr-6.webp";
+import glr7 from "../../Images/glr-7.webp";
+import glr8 from "../../Images/glr-8.webp";
+import glr9 from "../../Images/glr-9.webp";
 
 import "./Gallery.scss";
 
@@ -47,15 +55,18 @@ const Gallery = () => {
     useEffect(() => {
       const handleWindowResize = () => setWidth(window.innerWidth);
       window.addEventListener("resize", handleWindowResize);
-      //remove event listener to avoid memory leak
-      return window.removeEventListener("resize", handleWindowResize);
+
+      return () => window.removeEventListener("resize", handleWindowResize);
     }, []);
 
-    //returning an object with width in it
     return { width };
   };
 
   const { width } = useViewport();
+
+  useEffect(() => {
+    console.log({ width });
+  }, [width]);
 
   const setGalleryWidth = (width) => {
     if (width < 901) {
@@ -79,59 +90,35 @@ const Gallery = () => {
 
       <Slider {...settings}>
         <div className="gallery__image">
-          <img
-            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-            alt="Slide 1"
-          />
+          <img src={glr2} alt="Slide 1" />
         </div>
 
         <div className="gallery__image">
-          <img
-            src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
-            alt="Slide 1"
-          />
+          <img src={glr8} alt="Slide 2" />
         </div>
 
         <div className="gallery__image">
-          <img
-            src="https://images.unsplash.com/photo-1596016083377-87b469f194d4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-            alt="Slide 1"
-          />
+          <img src={glr4} alt="Slide 3" />
         </div>
 
         <div className="gallery__image">
-          <img
-            src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80"
-            alt="Slide 1"
-          />
+          <img src={glr5} alt="Slide 4" />
         </div>
 
         <div className="gallery__image">
-          <img
-            src="https://images.unsplash.com/photo-1593478494483-2c8466077eb4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80"
-            alt="Slide 1"
-          />
+          <img src={glr9} alt="Slide 5" />
         </div>
 
         <div className="gallery__image">
-          <img
-            src="https://images.unsplash.com/photo-1525164286253-04e68b9d94c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-            alt="Slide 1"
-          />
+          <img src={glr6} alt="Slide 6" />
         </div>
 
         <div className="gallery__image">
-          <img
-            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-            alt="Slide 1"
-          />
+          <img src={glr7} alt="Slide 7" />
         </div>
 
         <div className="gallery__image">
-          <img
-            src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80"
-            alt="Slide 1"
-          />
+          <img src={glr3} alt="Slide 8" />
         </div>
       </Slider>
     </div>

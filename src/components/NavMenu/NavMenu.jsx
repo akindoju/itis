@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
-import "./NavBarOptions.scss";
+import "./NavMenu.scss";
 
-const NavBarOptions = ({ setIsNavBarOptionsBtnClicked }) => {
+const NavMenu = ({ setIsNavBarOptionsBtnClicked }) => {
   return (
     <div className="navBarOptionsContainer">
       <svg
@@ -47,4 +47,4 @@ const NavBarOptions = ({ setIsNavBarOptionsBtnClicked }) => {
   );
 };
 
-export default NavBarOptions;
+export default NavMenu;

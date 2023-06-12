@@ -6,7 +6,7 @@
       rgba(black, 0.95),
       rgba(black, 0.95)
     ),
-    url("https://images.unsplash.com/photo-1568733873715-f9d497a47ea0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+    url("../../Images/bg-3.webp");
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -28,151 +28,29 @@
     }
   }
 
-  &__list {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-    list-style: none;
-    margin-top: 2rem;
-
-    @media only screen and (max-width: 500px) {
-      justify-content: space-between;
-    }
-
-    li {
-      color: $color-white;
-      text-transform: uppercase;
-      font-family: $font-primary;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
-
-      @media only screen and (max-width: 300px) {
-        font-size: 1.2rem;
-      }
-
-      &:hover,
-      &:focus {
-        color: $color-main;
-      }
-
-      //for outwards underline
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        left: 50%;
-        bottom: -5px;
-        height: 3px;
-        background: $color-main;
-        transition: width 0.3s ease 0s, left 0.3s ease 0s;
-        width: 0;
-        backface-visibility: none;
-      }
-
-      &:hover,
-      &:focus::after {
-        width: 80%;
-        left: 10%;
-      }
-    }
-  }
-
-  &__newsletter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5rem;
-
-    h1 {
-      color: $color-main;
-      font-size: 4rem;
-      font-family: $font-primary;
-      margin-bottom: 1.5rem;
-    }
-
-    &--entry {
-      display: flex;
-      align-items: center;
-
-      input {
-        background: transparent;
-        border: 1px solid rgb(133, 133, 133);
-        padding: 1.5rem;
-        border-radius: 0.5rem 0 0 0.5rem;
-        height: 4rem;
-        width: 50rem;
-        color: $color-grey;
-
-        @media only screen and (max-width: 600px) {
-          width: 40rem;
-        }
-
-        @media only screen and (max-width: 400px) {
-          width: 30rem;
-        }
-
-        @media only screen and (max-width: 380px) {
-          width: 20rem;
-        }
-
-        &:focus {
-          outline: none;
-          border: 1px solid $color-main;
-          color: $color-main;
-        }
-      }
-
-      button {
-        cursor: pointer;
-        margin-left: 0.1rem;
-        height: 4rem;
-        width: 7rem;
-        border-radius: 0 0.5rem 0.5rem 0;
-        border: none;
-        background-color: $color-main;
-
-        &:hover,
-        &:focus {
-          background: #e0b14b;
-        }
-
-        &:active {
-          transform: scale(0.98);
-        }
-
-        svg {
-          height: 2rem;
-          width: 2rem;
-        }
-      }
-    }
-  }
-
   &__icons {
     margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 13%;
 
-    @media only screen and (max-width: 1000px) {
-      width: 18%;
-    }
+    // width: 13%;
 
-    @media only screen and (max-width: 600px) {
-      width: 24%;
-    }
+    // @media only screen and (max-width: 1000px) {
+    //   width: 18%;
+    // }
 
-    @media only screen and (max-width: 500px) {
-      width: 30%;
-    }
+    // @media only screen and (max-width: 600px) {
+    //   width: 24%;
+    // }
 
-    @media only screen and (max-width: 380px) {
-      width: 40%;
-    }
+    // @media only screen and (max-width: 500px) {
+    //   width: 30%;
+    // }
+
+    // @media only screen and (max-width: 380px) {
+    //   width: 40%;
+    // }
 
     svg {
       fill: $color-grey;
@@ -186,12 +64,20 @@
         fill: $color-main;
       }
     }
+
+    &--2 {
+      margin-inline: 2rem;
+    }
   }
 
   &__disclaimer {
     font-family: $font-primary;
     color: $color-grey;
     margin-top: 4rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
+
+    @media only screen and (min-width: 800px) {
+      font-size: 1rem;
+    }
   }
 }

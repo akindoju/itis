@@ -1,5 +1,8 @@
 import React from "react";
 import "./Brief.scss";
+import brief1 from "../../Images/brief-1.webp";
+import brief2 from "../../Images/brief-2.webp";
+import brief3 from "../../Images/brief-3.webp";
 
 const Brief = () => {
   return (
@@ -18,24 +21,15 @@ const Brief = () => {
 
       <div className="brief__images">
         <div className="brief__images--container">
-          <img
-            src="https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-            alt="Image1"
-          />
+          <img src={brief1} alt="Food 1" />
         </div>
 
         <div className="brief__images--container">
-          <img
-            src="https://www.zamxahotels.com/guides/wp-content/uploads/2020/01/Jollof-and-Beef-or-Chicken-min-1024x735.jpg"
-            alt="Image2"
-          />
+          <img src={brief2} alt="Food 2" />
         </div>
 
         <div className="brief__images--container brief__images--container--3">
-          <img
-            src="https://www.willflyforfood.net/wp-content/uploads/2021/06/nigerian-food-dodo.jpg.webp"
-            alt="Image3"
-          />
+          <img src={brief3} alt="Food 3" />
         </div>
       </div>
     </div>

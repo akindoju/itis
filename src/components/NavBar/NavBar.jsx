@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import NavBarOptions from "../NavBarOptions/NavBarOptions";
+import NavMenu from "../NavMenu/NavMenu";
 import AuthModal from "../AuthModal/AuthModal";
 import { Link, useLocation } from "react-router-dom";
 import "./NavBar.scss";
@@ -235,9 +235,7 @@ const NavBar = () => {
         : null}
 
       {isNavBarOptionsBtnClicked && (
-        <NavBarOptions
-          setIsNavBarOptionsBtnClicked={setIsNavBarOptionsBtnClicked}
-        />
+        <NavMenu setIsNavBarOptionsBtnClicked={setIsNavBarOptionsBtnClicked} />
       )}
     </div>
   );
