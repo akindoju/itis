@@ -47,7 +47,7 @@ const Menu = () => {
 
         {menu.map((item) => {
           return (
-            <div className="menu__item">
+            <div className="menu__item" key={item.name}>
               <div className="menu__item--main">
                 <h4>{item.name}</h4>
                 <h5>

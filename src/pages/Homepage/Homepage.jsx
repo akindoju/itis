@@ -1,12 +1,12 @@
 import React from "react";
-import Menu from "../../components/Menu/Menu";
-import Brief from "../../components/Brief/Brief";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
-import Gallery from "../../components/Gallery/Gallery";
-import MakeOrder from "../../components/MakeOrder/MakeOrder";
-import ReadyToEat from "../../components/ReadyToEat/ReadyToEat";
-import MapContainer from "../../components/MapContainer/MapContainer";
+import Menu from "../../Components/Menu/Menu";
+import Brief from "../../Components/Brief/Brief";
+import Footer from "../../Components/Footer/Footer";
+import Header from "../../Components/Header/Header";
+import Gallery from "../../Components/Gallery/Gallery";
+import MakeOrder from "../../Components/MakeOrder/MakeOrder";
+import ReadyToEat from "../../Components/ReadyToEat/ReadyToEat";
+import MapContainer from "../../Components/MapContainer/MapContainer";
 import "./Homepage.scss";
 
 const Homepage = ({ isNotAtTop, setIsNotAtTop }) => {

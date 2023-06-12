@@ -1,12 +1,12 @@
 import "./App.scss";
 import React, { useEffect, useState } from "react";
-import About from "./pages/About/About";
-import Contact from "./pages/Contact/Contact";
-import Homepage from "./pages/Homepage/Homepage";
-import StartAtTop from "./components/StartAtTop";
+import About from "./Pages/About/About";
+import Contact from "./Pages/Contact/Contact";
+import Homepage from "./Pages/Homepage/Homepage";
+import StartAtTop from "./Components/StartAtTop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
-import ScrollTopBtn from "./components/ScrollTopBtn/ScrollTopBtn";
+import NavBar from "./Components/NavBar/NavBar";
+import ScrollTopBtn from "./Components/ScrollTopBtn/ScrollTopBtn";
 
 function App() {
   const [isNotAtTop, setIsNotAtTop] = useState(false);

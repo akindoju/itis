@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import Footer from "../../components/Footer/Footer";
-import MapContainer from "../../components/MapContainer/MapContainer";
+import Footer from "../../Components/Footer/Footer";
+import MapContainer from "../../Components/MapContainer/MapContainer";
 import "./Contact.scss";
 import axios from "axios";
 

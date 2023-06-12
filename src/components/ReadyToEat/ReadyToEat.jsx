@@ -33,7 +33,7 @@ const ReadyToEat = () => {
         <div className="readyToEat__grid">
           {foodItems.map((item, idx) => {
             return (
-              <div className="readyToEat__grid--item">
+              <div className="readyToEat__grid--item" key={item.name}>
                 <div className="readyToEat__grid--item--hovered">
                   <div className="readyToEat__grid--item--search">
                     <svg

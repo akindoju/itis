@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../../components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 import "./About.scss";
 
 const About = ({ isNotAtTop, setIsNotAtTop }) => {
