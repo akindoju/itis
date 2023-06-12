@@ -3,6 +3,7 @@ import "./Header.scss";
 
 const Header = () => {
   return (
+    // <div className="container">
     <div className="header" id="top">
       <div className="header__content">
         <div className="header__content--main">
@@ -15,6 +16,7 @@ const Header = () => {
         </div>
       </div>
     </div>
+    // </div>
   );
 };
 

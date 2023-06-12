@@ -38,6 +38,11 @@ html {
   justify-content: center;
 }
 
+.container {
+  max-width: 1240px;
+  margin-inline: auto;
+}
+
 ::-webkit-scrollbar {
   width: 0.8rem;
 }

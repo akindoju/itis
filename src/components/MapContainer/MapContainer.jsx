@@ -12,7 +12,7 @@ const MapContainer = () => {
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
   return (
-    <div style={{ height: "80vh", width: "100%" }}>
+    <div style={{ height: "70rem" }}>
       <GoogleMapReact
         bootstrapURLKeys={{
           key: "AIzaSyAkcZgKdUATcPSzjQG5MK0Jy3ef5rXAY0k",

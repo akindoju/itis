@@ -1,5 +1,13 @@
 @import "../../App.scss";
 
+.nav-container {
+  width: 100%;
+  max-width: 1240px;
+  display: flex;
+  justify-content: space-between;
+  margin-inline: auto;
+}
+
 .navBar {
   background: transparent;
   display: flex;

@@ -1,5 +1,6 @@
 import React from "react";
 import "./MakeOrder.scss";
+import { Link } from "react-scroll";
 
 const MakeOrder = () => {
   return (
@@ -7,7 +8,11 @@ const MakeOrder = () => {
       <h1>Get Your Meals Delivered Straightaway!</h1>
       <h4>Chop Belle-Full Anywhere You Are.</h4>
 
-      <button>Order Now</button>
+      <button>
+        <Link smooth={true} duration={1000} to="menu">
+          Order Now
+        </Link>
+      </button>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 @import "../../App.scss";
 
-.categories {
+.readyToEat {
   background-image: linear-gradient(
       to bottom,
       rgba(black, 0.8),
@@ -250,39 +250,39 @@
   }
 }
 
-.categories__grid--item:hover .categories__grid--item--hovered {
+.readyToEat__grid--item:hover .readyToEat__grid--item--hovered {
   display: flex;
   transition-duration: 0.4s;
 }
 
-.categories__grid--item:hover .categories__grid--item--img-1 {
+.readyToEat__grid--item:hover .readyToEat__grid--item--img-1 {
   background-image: url("../../Images/ctg-1b.webp");
 }
 
-.categories__grid--item:hover .categories__grid--item--img-2 {
+.readyToEat__grid--item:hover .readyToEat__grid--item--img-2 {
   background-image: url("../../Images/ctg-2b.webp");
 }
 
-.categories__grid--item:hover .categories__grid--item--img-3 {
+.readyToEat__grid--item:hover .readyToEat__grid--item--img-3 {
   background-image: url("../../Images/ctg-3b.webp");
 }
 
-.categories__grid--item:hover .categories__grid--item--img-4 {
+.readyToEat__grid--item:hover .readyToEat__grid--item--img-4 {
   background-image: url("../../Images/ctg-4b.webp");
 }
 
-.categories__grid--item:hover .categories__grid--item--img-5 {
+.readyToEat__grid--item:hover .readyToEat__grid--item--img-5 {
   background-image: url("../../Images/ctg-5b.webp");
 }
 
-.categories__grid--item:hover .categories__grid--item--img-6 {
+.readyToEat__grid--item:hover .readyToEat__grid--item--img-6 {
   background-image: url("../../Images/ctg-6b.webp");
 }
 
-.categories__grid--item:hover .categories__grid--item--img-7 {
+.readyToEat__grid--item:hover .readyToEat__grid--item--img-7 {
   background-image: url("../../Images/ctg-7b.webp");
 }
 
-.categories__grid--item:hover .categories__grid--item--img-8 {
+.readyToEat__grid--item:hover .readyToEat__grid--item--img-8 {
   background-image: url("../../Images/ctg-8b.webp");
 }

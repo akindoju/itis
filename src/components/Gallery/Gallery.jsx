@@ -64,10 +64,6 @@ const Gallery = () => {
 
   const { width } = useViewport();
 
-  useEffect(() => {
-    console.log({ width });
-  }, [width]);
-
   const setGalleryWidth = (width) => {
     if (width < 901) {
       settings.slidesToShow = 3;
@@ -86,41 +82,43 @@ const Gallery = () => {
 
   return (
     <div className="gallery">
-      <h1 className="gallery__heading">Gallery</h1>
+      <div className="container">
+        <h1 className="gallery__heading">Gallery</h1>
 
-      <Slider {...settings}>
-        <div className="gallery__image">
-          <img src={glr2} alt="Slide 1" />
-        </div>
+        <Slider {...settings}>
+          <div className="gallery__image">
+            <img src={glr2} alt="Slide 1" />
+          </div>
 
-        <div className="gallery__image">
-          <img src={glr8} alt="Slide 2" />
-        </div>
+          <div className="gallery__image">
+            <img src={glr8} alt="Slide 2" />
+          </div>
 
-        <div className="gallery__image">
-          <img src={glr4} alt="Slide 3" />
-        </div>
+          <div className="gallery__image">
+            <img src={glr4} alt="Slide 3" />
+          </div>
 
-        <div className="gallery__image">
-          <img src={glr5} alt="Slide 4" />
-        </div>
+          <div className="gallery__image">
+            <img src={glr5} alt="Slide 4" />
+          </div>
 
-        <div className="gallery__image">
-          <img src={glr9} alt="Slide 5" />
-        </div>
+          <div className="gallery__image">
+            <img src={glr9} alt="Slide 5" />
+          </div>
 
-        <div className="gallery__image">
-          <img src={glr6} alt="Slide 6" />
-        </div>
+          <div className="gallery__image">
+            <img src={glr6} alt="Slide 6" />
+          </div>
 
-        <div className="gallery__image">
-          <img src={glr7} alt="Slide 7" />
-        </div>
+          <div className="gallery__image">
+            <img src={glr7} alt="Slide 7" />
+          </div>
 
-        <div className="gallery__image">
-          <img src={glr3} alt="Slide 8" />
-        </div>
-      </Slider>
+          <div className="gallery__image">
+            <img src={glr3} alt="Slide 8" />
+          </div>
+        </Slider>
+      </div>
     </div>
   );
 };

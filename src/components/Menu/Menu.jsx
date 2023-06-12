@@ -41,16 +41,14 @@ const Menu = () => {
   ];
 
   return (
-    <div className="menu">
-      <div className="menu__image" />
-
-      <div className="menu__text">
-        <h1 className="menu__text--heading">Menu</h1>
+    <div className="menu" id="menu">
+      <div className="menu-wrapper">
+        <h1 className="menu__heading">Menu</h1>
 
         {menu.map((item) => {
           return (
-            <div className="menu__text__item">
-              <div className="menu__text__item--main">
+            <div className="menu__item">
+              <div className="menu__item--main">
                 <h4>{item.name}</h4>
                 <h5>
                   <span>{item.previousPrice}</span>
@@ -58,7 +56,7 @@ const Menu = () => {
                 </h5>
               </div>
 
-              <p className="menu__text__item--sub">{item.description}</p>
+              <p className="menu__item--sub">{item.description}</p>
             </div>
           );
         })}
