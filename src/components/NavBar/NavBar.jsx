@@ -7,6 +7,8 @@ import { createPortal } from "react-dom";
 import { Link as Scroll } from "react-scroll";
 import CartModal from "../CartModal/CartModal";
 import SearchModal from "../SearchModal/SearchModal";
+import { useDispatch } from "react-redux";
+import { logout } from "../../Redux/slices/userSlice";
 
 const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
@@ -22,6 +24,7 @@ const NavBar = () => {
   const searchIconRef = useRef(null);
 
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const authModal = document.getElementById("auth");
   const cartModal = document.getElementById("cart");
@@ -147,7 +150,9 @@ const NavBar = () => {
                   height="32"
                   viewBox="0 0 32 32"
                   ref={authIconRef}
-                  onClick={() => setIsAuthClicked(!isAuthClicked)}
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
                 >
                   <title>Log Out</title>
                   <path d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>

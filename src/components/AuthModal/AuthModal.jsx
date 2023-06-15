@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./AuthModal.scss";
+import { useDispatch } from "react-redux";
+import { login, register } from "../../Redux/slices/userSlice";
 
 const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const wrapperRef = useRef(null);
@@ -13,9 +15,8 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const [isRegisterClicked, setIsRegisterClicked] = useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
-  const hideAuth = () => setIsAuthClicked(false);
-
-  useOutsideAlerter(wrapperRef, hideAuth, authIconRef);
+  useOutsideAlerter(wrapperRef, () => setIsAuthClicked(false), authIconRef);
+  const dispatch = useDispatch();
 
   return (
     <div className="overlay">
@@ -51,7 +52,18 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
 
         <div className="authentication__forms">
           {isLoginClicked ? (
-            <div className="authentication__login">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                dispatch(
+                  login({
+                    email,
+                    password,
+                  })
+                );
+              }}
+              className="authentication__login"
+            >
               <input
                 type="email"
                 placeholder="Email"
@@ -70,13 +82,25 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                 }}
               />
 
-              <button>Login</button>
+              <button type="submit">Login</button>
               <p>Forgot Password?</p>
-            </div>
+            </form>
           ) : null}
 
           {isRegisterClicked ? (
-            <div className="authentication__register">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                dispatch(
+                  register({
+                    fullName,
+                    email,
+                    password,
+                  })
+                );
+              }}
+              className="authentication__register"
+            >
               <input
                 type="text"
                 placeholder="Full Name"
@@ -127,12 +151,13 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
               </div>
 
               <button
+                type="submti"
                 disabled={!isCheckboxChecked}
                 className={!isCheckboxChecked ? "notChecked" : null}
               >
                 Register
               </button>
-            </div>
+            </form>
           ) : null}
         </div>
       </div>

@@ -1,25 +1,84 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { addDoc, collection, where, getDocs, query } from "@firebase/firestore";
+import { firestore } from "../../Firebase/firebase.utils";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "@firebase/auth";
 
 const initialState = {
+  user: {},
+  error: "",
   isLoggedIn: false,
-  name: "",
-  id: "",
-  email: "",
 };
 
-export const register = createAsyncThunk(
-  "user/createNewUser",
-  async (payload) => {
-    // const axios = AxiosOrders();
-    //   const remoteData = store.getState().general.remoteData;
-    //   const response = await axios
-    //     .post(`${remoteData.BASE_URL}/newUser`, payload)
-    //     .catch(error => {
-    //       console.log({error});
-    //     });
-    //   return response;
+export const register = createAsyncThunk("user/register", async (payload) => {
+  const ref = collection(firestore, "users");
+
+  const auth = getAuth();
+
+  return createUserWithEmailAndPassword(auth, payload.email, payload.password)
+    .then(async (userCredential) => {
+      const user = userCredential.user;
+
+      await addDoc(ref, {
+        fullName: payload.fullName,
+        email: user.email,
+        id: user.uid,
+        created_at: new Date(),
+      });
+
+      return {
+        fullName: payload.fullName,
+        email: user.email,
+        id: user.uid,
+        created_at: new Date(),
+      };
+    })
+    .catch(() => {
+      throw new Error("Unable to register");
+    });
+});
+
+export const login = createAsyncThunk("user/login", async (payload) => {
+  const auth = getAuth();
+
+  return await signInWithEmailAndPassword(auth, payload.email, payload.password)
+    .then(async () => {
+      const q = query(
+        collection(firestore, "users"),
+        where("email", "==", payload.email)
+      );
+
+      return await getDocs(q).then((data) => {
+        const user = data.docs.map((val) => {
+          return {
+            fullName: val.data().fullName,
+            email: val.data().email,
+            id: val.data().uid,
+            created_at: val.data().created_at,
+          };
+        });
+
+        return user[0];
+      });
+    })
+    .catch(() => {
+      throw new Error("Unable to log in");
+    });
+});
+
+export const logout = createAsyncThunk("user/logout", async (payload) => {
+  try {
+    const auth = getAuth();
+
+    await signOut(auth);
+  } catch (error) {
+    throw new Error("Unable to Log out");
   }
-);
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -33,22 +92,62 @@ const userSlice = createSlice({
     },
   },
 
-  //   extraReducers: (builder) => {
-  //     builder.addCase(
-  //       updateFCMToken.fulfilled,
-  //       (state, action: { payload: any }) => {
-  //         const { fcmToken } = action.payload;
+  extraReducers: (builder) => {
+    builder.addCase(register.fulfilled, (state, action) => {
+      const { fullName, id, email, created_at } = action.payload;
 
-  //         return {
-  //           ...state,
-  //           userData: {
-  //             ...state.userData,
-  //             fcmToken,
-  //           },
-  //         };
-  //       }
-  //     );
-  //   },
+      return {
+        ...state,
+        isLoggedIn: true,
+        user: {
+          fullName,
+          id,
+          email,
+          created_at,
+        },
+      };
+    });
+
+    builder.addCase(register.rejected, (state, action) => {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    });
+
+    builder.addCase(login.fulfilled, (state, action) => {
+      const { fullName, id, email, created_at } = action.payload;
+
+      return {
+        ...state,
+        isLoggedIn: true,
+        user: {
+          fullName,
+          id,
+          email,
+          created_at,
+        },
+      };
+    });
+
+    builder.addCase(login.rejected, (state, action) => {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    });
+
+    builder.addCase(logout.fulfilled, (state, action) => {
+      return initialState;
+    });
+
+    builder.addCase(logout.rejected, (state, action) => {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    });
+  },
 });
 
 export const {
