@@ -54,7 +54,7 @@
         padding: 1.5rem;
         background: transparent;
         border: 1px solid $color-grey;
-        margin-bottom: 2rem;
+        // margin-bottom: 2rem;
         color: $color-grey;
         font-size: 1.5rem;
 
@@ -105,10 +105,26 @@
       }
     }
 
+    &--formik {
+      display: flex;
+      flex-direction: column;
+
+      div {
+        color: #bc0a0a;
+        height: 4rem;
+        font-family: $font-primary;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
     &--register {
       &-tc {
         font-size: 1.2rem;
         display: flex;
+        margin-bottom: 1.4rem;
 
         input {
           cursor: pointer;
@@ -116,7 +132,7 @@
           width: 8%;
         }
 
-        span {
+        label {
           cursor: pointer;
           color: $color-grey;
           font-family: $font-primary;
@@ -128,20 +144,17 @@
     &--error {
       color: #bc0a0a;
       font-family: $font-primary;
-      text-align: center;
       font-size: 1.2rem;
       display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
-}
 
-.isAuthActive {
-  border-bottom: 2px solid $color-main;
-  color: $color-main;
-}
+  .isAuthActive {
+    border-bottom: 2px solid $color-main;
+    color: $color-main;
+  }
 
-.notChecked {
-  opacity: 90%;
+  .notChecked {
+    opacity: 90%;
+  }
 }
