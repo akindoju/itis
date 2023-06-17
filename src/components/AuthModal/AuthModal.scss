@@ -42,85 +42,97 @@
   &__forms {
     width: 100%;
     padding-block: 4rem;
-  }
 
-  &__login,
-  &__register {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    align-self: center;
-    margin: auto;
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      align-self: center;
+      margin: auto;
 
-    input {
-      padding: 1.5rem;
-      background: transparent;
-      border: 1px solid $color-grey;
-      margin-bottom: 2rem;
-      color: $color-grey;
-      font-size: 1.5rem;
+      input {
+        padding: 1.5rem;
+        background: transparent;
+        border: 1px solid $color-grey;
+        margin-bottom: 2rem;
+        color: $color-grey;
+        font-size: 1.5rem;
 
-      &:active,
-      &:focus {
-        outline: none;
-        border: 1px solid $color-main;
+        &:active,
+        &:focus {
+          outline: none;
+          border: 1px solid $color-main;
+        }
       }
-    }
 
-    button {
-      padding: 1.5rem;
-      background-image: linear-gradient(
-          to bottom,
-          rgba($color-main, 0.9),
-          rgba($color-main, 0.9)
-        ),
-        url("../../Images/bg-2.webp");
-      border: none;
-      cursor: pointer;
-      font-family: $font-primary;
-
-      &:active {
-        outline: none;
-        transform: scale(0.98);
-      }
-    }
-
-    p {
-      margin-top: 1.5rem;
-      font-size: 1.5rem;
-      font-family: $font-primary;
-      cursor: pointer;
-      color: $color-grey;
-      transition: all 0.2s;
-
-      &:hover,
-      &:focus {
-        color: $color-main;
+      button {
+        padding: 1.5rem;
+        background-image: linear-gradient(
+            to bottom,
+            rgba($color-main, 0.9),
+            rgba($color-main, 0.9)
+          ),
+          url("../../Images/bg-2.webp");
+        border: none;
         cursor: pointer;
+        font-family: $font-primary;
+        font-size: 1.8rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+
+        &:active {
+          outline: none;
+          transform: scale(0.98);
+        }
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        align-self: flex-end;
+        font-size: 1.2rem;
+        font-family: $font-primary;
+        cursor: pointer;
+        color: $color-grey;
+        transition: all 0.2s;
+
+        &:hover,
+        &:focus {
+          color: $color-main;
+          cursor: pointer;
+        }
       }
     }
-  }
 
-  &__register {
-    &--tc {
+    &--register {
+      &-tc {
+        font-size: 1.2rem;
+        display: flex;
+
+        input {
+          cursor: pointer;
+          display: block;
+          width: 8%;
+        }
+
+        span {
+          cursor: pointer;
+          color: $color-grey;
+          font-family: $font-primary;
+          width: 100%;
+        }
+      }
+    }
+
+    &--error {
+      color: #bc0a0a;
+      font-family: $font-primary;
+      text-align: center;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-
-      input {
-        cursor: pointer;
-        width: 10%;
-        margin: 0;
-      }
-
-      label {
-        cursor: pointer;
-        color: $color-grey;
-        font-family: $font-primary;
-        width: 100%;
-      }
     }
   }
 }

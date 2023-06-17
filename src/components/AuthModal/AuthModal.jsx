@@ -1,12 +1,15 @@
 import React, { useRef, useState } from "react";
 import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./AuthModal.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, register } from "../../Redux/slices/userSlice";
+import Loader from "../Loader/Loader";
+import * as Yup from "yup";
+import { Formik } from "formik";
+import { Form } from "react-router-dom";
 
 const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const wrapperRef = useRef(null);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -14,9 +17,34 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const [isLoginClicked, setIsLoginClicked] = useState(true);
   const [isRegisterClicked, setIsRegisterClicked] = useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
+  const [isLoginLoading, setIsLoginLoading] = useState(false);
+  const [isRegisterLoading, setIsRegisterLoading] = useState(false);
 
   useOutsideAlerter(wrapperRef, () => setIsAuthClicked(false), authIconRef);
   const dispatch = useDispatch();
+
+  const errorMsg = useSelector((state) => state.user.error);
+
+  const loginValidation = Yup.object().shape({
+    email: Yup.string().email("Invalid Email").required("Email is required"),
+    password: Yup.string()
+      .min(2, "Your message should be at least 2 characters")
+      .required("Your message is required"),
+  });
+
+  const registerValidation = Yup.object().shape({
+    fullName: Yup.string()
+      .min(2, "Name should be at least 2 characters")
+      .required("Name is required"),
+    email: Yup.string().email("Invalid Email").required("Email is required"),
+    password: Yup.string()
+      .min(2, "Your message should be at least 2 characters")
+      .required("Your message is required"),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Passwords must match"
+    ),
+  });
 
   return (
     <div className="overlay">
@@ -52,54 +80,98 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
 
         <div className="authentication__forms">
           {isLoginClicked ? (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                dispatch(
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+              validationSchema={loginValidation}
+              onSubmit={async () => {
+                setIsLoginLoading(true);
+                await dispatch(
                   login({
                     email,
                     password,
                   })
                 );
+
+                setIsLoginLoading(false);
+                setIsAuthClicked(false);
               }}
-              className="authentication__login"
             >
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={({ target }) => {
-                  setEmail(target.value);
-                }}
-              />
+              {({
+                handleBlur,
+                handleChange,
+                handleSubmit,
+                touched,
+                values,
+                errors,
+              }) => {
+                return (
+                  <form
+                    onSubmit={handleSubmit}
+                    className="authentication__forms--login"
+                  >
+                    <div>
+                      <input
+                        type="email"
+                        placeholder="Email"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.email}
+                      />
 
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={({ target }) => {
-                  setPassword(target.value);
-                }}
-              />
+                      <p>{errors.email && touched.email && errors.email}</p>
+                    </div>
 
-              <button type="submit">Login</button>
-              <p>Forgot Password?</p>
-            </form>
+                    <div>
+                      <input
+                        type="password"
+                        placeholder="Password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                      />
+
+                      <p>
+                        {errors.password && touched.password && errors.password}
+                      </p>
+                    </div>
+
+                    <p>Forgot Password?</p>
+
+                    <button disabled={isLoginLoading} type="submit">
+                      {isLoginLoading ? <Loader /> : "Login"}
+                    </button>
+
+                    <span className="authentication__forms--error">
+                      {errorMsg}
+                    </span>
+                  </form>
+                );
+              }}
+            </Formik>
           ) : null}
 
           {isRegisterClicked ? (
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                dispatch(
+                setIsRegisterLoading(true);
+                const response = await dispatch(
                   register({
                     fullName,
                     email,
                     password,
                   })
                 );
+
+                if (response.payload.message === "success") {
+                  setIsRegisterLoading(false);
+                  setIsAuthClicked(false);
+                }
               }}
-              className="authentication__register"
+              className="authentication__forms--register"
             >
               <input
                 type="text"
@@ -137,7 +209,7 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                 }}
               />
 
-              <div className="authentication__register--tc">
+              <div className="authentication__forms--register-tc">
                 <input
                   type="checkbox"
                   id="terms and conditions"
@@ -145,18 +217,20 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                     setIsCheckboxChecked(!isCheckboxChecked);
                   }}
                 />
-                <label htmlFor="terms and conditions">
+                <span htmlFor="terms and conditions">
                   I agree to the Terms and Condtions
-                </label>
+                </span>
               </div>
 
               <button
                 type="submti"
-                disabled={!isCheckboxChecked}
+                disabled={!isCheckboxChecked || isRegisterLoading}
                 className={!isCheckboxChecked ? "notChecked" : null}
               >
-                Register
+                {isRegisterLoading ? <Loader /> : "Register"}
               </button>
+
+              <span className="authentication__forms--error">{errorMsg}</span>
             </form>
           ) : null}
         </div>

@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 import { Link as Scroll } from "react-scroll";
 import CartModal from "../CartModal/CartModal";
 import SearchModal from "../SearchModal/SearchModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Redux/slices/userSlice";
 
 const NavBar = () => {
@@ -15,7 +15,6 @@ const NavBar = () => {
   const [isAuthClicked, setIsAuthClicked] = useState(false);
   const [isCartClicked, setIsCartClicked] = useState(false);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isNavBarOptionsBtnClicked, setIsNavBarOptionsBtnClicked] =
     useState(false);
 
@@ -29,6 +28,8 @@ const NavBar = () => {
   const authModal = document.getElementById("auth");
   const cartModal = document.getElementById("cart");
   const searchModal = document.getElementById("search");
+
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   useEffect(() => {
     const settingNavBar = () => {

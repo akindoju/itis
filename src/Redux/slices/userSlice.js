@@ -31,10 +31,13 @@ export const register = createAsyncThunk("user/register", async (payload) => {
       });
 
       return {
-        fullName: payload.fullName,
-        email: user.email,
-        id: user.uid,
-        created_at: new Date(),
+        user: {
+          fullName: payload.fullName,
+          email: user.email,
+          id: user.uid,
+          created_at: new Date(),
+        },
+        message: "success",
       };
     })
     .catch(() => {
@@ -62,7 +65,7 @@ export const login = createAsyncThunk("user/login", async (payload) => {
           };
         });
 
-        return user[0];
+        return { user: user[0], message: "success" };
       });
     })
     .catch(() => {
@@ -93,8 +96,12 @@ const userSlice = createSlice({
   },
 
   extraReducers: (builder) => {
+    builder.addCase(register.pending, () => {
+      return initialState;
+    });
+
     builder.addCase(register.fulfilled, (state, action) => {
-      const { fullName, id, email, created_at } = action.payload;
+      const { fullName, id, email, created_at } = action.payload.user;
 
       return {
         ...state,
@@ -115,8 +122,12 @@ const userSlice = createSlice({
       };
     });
 
+    builder.addCase(login.pending, () => {
+      return initialState;
+    });
+
     builder.addCase(login.fulfilled, (state, action) => {
-      const { fullName, id, email, created_at } = action.payload;
+      const { fullName, id, email, created_at } = action.payload.user;
 
       return {
         ...state,

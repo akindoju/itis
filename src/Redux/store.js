@@ -6,26 +6,17 @@ import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 
 const persistConfig = {
-  key: "affixdot",
+  key: "itis",
   storage,
-  blacklist: ["general"],
 };
 
 const rootReducer = combineReducers({
-  // general: persistReducer(
-  //   {
-  //     key: 'general',
-  //     storage: AsyncStorage,
-  //     blacklist: ['pointsOptionsModal'],
-  //   },
-  //   generalSlice,
-  // ),
   cart: cartSlice,
   user: userSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const middleware: any = [thunk];
+const middleware = [thunk];
 
 if (process.env.NODE_ENV === `development`) {
   const { logger } = require(`redux-logger`);
@@ -37,9 +28,5 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware,
 });
-
-// export type RootState = ReturnType<typeof rootReducer>;
-// export type AppDispatch = typeof store.dispatch;
-// export const useAppDispatch: () => AppDispatch = useDispatch;
 
 export const persistor = persistStore(store);
