@@ -94,12 +94,11 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                   })
                 );
 
+                setIsLoginLoading(false);
+
                 if (response.payload.message === "success") {
-                  setIsLoginLoading(false);
                   setIsAuthClicked(false);
                   resetForm();
-                } else {
-                  setIsRegisterLoading(false);
                 }
               }}
             >
@@ -189,12 +188,11 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                   })
                 );
 
+                setIsRegisterLoading(false);
+
                 if (response.payload.message === "success") {
-                  setIsRegisterLoading(false);
                   setIsAuthClicked(false);
                   resetForm();
-                } else {
-                  setIsRegisterLoading(false);
                 }
               }}
             >

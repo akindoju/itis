@@ -115,10 +115,10 @@ const userSlice = createSlice({
       };
     });
 
-    builder.addCase(register.rejected, (state, action) => {
+    builder.addCase(register.rejected, (state) => {
       return {
         ...state,
-        error: action.payload,
+        error: "Unable to log in",
       };
     });
 
@@ -141,14 +141,14 @@ const userSlice = createSlice({
       };
     });
 
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(login.rejected, (state) => {
       return {
         ...state,
-        error: action.payload,
+        error: "Unable to log in",
       };
     });
 
-    builder.addCase(logout.fulfilled, (state, action) => {
+    builder.addCase(logout.fulfilled, () => {
       return initialState;
     });
 
