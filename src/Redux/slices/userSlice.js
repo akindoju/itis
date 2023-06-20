@@ -40,8 +40,8 @@ export const register = createAsyncThunk("user/register", async (payload) => {
         message: "success",
       };
     })
-    .catch(() => {
-      throw new Error("Unable to register");
+    .catch((error) => {
+      throw error;
     });
 });
 
@@ -115,11 +115,20 @@ const userSlice = createSlice({
       };
     });
 
-    builder.addCase(register.rejected, (state) => {
-      return {
-        ...state,
-        error: "Unable to log in",
-      };
+    builder.addCase(register.rejected, (state, action) => {
+      const { error } = action;
+
+      if (error && error.code === "auth/email-already-in-use") {
+        return {
+          ...state,
+          error: "Email already in use",
+        };
+      } else {
+        return {
+          ...state,
+          error: "Unable to register",
+        };
+      }
     });
 
     builder.addCase(login.pending, () => {

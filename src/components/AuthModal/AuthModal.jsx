@@ -152,10 +152,7 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
 
                     <button
                       disabled={
-                        !isCheckboxChecked ||
-                        isLoginLoading ||
-                        !values.email ||
-                        !values.password
+                        isLoginLoading || !values.email || !values.password
                       }
                       type="submit"
                     >
@@ -303,7 +300,8 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                         isRegisterLoading ||
                         !values.email ||
                         !values.password ||
-                        !values.fullName
+                        !values.fullName ||
+                        Object.keys(errors).length
                       }
                       className={!isCheckboxChecked ? "notChecked" : null}
                     >
