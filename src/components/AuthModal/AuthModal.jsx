@@ -30,23 +30,41 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const error = useSelector((state) => state.user.error);
 
   const validation = Yup.object().shape({
+    //LOGIn
     loginEmail: Yup.string()
       .email("Invalid Email Address")
-      .required("Email Address is required"),
+      .when("isLoginClicked", {
+        is: true,
+        then: Yup.string().required("Email Address is required"),
+      }),
     loginPassword: Yup.string()
-      .min(6, "Your password should be at least 6 characters")
-      .required("Your password is required"),
+      .min(6, "Password should be at least 6 characters")
+      .when("isLoginClicked", {
+        is: true,
+        then: Yup.string().required("Password is required"),
+      }),
+
+    //REGISTER
     fullName: Yup.string()
       .min(3, "Name should be at least 2 characters")
-      .required("Full Name is required"),
+      .when("isRegisterClicked", {
+        is: true,
+        then: Yup.string().required("Full Name is required"),
+      }),
     registerEmail: Yup.string()
       .email("Invalid Email Address")
-      .required("Email Address is required"),
+      .when("isRegisterClicked", {
+        is: true,
+        then: Yup.string().required("Email Address is required"),
+      }),
     registerPassword: Yup.string()
-      .min(6, "Your password should be at least 6 characters")
-      .required("Your password is required"),
+      .min(6, "Password should be at least 6 characters")
+      .when("isRegisterClicked", {
+        is: true,
+        then: Yup.string().required("Password is required"),
+      }),
     confirmPassword: Yup.string().oneOf(
-      [Yup.ref("password"), null],
+      [Yup.ref("registerPassword"), null],
       "Passwords must match"
     ),
   });
@@ -193,11 +211,7 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                       <p>Forgot Password?</p>
 
                       <button
-                        disabled={
-                          isLoginLoading ||
-                          !values.email ||
-                          !values.loginPassword
-                        }
+                        disabled={isLoginLoading || Object.keys(errors).length}
                         type="submit"
                       >
                         {isLoginLoading ? <Loader /> : "Login"}
@@ -302,13 +316,11 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                       </div>
 
                       <button
-                        type="submti"
+                        type="submit"
+                        onClick={() => console.log({ errors })}
                         disabled={
                           !isCheckboxChecked ||
                           isRegisterLoading ||
-                          !values.registerEmail ||
-                          !values.registerPassword ||
-                          !values.fullName ||
                           Object.keys(errors).length
                         }
                         className={!isCheckboxChecked ? "notChecked" : null}
