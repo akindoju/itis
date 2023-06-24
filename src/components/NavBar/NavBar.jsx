@@ -9,12 +9,13 @@ import CartModal from "../CartModal/CartModal";
 import SearchModal from "../SearchModal/SearchModal";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Redux/slices/userSlice";
+import { setIsSearchClicked } from "../../Redux/slices/mealsSlice";
 
 const NavBar = () => {
   const [navBarActive, setNavBarActive] = useState(false);
   const [isAuthClicked, setIsAuthClicked] = useState(false);
   const [isCartClicked, setIsCartClicked] = useState(false);
-  const [isSearchClicked, setIsSearchClicked] = useState(false);
+  // const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [isLogoutClicked, setIsLogoutClicked] = useState(false);
   const [isNavBarOptionsBtnClicked, setIsNavBarOptionsBtnClicked] =
     useState(false);
@@ -31,6 +32,7 @@ const NavBar = () => {
   const searchModal = document.getElementById("search");
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isSearchClicked = useSelector((state) => state.meals.isSearchClicked);
 
   useEffect(() => {
     const settingNavBar = () => {
@@ -74,7 +76,7 @@ const NavBar = () => {
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              onClick={() => setIsSearchClicked(true)}
+              onClick={() => dispatch(setIsSearchClicked(true))}
               ref={searchIconRef}
             >
               <title>search</title>
@@ -247,7 +249,7 @@ const NavBar = () => {
       {isSearchClicked && searchModal
         ? createPortal(
             <SearchModal
-              setIsSearchClicked={setIsSearchClicked}
+              setIsSearchClicked={() => dispatch(setIsSearchClicked(false))}
               searchIconRef={searchIconRef}
             />,
             searchModal

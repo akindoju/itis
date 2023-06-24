@@ -4,6 +4,7 @@ import cartSlice from "./slices/cartSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
+import mealsSlice from "./slices/mealsSlice";
 
 const persistConfig = {
   key: "itis",
@@ -13,6 +14,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   cart: cartSlice,
   user: userSlice,
+  meals: mealsSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

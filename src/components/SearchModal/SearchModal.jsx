@@ -1,39 +1,8 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./SearchModal.scss";
-
-const cartItemsArr = [
-  {
-    name: "Jollof Rice",
-    price: "₦1000",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Chicken Shawarma",
-    price: "₦500",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Egusi Soup",
-    price: "₦800",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Pounded Yam",
-    price: "₦1200",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Pepper Soup",
-    price: "₦1500",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Beef Burger",
-    price: "₦700",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { setRandomMeal } from "../../Redux/slices/mealsSlice";
 
 const SearchItem = ({ name, price, img }) => {
   return (
@@ -48,7 +17,7 @@ const SearchItem = ({ name, price, img }) => {
             </p>
 
             <p className="search__result--item-details-main-text-price">
-              {price}
+              ₦{price.toLocaleString()}
             </p>
           </div>
         </div>
@@ -60,11 +29,35 @@ const SearchItem = ({ name, price, img }) => {
 };
 
 const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
-  const wrapperRef = useRef(null);
+  const randomMeal = useSelector((state) => state.meals.randomMeal);
 
-  const hideSearch = () => setIsSearchClicked(false);
+  const wrapperRef = useRef(null);
+  const [searchArray, setSearchArray] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const hideSearch = () => {
+    dispatch(setRandomMeal([]));
+    dispatch(setIsSearchClicked(false));
+  };
 
   useOutsideAlerter(wrapperRef, hideSearch, searchIconRef);
+
+  useEffect(() => {
+    setSearchArray([...randomMeal]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const generateRandomPrice = () => {
+    var minPrice = 3000;
+    var maxPrice = 15000;
+
+    var randomPrice =
+      Math.floor((Math.random() * (maxPrice - minPrice + 1) + minPrice) / 100) *
+      100;
+
+    return randomPrice;
+  };
 
   return (
     <div className="search-overlay">
@@ -90,13 +83,13 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
         </form>
 
         <div className="search__result">
-          {cartItemsArr.map((item) => {
+          {searchArray.map((item) => {
             return (
               <SearchItem
-                name={item.name}
-                img={item.img}
-                price={item.price}
-                key={item.name}
+                name={item.strMeal}
+                img={item.strMealThumb}
+                price={generateRandomPrice()}
+                key={item.strMeal}
               />
             );
           })}
