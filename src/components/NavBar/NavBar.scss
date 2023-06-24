@@ -76,6 +76,40 @@
           height: 3rem;
           width: 3rem;
         }
+
+        &-logout {
+          background-color: rgba(0, 0, 0, 0.8);
+          padding: 1.2rem 2rem;
+          margin-top: 0.5rem;
+          position: absolute;
+          display: flex;
+          align-items: center;
+
+          p {
+            font-family: $font-primary;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.2s;
+            margin-right: 0.8rem;
+          }
+
+          svg {
+            height: 1.8rem;
+            width: 1.8rem;
+            transform: translateY(2px);
+          }
+
+          &:hover {
+            cursor: pointer;
+            svg {
+              fill: $color-main;
+            }
+
+            p {
+              color: $color-main;
+            }
+          }
+        }
       }
 
       &-menu {

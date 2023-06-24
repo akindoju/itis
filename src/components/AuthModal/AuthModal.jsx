@@ -30,7 +30,7 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const error = useSelector((state) => state.user.error);
 
   const validation = Yup.object().shape({
-    //LOGIn
+    //LOGIN
     loginEmail: Yup.string()
       .email("Invalid Email Address")
       .when("isLoginClicked", {
