@@ -14,29 +14,35 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
   const [isLoginLoading, setIsLoginLoading] = useState(false);
   const [isRegisterLoading, setIsRegisterLoading] = useState(false);
+  const [loginErr, setLoginErr] = useState("");
+  const [registerErr, setRegisterErr] = useState("");
 
-  useOutsideAlerter(wrapperRef, () => setIsAuthClicked(false), authIconRef);
+  useOutsideAlerter(
+    wrapperRef,
+    () => {
+      setRegisterErr("");
+      setLoginErr("");
+      setIsAuthClicked(false);
+    },
+    authIconRef
+  );
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.user.error);
 
-  const errorMsg = useSelector((state) => state.user.error);
-
-  const loginValidation = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid Email")
+  const validation = Yup.object().shape({
+    loginEmail: Yup.string()
+      .email("Invalid Email Address")
       .required("Email Address is required"),
-    password: Yup.string()
+    loginPassword: Yup.string()
       .min(6, "Your password should be at least 6 characters")
       .required("Your password is required"),
-  });
-
-  const registerValidation = Yup.object().shape({
     fullName: Yup.string()
       .min(3, "Name should be at least 2 characters")
       .required("Full Name is required"),
-    email: Yup.string()
-      .email("Invalid Email")
+    registerEmail: Yup.string()
+      .email("Invalid Email Address")
       .required("Email Address is required"),
-    password: Yup.string()
+    registerPassword: Yup.string()
       .min(6, "Your password should be at least 6 characters")
       .required("Your password is required"),
     confirmPassword: Yup.string().oneOf(
@@ -78,112 +84,52 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
         </div>
 
         <div className="authentication__forms">
-          {isLoginClicked ? (
-            <Formik
-              initialValues={{
-                email: "",
-                password: "",
-              }}
-              validationSchema={loginValidation}
-              onSubmit={async (values, { resetForm }) => {
+          <Formik
+            initialValues={{
+              loginEmail: "",
+              loginPassword: "",
+              registerEmail: "",
+              registerPassword: "",
+              fullName: "",
+              confirmPassword: "",
+            }}
+            validationSchema={validation}
+            onSubmit={async (values, { resetForm }) => {
+              if (isLoginClicked && !isRegisterClicked) {
                 setIsLoginLoading(true);
+                setLoginErr("");
+
                 const response = await dispatch(
                   login({
-                    email: values.email,
-                    password: values.password,
+                    email: values.loginEmail,
+                    password: values.loginPassword,
                   })
                 );
 
                 setIsLoginLoading(false);
 
+                if (response.error) {
+                  setLoginErr(error);
+                }
+
                 if (response.payload.message === "success") {
                   setIsAuthClicked(false);
                   resetForm();
                 }
-              }}
-            >
-              {({
-                handleBlur,
-                handleChange,
-                handleSubmit,
-                touched,
-                values,
-                errors,
-              }) => {
-                return (
-                  <form onSubmit={handleSubmit}>
-                    <div className="authentication__forms--formik">
-                      <input
-                        name="email"
-                        type="email"
-                        placeholder="Email Address"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.email}
-                      />
-
-                      <div>
-                        <span>
-                          {errors.email && touched.email && errors.email}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="authentication__forms--formik">
-                      <input
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password}
-                      />
-
-                      <div>
-                        <span>
-                          {errors.password &&
-                            touched.password &&
-                            errors.password}
-                        </span>
-                      </div>
-                    </div>
-
-                    <p>Forgot Password?</p>
-
-                    <button
-                      disabled={
-                        isLoginLoading || !values.email || !values.password
-                      }
-                      type="submit"
-                    >
-                      {isLoginLoading ? <Loader /> : "Login"}
-                    </button>
-
-                    <span className="authentication__forms--error">
-                      {errorMsg}
-                    </span>
-                  </form>
-                );
-              }}
-            </Formik>
-          ) : null}
-
-          {isRegisterClicked ? (
-            <Formik
-              initialValues={{
-                email: "",
-                password: "",
-              }}
-              validationSchema={registerValidation}
-              onSubmit={async (values, { resetForm }) => {
+              } else if (!isLoginClicked && isRegisterClicked) {
                 setIsRegisterLoading(true);
+
                 const response = await dispatch(
                   register({
                     fullName: values.fullName,
-                    email: values.email,
-                    password: values.password,
+                    email: values.registerEmail,
+                    password: values.registerPassword,
                   })
                 );
+
+                if (response.error) {
+                  setRegisterErr(error);
+                }
 
                 setIsRegisterLoading(false);
 
@@ -191,131 +137,194 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
                   setIsAuthClicked(false);
                   resetForm();
                 }
-              }}
-            >
-              {({
-                handleBlur,
-                handleChange,
-                handleSubmit,
-                touched,
-                values,
-                errors,
-              }) => {
-                return (
-                  <form
-                    onSubmit={handleSubmit}
-                    className="authentication__forms--register"
-                  >
-                    <div className="authentication__forms--formik">
-                      <input
-                        name="fullName"
-                        type="text"
-                        placeholder="Full Name"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.fullName}
-                      />
+              }
+            }}
+          >
+            {({
+              handleBlur,
+              handleChange,
+              handleSubmit,
+              touched,
+              values,
+              errors,
+            }) => {
+              return (
+                <>
+                  {isLoginClicked ? (
+                    <form onSubmit={handleSubmit}>
+                      <div className="authentication__forms--formik">
+                        <input
+                          name="loginEmail"
+                          type="email"
+                          placeholder="Email Address"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.loginEmail}
+                        />
 
-                      <div>
-                        <span>
-                          {errors.fullName &&
-                            touched.fullName &&
-                            errors.fullName}
-                        </span>
+                        <div>
+                          <span>
+                            {errors.loginEmail &&
+                              touched.loginEmail &&
+                              errors.loginEmail}
+                          </span>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="authentication__forms--formik">
-                      <input
-                        name="email"
-                        type="email"
-                        placeholder="Email Address"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.email}
-                      />
+                      <div className="authentication__forms--formik">
+                        <input
+                          name="loginPassword"
+                          type="password"
+                          placeholder="Password"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.loginPassword}
+                        />
 
-                      <div>
-                        <span>
-                          {errors.email && touched.email && errors.email}
-                        </span>
+                        <div>
+                          <span>
+                            {errors.loginPassword &&
+                              touched.loginPassword &&
+                              errors.loginPassword}
+                          </span>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="authentication__forms--formik">
-                      <input
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password}
-                      />
+                      <p>Forgot Password?</p>
 
-                      <div>
-                        <span>
-                          {errors.password &&
-                            touched.password &&
-                            errors.password}
-                        </span>
-                      </div>
-                    </div>
+                      <button
+                        disabled={
+                          isLoginLoading ||
+                          !values.email ||
+                          !values.loginPassword
+                        }
+                        type="submit"
+                      >
+                        {isLoginLoading ? <Loader /> : "Login"}
+                      </button>
 
-                    <div className="authentication__forms--formik">
-                      <input
-                        name="confirmPassword"
-                        type="password"
-                        placeholder="Confirm Password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.confirmPassword}
-                      />
-
-                      <div>
-                        <span>
-                          {errors.confirmPassword &&
-                            touched.confirmPassword &&
-                            errors.confirmPassword}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="authentication__forms--register-tc">
-                      <input
-                        type="checkbox"
-                        id="terms and conditions"
-                        onClick={() => {
-                          setIsCheckboxChecked(!isCheckboxChecked);
-                        }}
-                      />
-                      <label htmlFor="terms and conditions">
-                        I agree to the Terms and Condtions
-                      </label>
-                    </div>
-
-                    <button
-                      type="submti"
-                      disabled={
-                        !isCheckboxChecked ||
-                        isRegisterLoading ||
-                        !values.email ||
-                        !values.password ||
-                        !values.fullName ||
-                        Object.keys(errors).length
-                      }
-                      className={!isCheckboxChecked ? "notChecked" : null}
+                      <span className="authentication__forms--error">
+                        {loginErr}
+                      </span>
+                    </form>
+                  ) : (
+                    <form
+                      onSubmit={handleSubmit}
+                      className="authentication__forms--register"
                     >
-                      {isRegisterLoading ? <Loader /> : "Register"}
-                    </button>
+                      <div className="authentication__forms--formik">
+                        <input
+                          name="fullName"
+                          type="text"
+                          placeholder="Full Name"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.fullName}
+                        />
 
-                    <span className="authentication__forms--error">
-                      {errorMsg}
-                    </span>
-                  </form>
-                );
-              }}
-            </Formik>
-          ) : null}
+                        <div>
+                          <span>
+                            {errors.fullName &&
+                              touched.fullName &&
+                              errors.fullName}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="authentication__forms--formik">
+                        <input
+                          name="registerEmail"
+                          type="email"
+                          placeholder="Email Address"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.registerEmail}
+                        />
+
+                        <div>
+                          <span>
+                            {errors.registerEmail &&
+                              touched.registerEmail &&
+                              errors.registerEmail}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="authentication__forms--formik">
+                        <input
+                          name="registerPassword"
+                          type="password"
+                          placeholder="Password"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.registerPassword}
+                        />
+
+                        <div>
+                          <span>
+                            {errors.registerPassword &&
+                              touched.registerPassword &&
+                              errors.registerPassword}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="authentication__forms--formik">
+                        <input
+                          name="confirmPassword"
+                          type="password"
+                          placeholder="Confirm Password"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.confirmPassword}
+                        />
+
+                        <div>
+                          <span>
+                            {errors.confirmPassword &&
+                              touched.confirmPassword &&
+                              errors.confirmPassword}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="authentication__forms--register-tc">
+                        <input
+                          type="checkbox"
+                          id="terms and conditions"
+                          onClick={() => {
+                            setIsCheckboxChecked(!isCheckboxChecked);
+                          }}
+                        />
+                        <label htmlFor="terms and conditions">
+                          I agree to the Terms and Condtions
+                        </label>
+                      </div>
+
+                      <button
+                        type="submti"
+                        disabled={
+                          !isCheckboxChecked ||
+                          isRegisterLoading ||
+                          !values.registerEmail ||
+                          !values.registerPassword ||
+                          !values.fullName ||
+                          Object.keys(errors).length
+                        }
+                        className={!isCheckboxChecked ? "notChecked" : null}
+                      >
+                        {isRegisterLoading ? <Loader /> : "Register"}
+                      </button>
+
+                      <span className="authentication__forms--error">
+                        {registerErr}
+                      </span>
+                    </form>
+                  )}
+                </>
+              );
+            }}
+          </Formik>
         </div>
       </div>
     </div>
