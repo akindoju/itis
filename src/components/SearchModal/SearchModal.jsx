@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./SearchModal.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { setRandomMeal } from "../../Redux/slices/mealsSlice";
+import { setRandomMeal, searchMeal } from "../../Redux/slices/mealsSlice";
 
 const SearchItem = ({ name, price, img }) => {
   return (
@@ -16,7 +16,7 @@ const SearchItem = ({ name, price, img }) => {
             </p>
 
             <p className="search__result--item-details-main-text-price">
-              ₦{price.toLocaleString()}
+              ₦{price?.toLocaleString()}
             </p>
           </div>
         </div>
@@ -35,6 +35,7 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
   const [searchValue, setSearchValue] = useState(
     randomMeal && randomMeal.length ? randomMeal[0].strMeal : ""
   );
+  const [isError, setIsError] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -69,8 +70,16 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
 
       <div className="search" ref={wrapperRef}>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
+            setIsError(false);
             e.preventDefault();
+            const meals = await dispatch(searchMeal(searchValue));
+
+            if (meals.payload && meals.payload.length) {
+              setSearchArray([...meals.payload]);
+            } else if (meals.error.message) {
+              setIsError(true);
+            }
           }}
         >
           <input
@@ -88,7 +97,7 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
               height="24"
               viewBox="0 0 24 24"
             >
-              <title>search1</title>
+              <title>search</title>
               <path d="M9.516 14.016q1.875 0 3.188-1.313t1.313-3.188-1.313-3.188-3.188-1.313-3.188 1.313-1.313 3.188 1.313 3.188 3.188 1.313zM15.516 14.016l4.969 4.969-1.5 1.5-4.969-4.969v-0.797l-0.281-0.281q-1.781 1.547-4.219 1.547-2.719 0-4.617-1.875t-1.898-4.594 1.898-4.617 4.617-1.898 4.594 1.898 1.875 4.617q0 0.984-0.469 2.227t-1.078 1.992l0.281 0.281h0.797z"></path>
             </svg>
           </button>
@@ -107,6 +116,10 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
               );
             })}
           </div>
+        ) : isError ? (
+          <p className="search__error">
+            Oops! Meal not found. Please try another search.
+          </p>
         ) : null}
       </div>
     </div>

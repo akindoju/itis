@@ -8,8 +8,8 @@ const initialState = {
   isSearchClicked: false,
 };
 
-export const surpriseMeal = createAsyncThunk(
-  "meals/surpriseMeal",
+export const randomMeal = createAsyncThunk(
+  "meals/randomMeal",
   async (_, thunk) => {
     try {
       const result = await axios.get(
@@ -24,6 +24,26 @@ export const surpriseMeal = createAsyncThunk(
 
       return "success";
     } catch (error) {
+      throw new Error("Unable to get meal");
+    }
+  }
+);
+
+export const searchMeal = createAsyncThunk(
+  "meals/searchMeal",
+  async (name, thunk) => {
+    try {
+      const result = await axios.get(
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`
+      );
+
+      const meals = result.data.meals.map((meal) => {
+        return { ...meal, strPrice: generateRandomPrice() };
+      });
+
+      return meals;
+    } catch (error) {
+      console.log({ error });
       throw new Error("Unable to get meal");
     }
   }
@@ -50,7 +70,7 @@ const mealsSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(surpriseMeal.rejected, (state, action) => {
+    builder.addCase(randomMeal.rejected, (state, action) => {
       return {
         ...state,
         error: "Unable to get meal",

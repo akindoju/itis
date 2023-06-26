@@ -1,10 +1,7 @@
 import React from "react";
 import "./Header.scss";
 import { useDispatch } from "react-redux";
-import {
-  setIsSearchClicked,
-  surpriseMeal,
-} from "../../Redux/slices/mealsSlice";
+import { setIsSearchClicked, randomMeal } from "../../Redux/slices/mealsSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,7 +17,7 @@ const Header = () => {
         <div className="header__content--sub">
           <button
             onClick={async () => {
-              const response = await dispatch(surpriseMeal());
+              const response = await dispatch(randomMeal());
 
               if (response.payload === "success") {
                 dispatch(setIsSearchClicked(true));
