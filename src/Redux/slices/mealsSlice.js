@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { generateRandomPrice } from "../../Helpers/Functions";
 
 const initialState = {
   randomMeal: [],
@@ -14,6 +15,10 @@ export const surpriseMeal = createAsyncThunk(
       const result = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
+
+      const meal = result.data.meals[0];
+
+      meal.strPrice = generateRandomPrice();
 
       thunk.dispatch(setRandomMeal(result.data.meals));
 

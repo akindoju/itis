@@ -43,6 +43,31 @@ html {
   margin-inline: auto;
 }
 
+.close-modal {
+  position: absolute;
+  fill: white;
+  top: 3.2rem;
+  right: 2.5rem;
+  height: 4rem;
+  width: 4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  @media (min-width: 650px) {
+    top: 6rem;
+    right: 6rem;
+  }
+
+  &:hover,
+  &:focus {
+    fill: $color-main;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 0.8rem;
 }

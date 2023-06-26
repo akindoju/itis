@@ -17,15 +17,17 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
   const [loginErr, setLoginErr] = useState("");
   const [registerErr, setRegisterErr] = useState("");
 
-  useOutsideAlerter(
-    wrapperRef,
-    () => {
-      setRegisterErr("");
-      setLoginErr("");
-      setIsAuthClicked(false);
-    },
-    authIconRef
-  );
+  const hideModal = () => {
+    setRegisterErr("");
+    setLoginErr("");
+    setIsAuthClicked(false);
+  };
+
+  // useOutsideAlerter(
+  //   wrapperRef,
+  //   hideModal,
+  //   authIconRef
+  // );
   const dispatch = useDispatch();
   const error = useSelector((state) => state.user.error);
 
@@ -71,6 +73,21 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
 
   return (
     <div className="overlay">
+      <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        className="close-modal"
+        onClick={() => {
+          hideModal();
+        }}
+      >
+        <title>clear</title>
+        <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
+      </svg>
+
       <div className="authentication" ref={wrapperRef}>
         <div className="authentication__heading">
           <button

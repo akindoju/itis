@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./CartModal.scss";
 
 const cartItemsArr = [
@@ -105,10 +104,25 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
 
   const hideCart = () => setIsCartClicked(false);
 
-  useOutsideAlerter(wrapperRef, hideCart, cartIconRef);
+  // useOutsideAlerter(wrapperRef, hideCart, cartIconRef);
 
   return (
     <div className="overlay">
+      <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        className="close-modal"
+        onClick={() => {
+          hideCart();
+        }}
+      >
+        <title>clear</title>
+        <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
+      </svg>
+
       <div className="authentication cart" ref={wrapperRef}>
         <div className="cart__items">
           {cartItemsArr.map((item) => {

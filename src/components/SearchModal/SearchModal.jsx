@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./SearchModal.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setRandomMeal } from "../../Redux/slices/mealsSlice";
@@ -44,32 +43,30 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
     dispatch(setIsSearchClicked(false));
   };
 
-  useOutsideAlerter(wrapperRef, hideSearch, searchIconRef);
-
-  console.log({ randomMeal });
+  // useOutsideAlerter(wrapperRef, hideSearch, searchIconRef);
 
   useEffect(() => {
-    const meal = randomMeal[0];
-
-    meal.strPrice = generateRandomPrice();
-
     setSearchArray([...randomMeal]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const generateRandomPrice = () => {
-    var minPrice = 3000;
-    var maxPrice = 15000;
-
-    var randomPrice =
-      Math.floor((Math.random() * (maxPrice - minPrice + 1) + minPrice) / 100) *
-      100;
-
-    return randomPrice;
-  };
-
   return (
     <div className="search-overlay">
+      <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        className="close-modal"
+        onClick={() => {
+          hideSearch();
+        }}
+      >
+        <title>Close</title>
+        <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
+      </svg>
+
       <div className="search" ref={wrapperRef}>
         <form
           onSubmit={(e) => {
