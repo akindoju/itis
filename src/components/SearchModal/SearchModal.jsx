@@ -33,6 +33,9 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
 
   const wrapperRef = useRef(null);
   const [searchArray, setSearchArray] = useState([]);
+  const [searchValue, setSearchValue] = useState(
+    randomMeal && randomMeal.length ? randomMeal[0].strMeal : ""
+  );
 
   const dispatch = useDispatch();
 
@@ -43,7 +46,13 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
 
   useOutsideAlerter(wrapperRef, hideSearch, searchIconRef);
 
+  console.log({ randomMeal });
+
   useEffect(() => {
+    const meal = randomMeal[0];
+
+    meal.strPrice = generateRandomPrice();
+
     setSearchArray([...randomMeal]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -67,7 +76,13 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
             e.preventDefault();
           }}
         >
-          <input placeholder="Search meal" />
+          <input
+            placeholder="Search meal"
+            value={searchValue}
+            onChange={({ target }) => {
+              setSearchValue(target.value);
+            }}
+          />
           <button type="submit">
             <svg
               version="1.1"
@@ -82,18 +97,20 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
           </button>
         </form>
 
-        <div className="search__result">
-          {searchArray.map((item) => {
-            return (
-              <SearchItem
-                name={item.strMeal}
-                img={item.strMealThumb}
-                price={generateRandomPrice()}
-                key={item.strMeal}
-              />
-            );
-          })}
-        </div>
+        {searchArray.length ? (
+          <div className="search__result">
+            {searchArray.map((item) => {
+              return (
+                <SearchItem
+                  name={item.strMeal}
+                  img={item.strMealThumb}
+                  price={item.strPrice}
+                  key={item.strMeal}
+                />
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </div>
   );
