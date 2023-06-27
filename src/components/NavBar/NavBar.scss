@@ -44,14 +44,12 @@
         &:focus {
           fill: $color-main;
         }
-
-        &:first-child {
-          margin-right: 3rem;
-        }
       }
 
       &-meals {
         position: relative;
+        margin-left: 3rem;
+        margin-right: 2.5rem;
 
         &-cart {
           display: flex;

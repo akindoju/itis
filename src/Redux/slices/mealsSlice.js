@@ -67,6 +67,10 @@ const mealsSlice = createSlice({
         error: "",
       };
     },
+
+    mealsLogout: () => {
+      return initialState;
+    },
   },
 
   extraReducers: (builder) => {
@@ -79,6 +83,7 @@ const mealsSlice = createSlice({
   },
 });
 
-export const { setIsSearchClicked, setRandomMeal } = mealsSlice.actions;
+export const { setIsSearchClicked, setRandomMeal, mealsLogout } =
+  mealsSlice.actions;
 
 export default mealsSlice.reducer;

@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import "./SearchModal.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setRandomMeal, searchMeal } from "../../Redux/slices/mealsSlice";
+import { addToCart } from "../../Redux/slices/cartSlice";
 
-const SearchItem = ({ name, price, img }) => {
+const SearchItem = ({ name, price, img, id }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="search__result--item">
       <div className="search__result--item-details">
@@ -22,7 +25,21 @@ const SearchItem = ({ name, price, img }) => {
         </div>
       </div>
 
-      <button className="search__result--item-cart">Add to Cart</button>
+      <button
+        className="search__result--item-cart"
+        onClick={() => {
+          dispatch(
+            addToCart({
+              name,
+              img,
+              price,
+              id,
+            })
+          );
+        }}
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };
@@ -111,7 +128,8 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
                   name={item.strMeal}
                   img={item.strMealThumb}
                   price={item.strPrice}
-                  key={item.strMeal}
+                  key={item.idMeal}
+                  id={item.idMeal}
                 />
               );
             })}

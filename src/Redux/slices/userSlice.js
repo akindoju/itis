@@ -7,6 +7,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "@firebase/auth";
+import { mealsLogout } from "./mealsSlice";
+import { cartLogout } from "./cartSlice";
 
 const initialState = {
   user: {},
@@ -73,11 +75,13 @@ export const login = createAsyncThunk("user/login", async (payload) => {
     });
 });
 
-export const logout = createAsyncThunk("user/logout", async (payload) => {
+export const logout = createAsyncThunk("user/logout", async (_, thunk) => {
   try {
     const auth = getAuth();
 
     await signOut(auth);
+    thunk.dispatch(mealsLogout());
+    thunk.dispatch(cartLogout());
   } catch (error) {
     throw new Error("Unable to Log out");
   }
@@ -170,11 +174,7 @@ const userSlice = createSlice({
   },
 });
 
-export const {
-  setIsUpdateNeeded,
-  setIsuserLoggedIn,
-  updateUserData,
-  logoutUserSlice,
-} = userSlice.actions;
+export const { setIsUpdateNeeded, setIsuserLoggedIn, updateUserData } =
+  userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,38 +1,39 @@
 import React, { useRef, useState } from "react";
 import "./CartModal.scss";
+import { useSelector } from "react-redux";
 
-const cartItemsArr = [
-  {
-    name: "Jollof Rice",
-    price: "₦1000",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Chicken Shawarma",
-    price: "₦500",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Egusi Soup",
-    price: "₦800",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Pounded Yam",
-    price: "₦1200",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Pepper Soup",
-    price: "₦1500",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-  {
-    name: "Beef Burger",
-    price: "₦700",
-    img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-  },
-];
+// const cartItemsArr = [
+//   {
+//     name: "Jollof Rice",
+//     price: "₦1000",
+//     img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+//   },
+//   {
+//     name: "Chicken Shawarma",
+//     price: "₦500",
+//     img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+//   },
+//   {
+//     name: "Egusi Soup",
+//     price: "₦800",
+//     img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+//   },
+//   {
+//     name: "Pounded Yam",
+//     price: "₦1200",
+//     img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+//   },
+//   {
+//     name: "Pepper Soup",
+//     price: "₦1500",
+//     img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+//   },
+//   {
+//     name: "Beef Burger",
+//     price: "₦700",
+//     img: "https://images.unsplash.com/photo-1624153064067-566cae78993d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+//   },
+// ];
 
 const CartItem = ({ name, price, img }) => {
   const [quantity, setQuantity] = useState(1);
@@ -104,6 +105,9 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
 
   const hideCart = () => setIsCartClicked(false);
 
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
   // useOutsideAlerter(wrapperRef, hideCart, cartIconRef);
 
   return (
@@ -119,27 +123,35 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
           hideCart();
         }}
       >
-        <title>clear</title>
+        <title>close</title>
         <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
       </svg>
 
       <div className="authentication cart" ref={wrapperRef}>
-        <div className="cart__items">
-          {cartItemsArr.map((item) => {
-            return (
-              <CartItem
-                name={item.name}
-                price={item.price}
-                img={item.img}
-                key={item.name}
-              />
-            );
-          })}
-        </div>
+        {isLoggedIn && cartItems.length ? (
+          <>
+            <div className="cart__items">
+              {cartItems.map((item) => {
+                return (
+                  <CartItem
+                    name={item.name}
+                    price={item.price}
+                    img={item.img}
+                    key={item.name}
+                  />
+                );
+              })}
+            </div>
 
-        <p className="cart__total">TOTAL: ₦80,000</p>
+            <p className="cart__total">TOTAL: ₦80,000</p>
 
-        <button className="cart__button">Confirm</button>
+            <button className="cart__button">Confirm</button>
+          </>
+        ) : !isLoggedIn ? (
+          <p className="cart__prompt">Log in to access cart</p>
+        ) : !cartItems.length ? (
+          <p className="cart__prompt">There are no meals in your cart.</p>
+        ) : null}
       </div>
     </div>
   );
