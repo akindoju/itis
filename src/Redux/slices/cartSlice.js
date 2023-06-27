@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addDoc, collection, where, getDocs, query } from "@firebase/firestore";
 import { firestore } from "../../Firebase/firebase.utils";
+import { findWithAttr } from "../../Helpers/Functions";
 
 const initialState = {
   cartItems: [],
 };
 
-export const updateCart = createAsyncThunk(
-  "cart/updateCart",
+export const uploadCart = createAsyncThunk(
+  "cart/uploadCart",
   async (payload) => {
     const ref = collection(firestore, "cart");
 
@@ -27,10 +28,35 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      return {
-        ...state,
-        cartItems: [...state.cartItems, action.payload],
-      };
+      let cartArr = [...state.cartItems];
+
+      const idx = findWithAttr(state.cartItems, "id", action.payload.meal.id);
+
+      if (idx !== -1) {
+        let mealItem = { ...cartArr[idx] };
+
+        if (action.payload.status === "add") {
+          cartArr[idx] = {
+            ...mealItem,
+            quantity: mealItem.quantity + 1,
+          };
+        } else if (action.payload.status === "remove") {
+          mealItem = {
+            ...mealItem,
+            quantity: mealItem.quantity - 1,
+          };
+        }
+
+        return {
+          ...state,
+          cartItems: cartArr,
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, action.payload.meal],
+        };
+      }
     },
 
     cartLogout: () => {

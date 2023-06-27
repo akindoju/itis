@@ -3,9 +3,29 @@ import "./SearchModal.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setRandomMeal, searchMeal } from "../../Redux/slices/mealsSlice";
 import { addToCart } from "../../Redux/slices/cartSlice";
+import Counter from "../Counter/Counter";
 
 const SearchItem = ({ name, price, img, id }) => {
   const dispatch = useDispatch();
+
+  const [isQuantityVisible, setIsQuantityVisible] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [timeoutId, setTimeoutId] = useState(null);
+
+  const startTimer = () => {
+    if (setIsUpdated) {
+      setIsUpdated(true);
+
+      setTimeoutId(
+        setTimeout(() => {
+          setIsUpdated(false);
+        }, 2000)
+      );
+
+      return () => clearTimeout(timeoutId);
+    }
+  };
 
   return (
     <div className="search__result--item">
@@ -25,21 +45,108 @@ const SearchItem = ({ name, price, img, id }) => {
         </div>
       </div>
 
-      <button
-        className="search__result--item-cart"
-        onClick={() => {
-          dispatch(
-            addToCart({
-              name,
-              img,
-              price,
-              id,
-            })
-          );
-        }}
-      >
-        Add to Cart
-      </button>
+      <p className="search__result--item-prompt">
+        {isUpdated ? "Cart Updated" : ""}
+      </p>
+
+      {isQuantityVisible ? (
+        // <Counter
+        //   id={id}
+        //   setIsUpdated={setIsUpdated}
+        //   setIsQuantityVisible={setIsQuantityVisible}
+        // />
+
+        <div className="search__result--item-details-btns">
+          <button
+            onClick={() => {
+              if (quantity === 1) {
+                setIsQuantityVisible(false);
+              } else {
+                setQuantity((qty) => qty - 1);
+              }
+
+              dispatch(
+                addToCart({
+                  meal: {
+                    id,
+                  },
+                  status: "remove",
+                })
+              );
+              clearTimeout(timeoutId);
+              startTimer();
+            }}
+            // disabled={quantity <= 1}
+          >
+            <svg
+              className={"search__result--item-details-btns-active"}
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+            >
+              <title>minus</title>
+              <path d="M16 10c0 0.553-0.048 1-0.601 1h-10.798c-0.552 0-0.601-0.447-0.601-1s0.049-1 0.601-1h10.799c0.552 0 0.6 0.447 0.6 1z"></path>
+            </svg>
+          </button>
+
+          <p>{quantity}</p>
+
+          <button
+            onClick={() => {
+              setQuantity((qty) => qty + 1);
+
+              dispatch(
+                addToCart({
+                  meal: {
+                    id,
+                  },
+                  status: "add",
+                })
+              );
+              clearTimeout(timeoutId);
+              startTimer();
+            }}
+          >
+            <svg
+              className="search__result--item-details-btns-active"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+            >
+              <title>plus</title>
+              <path d="M16 10c0 0.553-0.048 1-0.601 1h-4.399v4.399c0 0.552-0.447 0.601-1 0.601s-1-0.049-1-0.601v-4.399h-4.399c-0.552 0-0.601-0.447-0.601-1s0.049-1 0.601-1h4.399v-4.399c0-0.553 0.447-0.601 1-0.601s1 0.048 1 0.601v4.399h4.399c0.553 0 0.601 0.447 0.601 1z"></path>
+            </svg>
+          </button>
+        </div>
+      ) : (
+        <button
+          className="search__result--item-cart"
+          onClick={() => {
+            dispatch(
+              addToCart({
+                meal: { name, img, price, id },
+                status: "add",
+              })
+            );
+
+            setIsQuantityVisible(true);
+
+            setIsUpdated(true);
+
+            const timeout = setTimeout(() => {
+              setIsUpdated(false);
+            }, 2000);
+
+            return () => clearTimeout(timeout);
+          }}
+        >
+          Add to Cart
+        </button>
+      )}
     </div>
   );
 };

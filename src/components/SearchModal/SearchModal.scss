@@ -186,6 +186,14 @@
           transform: scale(0.98);
         }
       }
+
+      &-prompt {
+        color: $color-main;
+        font-family: $font-primary;
+        font-size: 1.2rem;
+        height: 3rem;
+        transition: all 0.2s;
+      }
     }
   }
 
