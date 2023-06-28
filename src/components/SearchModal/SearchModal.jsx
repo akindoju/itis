@@ -185,12 +185,13 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
         <form
           onSubmit={async (e) => {
             setIsError(false);
+            setSearchArray([]);
             e.preventDefault();
             const meals = await dispatch(searchMeal(searchValue));
 
             if (meals.payload && meals.payload.length) {
               setSearchArray([...meals.payload]);
-            } else if (meals.error.message) {
+            } else if (meals.error && meals.error.message) {
               setIsError(true);
             }
           }}

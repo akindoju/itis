@@ -18,7 +18,7 @@ export const randomMeal = createAsyncThunk(
 
       const meal = result.data.meals[0];
 
-      meal.strPrice = generateRandomPrice();
+      meal.strPrice = generateRandomPrice(meal.idMeal);
 
       thunk.dispatch(setRandomMeal(result.data.meals));
 
@@ -38,7 +38,7 @@ export const searchMeal = createAsyncThunk(
       );
 
       const meals = result.data.meals.map((meal) => {
-        return { ...meal, strPrice: generateRandomPrice() };
+        return { ...meal, strPrice: generateRandomPrice(meal.idMeal) };
       });
 
       return meals;

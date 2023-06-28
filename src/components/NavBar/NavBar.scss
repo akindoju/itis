@@ -178,11 +178,11 @@
         backface-visibility: none;
       }
 
-      &:hover,
-      &:focus::after {
-        width: 80%;
-        left: 10%;
-      }
+      // &:hover,
+      // &:focus::after {
+      //   width: 80%;
+      //   left: 10%;
+      // }
     }
   }
 }

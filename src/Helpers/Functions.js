@@ -1,12 +1,15 @@
-export const generateRandomPrice = () => {
-  var minPrice = 3000;
-  var maxPrice = 15000;
+export const generateRandomPrice = (id) => {
+  const min = 2500;
+  const max = 18000;
+  const range = Math.floor((max - min) / 50) + 1;
 
-  var randomPrice =
-    Math.floor((Math.random() * (maxPrice - minPrice + 1) + minPrice) / 100) *
-    100;
+  // Use the id parameter to seed the random number generator
+  const seededRandom = Math.abs(Math.sin(id));
 
-  return randomPrice;
+  // Generate a random number within the range
+  const randomNumber = Math.floor(seededRandom * range) * 50 + min;
+
+  return randomNumber;
 };
 
 export const findWithAttr = (array, attr, value) => {

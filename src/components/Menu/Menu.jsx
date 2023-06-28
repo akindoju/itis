@@ -4,39 +4,39 @@ import "./Menu.scss";
 const Menu = () => {
   const menu = [
     {
-      name: "Jollof Rice",
-      previousPrice: "₦3500",
-      discountedPrice: "₦1800",
+      name: "Japanese gohan rice",
+      previousPrice: 8700,
+      discountedPrice: 5950,
       description:
-        "A classic Nigerian rice dish cooked in a flavorful tomato-based sauce.",
+        "The essential, sticky short-grain rice that forms the basis of traditional Japanese cuisine..",
     },
     {
-      name: "Pizza Margherita",
-      previousPrice: "₦3800",
-      discountedPrice: "₦2000",
+      name: "Pizza Express Margherita",
+      previousPrice: 9200,
+      discountedPrice: 8200,
       description:
-        "A traditional Italian pizza topped with fresh tomatoes, mozzarella cheese, and basil leaves.",
+        "A classic Italian pizza with a thin crust, fresh mozzarella, sliced tomatoes, and fragrant basil.",
     },
     {
-      name: "Lobster Bisque",
-      previousPrice: "₦12350",
-      discountedPrice: "₦8590",
+      name: "Kentucky Fried Chicken (KFC)",
+      previousPrice: 15800,
+      discountedPrice: 12400,
       description:
-        "A rich and creamy soup made with lobster meat, perfect for seafood lovers.",
+        "A globally recognized fast-food chain famous for its signature crispy and flavorful fried chicken, seasoned with a secret blend of herbs and spices",
     },
     {
-      name: "Spaghetti Carbonara",
-      previousPrice: "₦4800",
-      discountedPrice: "₦2400",
+      name: "Chelsea Buns",
+      previousPrice: 7200,
+      discountedPrice: 4600,
       description:
-        "An Italian pasta dish with creamy sauce made from eggs, cheese, and pancetta.",
+        " Soft, sweet, and sticky pastry buns filled with a delightful combination of cinnamon, sugar, and raisins, often topped with a sticky glaze or icing, originating from the Chelsea neighborhood in London.",
     },
     {
-      name: "Pounded Yam with Egusi",
-      previousPrice: "₦5000",
-      discountedPrice: "₦3800",
+      name: "Tunisian Lamb Soup",
+      previousPrice: 25000,
+      discountedPrice: 18000,
       description:
-        "A popular Nigerian combination of pounded yam served with egusi soup.",
+        "A hearty and aromatic soup from Tunisia, typically made with tender lamb, vegetables, and a blend of North African spices such as cumin, coriander, and harissa, resulting in a rich and flavorful broth.",
     },
   ];
 
@@ -51,8 +51,8 @@ const Menu = () => {
               <div className="menu__item--main">
                 <h4>{item.name}</h4>
                 <h5>
-                  <span>{item.previousPrice}</span>
-                  {item.discountedPrice}
+                  <span>₦{item.previousPrice.toLocaleString()}</span>₦
+                  {item.discountedPrice.toLocaleString()}
                 </h5>
               </div>
 
