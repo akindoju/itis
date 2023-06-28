@@ -41,7 +41,7 @@ const cartSlice = createSlice({
             quantity: mealItem.quantity + 1,
           };
         } else if (action.payload.status === "remove") {
-          mealItem = {
+          cartArr[idx] = {
             ...mealItem,
             quantity: mealItem.quantity - 1,
           };

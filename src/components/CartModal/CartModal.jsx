@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 import "./CartModal.scss";
-import { useSelector } from "react-redux";
-import Counter from "../Counter/Counter";
-
-const CartItem = ({ name, price, img, quantity }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../Redux/slices/cartSlice";
+const CartItem = ({ name, price, img, quantity, id }) => {
   // const [quantity, setQuantity] = useState(1);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="cartItemWrapper">
@@ -20,19 +21,25 @@ const CartItem = ({ name, price, img, quantity }) => {
         </div>
       </div>
 
-      {/* <div className="search__result--item-details-btns">
+      <div className="search__result--item-details-btns">
         <button
           onClick={() => {
-            setQuantity((qty) => qty - 1);
+            if (quantity === 1) {
+              dispatch(removeFromCart(id));
+            } else {
+              dispatch(
+                addToCart({
+                  meal: {
+                    id,
+                  },
+                  status: "remove",
+                })
+              );
+            }
           }}
-          disabled={quantity <= 1}
         >
           <svg
-            className={
-              quantity > 1
-                ? "search__result--item-details-btns-active"
-                : "search__result--item-details-btns-inactive"
-            }
+            className={"search__result--item-details-btns-active"}
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -48,7 +55,14 @@ const CartItem = ({ name, price, img, quantity }) => {
 
         <button
           onClick={() => {
-            setQuantity((qty) => qty + 1);
+            dispatch(
+              addToCart({
+                meal: {
+                  id,
+                },
+                status: "add",
+              })
+            );
           }}
         >
           <svg
@@ -63,7 +77,7 @@ const CartItem = ({ name, price, img, quantity }) => {
             <path d="M16 10c0 0.553-0.048 1-0.601 1h-4.399v4.399c0 0.552-0.447 0.601-1 0.601s-1-0.049-1-0.601v-4.399h-4.399c-0.552 0-0.601-0.447-0.601-1s0.049-1 0.601-1h4.399v-4.399c0-0.553 0.447-0.601 1-0.601s1 0.048 1 0.601v4.399h4.399c0.553 0 0.601 0.447 0.601 1z"></path>
           </svg>
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };
@@ -106,6 +120,7 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
                     price={item.price}
                     img={item.img}
                     quantity={item.quantity}
+                    id={item.id}
                     key={item.id}
                   />
                 );
