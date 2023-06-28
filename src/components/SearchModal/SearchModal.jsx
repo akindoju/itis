@@ -2,16 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import "./SearchModal.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setRandomMeal, searchMeal } from "../../Redux/slices/mealsSlice";
-import { addToCart } from "../../Redux/slices/cartSlice";
-import Counter from "../Counter/Counter";
+import { addToCart, removeFromCart } from "../../Redux/slices/cartSlice";
 
 const SearchItem = ({ name, price, img, id }) => {
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
   const dispatch = useDispatch();
 
-  const [isQuantityVisible, setIsQuantityVisible] = useState(false);
   const [isUpdated, setIsUpdated] = useState(false);
-  const [quantity, setQuantity] = useState(1);
   const [timeoutId, setTimeoutId] = useState(null);
+
+  const inCart = cartItems.find((meal) => {
+    return meal.id === id;
+  });
 
   const startTimer = () => {
     if (setIsUpdated) {
@@ -49,34 +52,26 @@ const SearchItem = ({ name, price, img, id }) => {
         {isUpdated ? "Cart Updated" : ""}
       </p>
 
-      {isQuantityVisible ? (
-        // <Counter
-        //   id={id}
-        //   setIsUpdated={setIsUpdated}
-        //   setIsQuantityVisible={setIsQuantityVisible}
-        // />
-
+      {inCart ? (
         <div className="search__result--item-details-btns">
           <button
             onClick={() => {
-              if (quantity === 1) {
-                setIsQuantityVisible(false);
+              if (inCart.quantity === 1) {
+                dispatch(removeFromCart(id));
               } else {
-                setQuantity((qty) => qty - 1);
+                dispatch(
+                  addToCart({
+                    meal: {
+                      id,
+                    },
+                    status: "remove",
+                  })
+                );
               }
 
-              dispatch(
-                addToCart({
-                  meal: {
-                    id,
-                  },
-                  status: "remove",
-                })
-              );
               clearTimeout(timeoutId);
               startTimer();
             }}
-            // disabled={quantity <= 1}
           >
             <svg
               className={"search__result--item-details-btns-active"}
@@ -91,12 +86,10 @@ const SearchItem = ({ name, price, img, id }) => {
             </svg>
           </button>
 
-          <p>{quantity}</p>
+          <p>{inCart.quantity}</p>
 
           <button
             onClick={() => {
-              setQuantity((qty) => qty + 1);
-
               dispatch(
                 addToCart({
                   meal: {
@@ -128,12 +121,10 @@ const SearchItem = ({ name, price, img, id }) => {
           onClick={() => {
             dispatch(
               addToCart({
-                meal: { name, img, price, id },
+                meal: { name, img, price, quantity: 1, id },
                 status: "add",
               })
             );
-
-            setIsQuantityVisible(true);
 
             setIsUpdated(true);
 
@@ -167,8 +158,6 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
     dispatch(setRandomMeal([]));
     dispatch(setIsSearchClicked(false));
   };
-
-  // useOutsideAlerter(wrapperRef, hideSearch, searchIconRef);
 
   useEffect(() => {
     setSearchArray([...randomMeal]);

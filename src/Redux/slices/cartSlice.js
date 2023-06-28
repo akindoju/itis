@@ -59,6 +59,20 @@ const cartSlice = createSlice({
       }
     },
 
+    removeFromCart: (state, action) => {
+      let cartArr = [...state.cartItems];
+
+      cartArr = cartArr.filter((item) => {
+        const meal = { ...item };
+        return meal.id !== action.payload;
+      });
+
+      return {
+        ...state,
+        cartItems: cartArr,
+      };
+    },
+
     cartLogout: () => {
       return initialState;
     },
@@ -82,6 +96,6 @@ const cartSlice = createSlice({
   // },
 });
 
-export const { addToCart, cartLogout } = cartSlice.actions;
+export const { addToCart, cartLogout, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
