@@ -1,6 +1,6 @@
 @import "../../App.scss";
 
-.navBarOptionsContainer {
+.navMenuContainer {
   background-image: linear-gradient(
       to bottom,
       rgba(black, 0.95),
@@ -39,7 +39,7 @@
   }
 }
 
-.navBarOptions {
+.navMenu {
   &__title {
     color: $color-main;
     font-size: 10rem;
@@ -47,7 +47,9 @@
     text-align: center;
   }
 
-  &__items {
+  li,
+  a,
+  li > a {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,11 +57,9 @@
     text-transform: uppercase;
     list-style: none;
     display: flex;
-
-    li {
-      margin-top: 2.5rem;
-      font-size: 2.5rem;
-      font-family: Montserrat, sans-serif;
-    }
+    margin-top: 2.5rem;
+    font-size: 2.5rem;
+    font-family: Montserrat, sans-serif;
+    text-decoration: none;
   }
 }

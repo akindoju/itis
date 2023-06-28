@@ -16,8 +16,7 @@ const NavBar = () => {
   const [isAuthClicked, setIsAuthClicked] = useState(false);
   const [isCartClicked, setIsCartClicked] = useState(false);
   const [isLogoutClicked, setIsLogoutClicked] = useState(false);
-  const [isNavBarOptionsBtnClicked, setIsNavBarOptionsBtnClicked] =
-    useState(false);
+  const [isNavMenuClicked, setIsNavMenuClicked] = useState(false);
 
   const authIconRef = useRef(null);
   const cartIconRef = useRef(null);
@@ -50,7 +49,8 @@ const NavBar = () => {
     if (
       (isAuthClicked && authModal) ||
       (isCartClicked && cartModal) ||
-      (isSearchClicked && searchModal)
+      (isSearchClicked && searchModal) ||
+      isNavMenuClicked
     ) {
       document.body.style.overflow = "hidden";
     } else {
@@ -63,6 +63,7 @@ const NavBar = () => {
     cartModal,
     isSearchClicked,
     searchModal,
+    isNavMenuClicked,
   ]);
 
   return (
@@ -221,7 +222,7 @@ const NavBar = () => {
           height="24"
           viewBox="0 0 24 24"
           className="navBar__utilities--icons-menu"
-          onClick={() => setIsNavBarOptionsBtnClicked(true)}
+          onClick={() => setIsNavMenuClicked(true)}
         >
           <title>menu</title>
           <path d="M3 13h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 7h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 19h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1z"></path>
@@ -258,8 +259,8 @@ const NavBar = () => {
           )
         : null}
 
-      {isNavBarOptionsBtnClicked && (
-        <NavMenu setIsNavBarOptionsBtnClicked={setIsNavBarOptionsBtnClicked} />
+      {isNavMenuClicked && (
+        <NavMenu setIsNavMenuClicked={setIsNavMenuClicked} />
       )}
     </div>
   );
