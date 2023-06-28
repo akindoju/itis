@@ -11,84 +11,27 @@ const About = ({ isNotAtTop, setIsNotAtTop }) => {
         <div className="about__intro--text">
           <h1>About Us</h1>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
-            totam natus repellat quae voluptate id sit mollitia facere hic
-            ullam? Excepturi saepe nesciunt, laborum eum sapiente autem
-            cupiditate non vel ad amet ex neque facilis cum eveniet distinctio
-            libero voluptatem quis doloribus aut architecto explicabo. Officiis,
-            ducimus? Recusandae a sunt expedita nostrum impedit repellendus
-            deserunt dicta illum consequatur eligendi aspernatur necessitatibus
-            ad, incidunt inventore quas! Nobis, quod corrupti fuga rerum labore
-            non asperiores reiciendis expedita quidem. Similique magni libero
-            blanditiis repellat obcaecati architecto numquam a dolor deleniti
-            quae voluptas culpa, cum et facere beatae? Quaerat unde praesentium
-            deserunt ullam qui!
+            Introducing Itis – Where Culinary Delights Take Flight! Welcome to
+            Itis, your premier destination for delectable delights delivered
+            straight to your doorstep. We take the art of food delivery to new
+            heights, offering a tantalizing array of dishes that will make your
+            taste buds dance with glee.
           </p>
-        </div>
-      </div>
 
-      <div className="about__temp">
-        <div className="about__temp--image about__temp--image--1">
-          <img
-            src="
-            https://images.unsplash.com/photo-1568717099337-5aaecc090548?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
-            alt="Our Store"
-          />
-        </div>
-
-        <div className="about__temp--text">
-          <h1>Our Store</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-            recusandae, itaque repudiandae dicta eum blanditiis numquam dolore,
-            fuga facilis enim magnam voluptates pariatur? Animi eveniet sunt
-            tempora facere soluta excepturi voluptatum nobis, id labore, ipsum,
-            et distinctio cumque velit nisi perferendis fugiat. Velit ducimus
-            voluptas ab aspernatur! Minima, modi perferendis.
+            At Itis, we understand that good food is not just a necessity but a
+            passion. Our team of culinary wizards, armed with spatulas as their
+            wands, conjures up mouthwatering creations inspired by flavors from
+            around the globe. From sizzling stir-fries to juicy burgers, our
+            menu is a fusion of tradition and innovation, ensuring a gastronomic
+            adventure that will leave you craving for more.
           </p>
-        </div>
-      </div>
 
-      <div className="about__temp">
-        <div className="about__temp--text">
-          <h1>Mission Statement</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro qui
-            officiis beatae deleniti. Nisi eveniet laboriosam architecto
-            officiis suscipit laudantium deserunt illo omnis! Aperiam officiis
-            dicta at! Deserunt quasi molestiae quibusdam beatae fugit vitae
-            atque sit tempora, sapiente ducimus aliquid commodi aperiam
-            necessitatibus! Eius dolor culpa fugiat? Aliquam, quidem tempora ex
-            dolores alias perspiciatis optio!
-          </p>
-        </div>
-
-        <div className="about__temp--image about__temp--image--2">
-          <img
-            src="https://images.unsplash.com/photo-1622711321771-4a00d2bc0350?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
-            alt="Mission Statement"
-          />
-        </div>
-      </div>
-
-      <div className="about__temp">
-        <div className="about__temp--image about__temp--image--3">
-          <img
-            src="https://images.unsplash.com/photo-1608219994488-cc269412b3e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-            alt="Our Story"
-          />
-        </div>
-
-        <div className="about__temp--text">
-          <h1>Our Story</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa odit
-            officia harum qui deserunt modi, necessitatibus vero? Voluptas
-            doloremque praesentium cumque maxime libero ullam ex accusantium
-            esse a facere aspernatur odio, vel excepturi reiciendis ut harum
-            officiis placeat aliquid sed eaque! Dolore, iste accusamus id, rerum
-            repudiandae at doloremque sequi illum quis voluptas minus nobis
-            cupiditate magni laborum incidunt expedita?
+            Join us on this epicurean journey and indulge in the unparalleled
+            pleasure of exceptional food, brought to you by Itis, where taste
+            meets adventure, and every bite is a celebration. Savor the magic –
+            Itis, where cravings become enchantment!
           </p>
         </div>
       </div>
