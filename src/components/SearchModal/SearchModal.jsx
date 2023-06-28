@@ -81,7 +81,7 @@ const SearchItem = ({ name, price, img, id }) => {
               height="20"
               viewBox="0 0 20 20"
             >
-              <title>minus</title>
+              <title>remove</title>
               <path d="M16 10c0 0.553-0.048 1-0.601 1h-10.798c-0.552 0-0.601-0.447-0.601-1s0.049-1 0.601-1h10.799c0.552 0 0.6 0.447 0.6 1z"></path>
             </svg>
           </button>
@@ -110,7 +110,7 @@ const SearchItem = ({ name, price, img, id }) => {
               height="20"
               viewBox="0 0 20 20"
             >
-              <title>plus</title>
+              <title>add</title>
               <path d="M16 10c0 0.553-0.048 1-0.601 1h-4.399v4.399c0 0.552-0.447 0.601-1 0.601s-1-0.049-1-0.601v-4.399h-4.399c-0.552 0-0.601-0.447-0.601-1s0.049-1 0.601-1h4.399v-4.399c0-0.553 0.447-0.601 1-0.601s1 0.048 1 0.601v4.399h4.399c0.553 0 0.601 0.447 0.601 1z"></path>
             </svg>
           </button>
@@ -177,7 +177,7 @@ const SearchModal = ({ setIsSearchClicked, searchIconRef }) => {
           hideSearch();
         }}
       >
-        <title>Close</title>
+        <title>close</title>
         <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
       </svg>
 
