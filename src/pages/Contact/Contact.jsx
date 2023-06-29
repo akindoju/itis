@@ -174,7 +174,7 @@ const Contact = () => {
                   )}
                   <button type="submit">Send</button>
 
-                  {isEmailSent ? (
+                  {!isEmailSent ? (
                     <p className="sentEmail">Email Successfully sent</p>
                   ) : isEmailFailed ? (
                     <p className="errMsg">Oops, something went wrong</p>

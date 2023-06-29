@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import useOutsideAlerter from "../OutsideAlerter/useOutsideAlerter";
 import "./AuthModal.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { login, register } from "../../Redux/slices/userSlice";
