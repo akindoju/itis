@@ -334,7 +334,6 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
 
                       <button
                         type="submit"
-                        onClick={() => console.log({ errors })}
                         disabled={
                           !isCheckboxChecked ||
                           isRegisterLoading ||

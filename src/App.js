@@ -7,11 +7,13 @@ import StartAtTop from "./Components/StartAtTop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/NavBar";
 import ScrollTopBtn from "./Components/ScrollTopBtn/ScrollTopBtn";
+import emailjs from "@emailjs/browser";
 
 function App() {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
 
   useEffect(() => {
+    emailjs.init("l9I-1magpjSZ5yQ6u");
     const settingScrollTopBtn = () => {
       window.scrollY > 150 ? setIsNotAtTop(true) : setIsNotAtTop(false);
     };

@@ -9,7 +9,7 @@ import ReadyToEat from "../../Components/ReadyToEat/ReadyToEat";
 import MapContainer from "../../Components/MapContainer/MapContainer";
 import "./Homepage.scss";
 
-const Homepage = ({ isNotAtTop, setIsNotAtTop }) => {
+const Homepage = () => {
   return (
     <div className="homepage">
       <Header />

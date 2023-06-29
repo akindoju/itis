@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../../Components/Footer/Footer";
 import "./About.scss";
 
-const About = ({ isNotAtTop, setIsNotAtTop }) => {
+const About = () => {
   return (
     <div id="top">
       <div className="about__intro">

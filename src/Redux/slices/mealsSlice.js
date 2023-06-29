@@ -43,7 +43,6 @@ export const searchMeal = createAsyncThunk(
 
       return meals;
     } catch (error) {
-      console.log({ error });
       throw new Error("Unable to get meal");
     }
   }
