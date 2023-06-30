@@ -13,7 +13,7 @@ function App() {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
 
   useEffect(() => {
-    emailjs.init("l9I-1magpjSZ5yQ6u");
+    emailjs.init(process.env.REACT_APP_EMAILJS_USER_ID);
     const settingScrollTopBtn = () => {
       window.scrollY > 150 ? setIsNotAtTop(true) : setIsNotAtTop(false);
     };

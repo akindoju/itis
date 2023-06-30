@@ -1,7 +1,6 @@
 import React from "react";
 import "./ReadyToEat.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../Redux/slices/cartSlice";
 import Pancake from "../../Images/ctg-1a.webp";
 import Burger from "../../Images/ctg-2a.webp";
 import Fruits from "../../Images/ctg-3a.webp";
@@ -10,6 +9,7 @@ import Steak from "../../Images/ctg-5b.webp";
 import Soup from "../../Images/ctg-6a.webp";
 import Pasta from "../../Images/ctg-7a.webp";
 import Drinks from "../../Images/ctg-8a.webp";
+import { updateCart } from "../../Redux/slices/userSlice";
 
 const ReadyToEat = () => {
   const foodItems = [
@@ -71,7 +71,7 @@ const ReadyToEat = () => {
     },
   ];
 
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const myCart = useSelector((state) => state.user.user.myCart);
   const dispatch = useDispatch();
 
   return (
@@ -81,7 +81,7 @@ const ReadyToEat = () => {
 
         <div className="readyToEat__grid">
           {foodItems.map((item, idx) => {
-            let inCart = cartItems.find((meal) => {
+            let inCart = myCart?.find((meal) => {
               return meal.id === item.id;
             });
 
@@ -108,18 +108,18 @@ const ReadyToEat = () => {
                     >
                       <button
                         onClick={() => {
-                          if (inCart.quantity === 1) {
-                            dispatch(removeFromCart(item.id));
-                          } else {
-                            dispatch(
-                              addToCart({
-                                meal: {
-                                  id: item.id,
-                                },
-                                status: "remove",
-                              })
-                            );
-                          }
+                          dispatch(
+                            updateCart({
+                              meal: {
+                                name: item.name,
+                                price: item.discountedPrice,
+                                img: item.img,
+                                quantity: item.quantity,
+                                id: item.id,
+                              },
+                              status: "remove",
+                            })
+                          );
                         }}
                       >
                         <svg
@@ -140,8 +140,12 @@ const ReadyToEat = () => {
                       <button
                         onClick={() => {
                           dispatch(
-                            addToCart({
+                            updateCart({
                               meal: {
+                                name: item.name,
+                                price: item.discountedPrice,
+                                img: item.img,
+                                quantity: item.quantity,
                                 id: item.id,
                               },
                               status: "add",
@@ -176,11 +180,11 @@ const ReadyToEat = () => {
                       }}
                       onClick={() => {
                         dispatch(
-                          addToCart({
+                          updateCart({
                             meal: {
                               name: item.name,
-                              img: item.img,
                               price: item.discountedPrice,
+                              img: item.img,
                               quantity: 1,
                               id: item.id,
                             },

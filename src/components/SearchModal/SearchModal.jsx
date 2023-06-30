@@ -2,17 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import "./SearchModal.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setRandomMeal, searchMeal } from "../../Redux/slices/mealsSlice";
-import { addToCart, removeFromCart } from "../../Redux/slices/cartSlice";
+import { updateCart } from "../../Redux/slices/userSlice";
 
 const SearchItem = ({ name, price, img, id }) => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const myCart = useSelector((state) => state.user.user.myCart);
 
   const dispatch = useDispatch();
 
   const [isUpdated, setIsUpdated] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
-  const inCart = cartItems.find((meal) => {
+  const inCart = myCart?.find((meal) => {
     return meal.id === id;
   });
 
@@ -56,18 +56,18 @@ const SearchItem = ({ name, price, img, id }) => {
         <div className="search__result--item-details-btns">
           <button
             onClick={() => {
-              if (inCart.quantity === 1) {
-                dispatch(removeFromCart(id));
-              } else {
-                dispatch(
-                  addToCart({
-                    meal: {
-                      id,
-                    },
-                    status: "remove",
-                  })
-                );
-              }
+              dispatch(
+                updateCart({
+                  meal: {
+                    name,
+                    price,
+                    img,
+                    quantity: inCart.quantity,
+                    id,
+                  },
+                  status: "remove",
+                })
+              );
 
               clearTimeout(timeoutId);
               startTimer();
@@ -91,8 +91,12 @@ const SearchItem = ({ name, price, img, id }) => {
           <button
             onClick={() => {
               dispatch(
-                addToCart({
+                updateCart({
                   meal: {
+                    name,
+                    price,
+                    img,
+                    quantity: inCart.quantity,
                     id,
                   },
                   status: "add",
@@ -118,13 +122,21 @@ const SearchItem = ({ name, price, img, id }) => {
       ) : (
         <button
           className="search__result--item-cart"
-          onClick={() => {
-            dispatch(
-              addToCart({
-                meal: { name, img, price, quantity: 1, id },
+          onClick={async () => {
+            const response = await dispatch(
+              updateCart({
+                meal: {
+                  name,
+                  price,
+                  img,
+                  quantity: 1,
+                  id,
+                },
                 status: "add",
               })
             );
+
+            console.log({ response });
 
             setIsUpdated(true);
 

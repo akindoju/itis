@@ -30,8 +30,8 @@ const NavBar = () => {
   const searchModal = document.getElementById("search");
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const myCart = useSelector((state) => state.user.user.myCart);
   const isSearchClicked = useSelector((state) => state.meals.isSearchClicked);
-  const cartItems = useSelector((state) => state.cart.cartItems);
 
   useEffect(() => {
     const settingNavBar = () => {
@@ -174,7 +174,7 @@ const NavBar = () => {
               </svg>
 
               <div className="navBar__utilities--icons-meals-cart">
-                {isLoggedIn ? cartItems.length : "0"}
+                {isLoggedIn ? myCart.length : "0"}
               </div>
             </div>
 

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import "./CartModal.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../Redux/slices/cartSlice";
+import { updateCart } from "../../Redux/slices/userSlice";
 
 const CartItem = ({ name, price, img, quantity, id }) => {
   const dispatch = useDispatch();
@@ -22,19 +22,19 @@ const CartItem = ({ name, price, img, quantity, id }) => {
 
       <div className="search__result--item-details-btns">
         <button
-          onClick={() => {
-            if (quantity === 1) {
-              dispatch(removeFromCart(id));
-            } else {
-              dispatch(
-                addToCart({
-                  meal: {
-                    id,
-                  },
-                  status: "remove",
-                })
-              );
-            }
+          onClick={async () => {
+            const response = dispatch(
+              updateCart({
+                meal: {
+                  name,
+                  price,
+                  img,
+                  quantity,
+                  id,
+                },
+                status: "remove",
+              })
+            );
           }}
         >
           <svg
@@ -55,8 +55,12 @@ const CartItem = ({ name, price, img, quantity, id }) => {
         <button
           onClick={() => {
             dispatch(
-              addToCart({
+              updateCart({
                 meal: {
+                  name,
+                  price,
+                  img,
+                  quantity,
                   id,
                 },
                 status: "add",
@@ -87,7 +91,7 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
   const hideCart = () => setIsCartClicked(false);
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const myCart = useSelector((state) => state.user.user.myCart);
 
   // useOutsideAlerter(wrapperRef, hideCart, cartIconRef);
 
@@ -109,10 +113,10 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
       </svg>
 
       <div className="authentication cart" ref={wrapperRef}>
-        {isLoggedIn && cartItems.length ? (
+        {isLoggedIn && myCart.length ? (
           <>
             <div className="cart__items">
-              {cartItems.map((item) => {
+              {myCart.map((item) => {
                 return (
                   <CartItem
                     name={item.name}
@@ -126,7 +130,7 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
               })}
             </div>
 
-            <p className="cart__total">{`TOTAL: ₦${cartItems
+            <p className="cart__total">{`TOTAL: ₦${myCart
               .reduce((accumulator, currentValue) => {
                 return accumulator + currentValue.quantity * currentValue.price;
               }, 0)
@@ -136,7 +140,7 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
           </>
         ) : !isLoggedIn ? (
           <p className="cart__prompt">Log in to access cart</p>
-        ) : !cartItems.length ? (
+        ) : !myCart.length ? (
           <p className="cart__prompt">There are no meals in your cart.</p>
         ) : null}
       </div>

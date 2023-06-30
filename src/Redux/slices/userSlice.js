@@ -1,5 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addDoc, collection, where, getDocs, query } from "@firebase/firestore";
+import {
+  addDoc,
+  collection,
+  where,
+  getDocs,
+  query,
+  updateDoc,
+  doc,
+} from "@firebase/firestore";
 import { firestore } from "../../Firebase/firebase.utils";
 import {
   getAuth,
@@ -8,10 +16,11 @@ import {
   signOut,
 } from "@firebase/auth";
 import { mealsLogout } from "./mealsSlice";
-import { cartLogout } from "./cartSlice";
+import { findWithAttr } from "../../Helpers/Functions";
+// import { store } from "../store";
 
 const initialState = {
-  user: {},
+  user: { myCart: [] },
   error: "",
   isLoggedIn: false,
 };
@@ -81,11 +90,59 @@ export const logout = createAsyncThunk("user/logout", async (_, thunk) => {
 
     await signOut(auth);
     thunk.dispatch(mealsLogout());
-    thunk.dispatch(cartLogout());
   } catch (error) {
     throw new Error("Unable to Log out");
   }
 });
+
+export const updateCart = createAsyncThunk(
+  "user/updateCart",
+  async (payload, { getState }) => {
+    try {
+      const myCart = getState().user.user.myCart;
+
+      let cartArr = [...myCart];
+
+      const idx = findWithAttr(cartArr, "id", payload.meal.id);
+      if (idx !== -1) {
+        let mealItem = { ...cartArr[idx] };
+
+        if (payload.status === "add") {
+          cartArr[idx] = {
+            ...mealItem,
+            quantity: mealItem.quantity + 1,
+          };
+        } else if (payload.status === "remove") {
+          if (cartArr[idx].quantity === 1) {
+            cartArr = cartArr.filter((item) => {
+              const meal = { ...item };
+              return meal.id !== cartArr[idx].id;
+            });
+          } else {
+            cartArr[idx] = {
+              ...mealItem,
+              quantity: mealItem.quantity - 1,
+            };
+          }
+        }
+
+        await updateDoc(doc(firestore, "users", "HaYclIGfAlzZjWxbvsx2"), {
+          myCart: cartArr,
+        });
+
+        return { cartArr, message: "success" };
+      } else {
+        await updateDoc(doc(firestore, "users", "HaYclIGfAlzZjWxbvsx2"), {
+          myCart: [...cartArr, payload.meal],
+        });
+
+        return { cartArr: [...cartArr, payload.meal], message: "success" };
+      }
+    } catch (error) {
+      throw new Error("Oops! Something went wrong");
+    }
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -169,6 +226,16 @@ const userSlice = createSlice({
       return {
         ...state,
         error: action.payload,
+      };
+    });
+
+    builder.addCase(updateCart.fulfilled, (state, action) => {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          myCart: action.payload.cartArr,
+        },
       };
     });
   },
