@@ -9,25 +9,24 @@ const SearchItem = ({ name, price, img, id }) => {
 
   const dispatch = useDispatch();
 
-  const [isUpdated, setIsUpdated] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
   const inCart = myCart?.find((meal) => {
     return meal.id === id;
   });
 
-  const startTimer = () => {
-    if (setIsUpdated) {
-      setIsUpdated(true);
+  const startTimer = (setter) => {
+    setter(true);
 
-      setTimeoutId(
-        setTimeout(() => {
-          setIsUpdated(false);
-        }, 2000)
-      );
+    setTimeoutId(
+      setTimeout(() => {
+        setter(false);
+      }, 2000)
+    );
 
-      return () => clearTimeout(timeoutId);
-    }
+    return () => clearTimeout(timeoutId);
   };
 
   return (
@@ -48,15 +47,21 @@ const SearchItem = ({ name, price, img, id }) => {
         </div>
       </div>
 
-      <p className="search__result--item-prompt">
-        {isUpdated ? "Cart Updated" : ""}
-      </p>
+      {success ? (
+        <p className="search__result--item-prompt">Cart Updated</p>
+      ) : failed ? (
+        <p className="search__result--item-prompt" style={{ color: "#ff4040" }}>
+          Unable to update cart
+        </p>
+      ) : (
+        <p className="search__result--item-prompt" />
+      )}
 
       {inCart ? (
         <div className="search__result--item-details-btns">
           <button
-            onClick={() => {
-              dispatch(
+            onClick={async () => {
+              const response = await dispatch(
                 updateCart({
                   meal: {
                     name,
@@ -70,7 +75,12 @@ const SearchItem = ({ name, price, img, id }) => {
               );
 
               clearTimeout(timeoutId);
-              startTimer();
+
+              if (response.payload.message === "success") {
+                startTimer(setSuccess);
+              } else {
+                startTimer(setFailed);
+              }
             }}
           >
             <svg
@@ -89,8 +99,8 @@ const SearchItem = ({ name, price, img, id }) => {
           <p>{inCart.quantity}</p>
 
           <button
-            onClick={() => {
-              dispatch(
+            onClick={async () => {
+              const response = await dispatch(
                 updateCart({
                   meal: {
                     name,
@@ -102,8 +112,14 @@ const SearchItem = ({ name, price, img, id }) => {
                   status: "add",
                 })
               );
+
               clearTimeout(timeoutId);
-              startTimer();
+
+              if (response.payload.message === "success") {
+                startTimer(setSuccess);
+              } else {
+                startTimer(setFailed);
+              }
             }}
           >
             <svg
@@ -136,15 +152,11 @@ const SearchItem = ({ name, price, img, id }) => {
               })
             );
 
-            console.log({ response });
-
-            setIsUpdated(true);
-
-            const timeout = setTimeout(() => {
-              setIsUpdated(false);
-            }, 2000);
-
-            return () => clearTimeout(timeout);
+            if (response.payload.message === "success") {
+              startTimer(setSuccess);
+            } else {
+              startTimer(setFailed);
+            }
           }}
         >
           Add to Cart

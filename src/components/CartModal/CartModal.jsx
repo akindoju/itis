@@ -23,7 +23,7 @@ const CartItem = ({ name, price, img, quantity, id }) => {
       <div className="search__result--item-details-btns">
         <button
           onClick={async () => {
-            const response = dispatch(
+            const response = await dispatch(
               updateCart({
                 meal: {
                   name,
@@ -113,7 +113,7 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
       </svg>
 
       <div className="authentication cart" ref={wrapperRef}>
-        {isLoggedIn && myCart.length ? (
+        {isLoggedIn && myCart?.length ? (
           <>
             <div className="cart__items">
               {myCart.map((item) => {
@@ -140,7 +140,7 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
           </>
         ) : !isLoggedIn ? (
           <p className="cart__prompt">Log in to access cart</p>
-        ) : !myCart.length ? (
+        ) : !myCart?.length ? (
           <p className="cart__prompt">There are no meals in your cart.</p>
         ) : null}
       </div>

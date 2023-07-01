@@ -73,6 +73,7 @@ export const login = createAsyncThunk("user/login", async (payload) => {
             email: val.data().email,
             id: val.data().uid,
             created_at: val.data().created_at,
+            myCart: val.data().myCart,
           };
         });
 
@@ -197,7 +198,7 @@ const userSlice = createSlice({
     });
 
     builder.addCase(login.fulfilled, (state, action) => {
-      const { fullName, id, email, created_at } = action.payload.user;
+      const { fullName, id, email, created_at, myCart } = action.payload.user;
 
       return {
         ...state,
@@ -207,6 +208,7 @@ const userSlice = createSlice({
           id,
           email,
           created_at,
+          myCart,
         },
       };
     });

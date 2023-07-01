@@ -174,7 +174,7 @@ const NavBar = () => {
               </svg>
 
               <div className="navBar__utilities--icons-meals-cart">
-                {isLoggedIn ? myCart.length : "0"}
+                {isLoggedIn ? myCart?.length : "0"}
               </div>
             </div>
 
