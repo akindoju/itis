@@ -148,6 +148,7 @@ export const updateCart = createAsyncThunk(
         return { cartArr: [...cartArr, payload.meal], message: "success" };
       }
     } catch (error) {
+      console.log({ error });
       throw new Error("Oops! Something went wrong");
     }
   }
@@ -198,6 +199,7 @@ const userSlice = createSlice({
           id,
           email,
           created_at,
+          myCart: [],
         },
       };
     });

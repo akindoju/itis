@@ -94,7 +94,7 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
   const myCart = useSelector((state) => state.user.user.myCart);
   const dispatch = useDispatch();
 
-  const [stage, setStage] = useState(2);
+  const [stage, setStage] = useState(1);
   const [address, setAddress] = useState("");
 
   // useOutsideAlerter(wrapperRef, hideCart, cartIconRef);
