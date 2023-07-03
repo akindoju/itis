@@ -56,6 +56,7 @@
 
 .cart {
   padding: 2rem;
+  position: relative;
 
   &__items {
     width: 100%;
@@ -101,4 +102,41 @@
     font-size: 1.5rem;
     font-family: $font-primary;
   }
+
+  &__address {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    padding-top: 5rem;
+
+    input {
+      padding: 0.5rem;
+      height: 4rem;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid $color-grey;
+      color: $color-grey;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      width: 100%;
+
+      &:active,
+      &:focus {
+        outline: none;
+        border-bottom: 1px solid $color-main;
+      }
+    }
+  }
+}
+
+.prev-stage {
+  position: absolute;
+  fill: white;
+  top: 1.5rem;
+  left: 2.5rem;
+  height: 2.8rem;
+  width: 2.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
 }

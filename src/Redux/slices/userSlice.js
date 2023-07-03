@@ -32,20 +32,24 @@ export const register = createAsyncThunk("user/register", async (payload) => {
 
   return createUserWithEmailAndPassword(auth, payload.email, payload.password)
     .then(async (userCredential) => {
-      const user = userCredential.user;
+      const response = userCredential.user;
 
-      await addDoc(ref, {
+      const user = await addDoc(ref, {
         fullName: payload.fullName,
-        email: user.email,
-        id: user.uid,
+        email: response.email,
+        id: response.uid,
         created_at: new Date(),
+      });
+
+      await updateDoc(doc(firestore, "users", user.id), {
+        id: user.id,
       });
 
       return {
         user: {
           fullName: payload.fullName,
-          email: user.email,
-          id: user.uid,
+          email: response.email,
+          id: user.id,
           created_at: new Date(),
         },
         message: "success",
@@ -71,16 +75,20 @@ export const login = createAsyncThunk("user/login", async (payload) => {
           return {
             fullName: val.data().fullName,
             email: val.data().email,
-            id: val.data().uid,
+            id: val.id,
             created_at: val.data().created_at,
             myCart: val.data().myCart,
           };
         });
 
-        return { user: user[0], message: "success" };
+        if (user.length) {
+          return { user: user[0], message: "success" };
+        } else {
+          throw new Error("Unable to log in");
+        }
       });
     })
-    .catch(() => {
+    .catch((error) => {
       throw new Error("Unable to log in");
     });
 });
@@ -100,9 +108,9 @@ export const updateCart = createAsyncThunk(
   "user/updateCart",
   async (payload, { getState }) => {
     try {
-      const myCart = getState().user.user.myCart;
+      const user = getState().user.user;
 
-      let cartArr = [...myCart];
+      let cartArr = [...user.myCart];
 
       const idx = findWithAttr(cartArr, "id", payload.meal.id);
       if (idx !== -1) {
@@ -127,18 +135,35 @@ export const updateCart = createAsyncThunk(
           }
         }
 
-        await updateDoc(doc(firestore, "users", "HaYclIGfAlzZjWxbvsx2"), {
+        await updateDoc(doc(firestore, "users", user.id), {
           myCart: cartArr,
         });
 
         return { cartArr, message: "success" };
       } else {
-        await updateDoc(doc(firestore, "users", "HaYclIGfAlzZjWxbvsx2"), {
+        await updateDoc(doc(firestore, "users", user.id), {
           myCart: [...cartArr, payload.meal],
         });
 
         return { cartArr: [...cartArr, payload.meal], message: "success" };
       }
+    } catch (error) {
+      throw new Error("Oops! Something went wrong");
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (payload, { getState }) => {
+    try {
+      const user = getState().user.user;
+
+      await updateDoc(doc(firestore, "users", user.id), {
+        payload,
+      });
+
+      return { ...user, payload };
     } catch (error) {
       throw new Error("Oops! Something went wrong");
     }
@@ -238,6 +263,13 @@ const userSlice = createSlice({
           ...state.user,
           myCart: action.payload.cartArr,
         },
+      };
+    });
+
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      return {
+        ...state,
+        user: action.payload,
       };
     });
   },

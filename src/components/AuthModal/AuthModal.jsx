@@ -22,11 +22,6 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
     setIsAuthClicked(false);
   };
 
-  // useOutsideAlerter(
-  //   wrapperRef,
-  //   hideModal,
-  //   authIconRef
-  // );
   const dispatch = useDispatch();
   const error = useSelector((state) => state.user.error);
 
@@ -142,7 +137,7 @@ const AuthModal = ({ setIsAuthClicked, authIconRef }) => {
 
                 setIsLoginLoading(false);
 
-                if (response.error) {
+                if (response.error && response.error.message) {
                   setLoginErr(error);
                 }
 
