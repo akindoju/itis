@@ -14,6 +14,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "@firebase/auth";
 import { mealsLogout } from "./mealsSlice";
 import { findWithAttr } from "../../Helpers/Functions";
@@ -169,6 +170,21 @@ export const updateAddress = createAsyncThunk(
       console.log({ error });
       throw new Error("Oops! Something went wrong");
     }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "user/resetPassword",
+  async (email) => {
+    const auth = getAuth();
+
+    return await sendPasswordResetEmail(auth, email)
+      .then(() => {
+        return "success";
+      })
+      .catch((error) => {
+        return error;
+      });
   }
 );
 

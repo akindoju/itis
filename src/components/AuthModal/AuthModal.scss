@@ -14,6 +14,7 @@
   border-radius: 0.5rem;
   max-width: 60rem;
   width: 80%;
+  position: relative;
 
   &__heading {
     display: flex;
@@ -155,5 +156,17 @@
 
   .notChecked {
     opacity: 90%;
+  }
+}
+
+.reset-password {
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+
+  &__sent {
+    font-family: $font-primary;
+    font-size: 1.2rem;
+    color: $color-main;
+    margin-top: 1rem;
   }
 }
