@@ -154,18 +154,19 @@ export const updateCart = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk(
-  "user/updateUser",
-  async (payload, { getState }) => {
+export const updateAddress = createAsyncThunk(
+  "user/updateAddress",
+  async (payload, { getState, dispatch }) => {
     try {
       const user = getState().user.user;
 
       await updateDoc(doc(firestore, "users", user.id), {
-        payload,
+        address: payload,
       });
 
-      return { ...user, payload };
+      dispatch(updateUser({ ...user, address: payload }));
     } catch (error) {
+      console.log({ error });
       throw new Error("Oops! Something went wrong");
     }
   }
@@ -175,10 +176,10 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    updateUserData: (state, action) => {
+    updateUser: (state, action) => {
       return {
         ...state,
-        userData: action.payload,
+        user: action.payload,
       };
     },
   },
@@ -267,17 +268,9 @@ const userSlice = createSlice({
         },
       };
     });
-
-    builder.addCase(updateUser.fulfilled, (state, action) => {
-      return {
-        ...state,
-        user: action.payload,
-      };
-    });
   },
 });
 
-export const { setIsUpdateNeeded, setIsuserLoggedIn, updateUserData } =
-  userSlice.actions;
+export const { setIsuserLoggedIn, updateUser } = userSlice.actions;
 
 export default userSlice.reducer;

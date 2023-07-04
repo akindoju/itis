@@ -1,7 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./CartModal.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCart, updateUser } from "../../Redux/slices/userSlice";
+import {
+  updateCart,
+  updateAddress,
+  updateUser,
+} from "../../Redux/slices/userSlice";
+import { usePaystackPayment } from "react-paystack";
 
 const CartItem = ({ name, price, img, quantity, id }) => {
   const dispatch = useDispatch();
@@ -90,14 +95,43 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
 
   const hideCart = () => setIsCartClicked(false);
 
+  const user = useSelector((state) => state.user.user);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const myCart = useSelector((state) => state.user.user.myCart);
   const dispatch = useDispatch();
 
   const [stage, setStage] = useState(1);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState(user.address ? user.address : "");
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // useOutsideAlerter(wrapperRef, hideCart, cartIconRef);
+
+  const config = {
+    reference: new Date().getTime().toString(),
+    email: user.email,
+    amount: totalPrice * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+    publicKey: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
+  };
+
+  const onSuccess = () => {
+    dispatch(updateUser({ ...user, myCart: [] }));
+    setIsCartClicked(false);
+  };
+
+  // you can call this function anything
+  // const onClose = () => {
+  //   // implementation for  whatever you want to do when the Paystack dialog closed.
+  //   console.log("closed");
+  // };
+
+  const initializePayment = usePaystackPayment(config);
+
+  useEffect(() => {
+    setTotalPrice(
+      user.myCart.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.quantity * currentValue.price;
+      }, 0)
+    );
+  }, [user.myCart]);
 
   return (
     <div className="overlay">
@@ -135,10 +169,10 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
         )}
 
         {stage === 1 ? (
-          isLoggedIn && myCart?.length ? (
+          isLoggedIn && user.myCart?.length ? (
             <>
               <div className="cart__items">
-                {myCart.map((item) => {
+                {user.myCart.map((item) => {
                   return (
                     <CartItem
                       name={item.name}
@@ -152,13 +186,7 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
                 })}
               </div>
 
-              <p className="cart__total">{`TOTAL: ₦${myCart
-                .reduce((accumulator, currentValue) => {
-                  return (
-                    accumulator + currentValue.quantity * currentValue.price
-                  );
-                }, 0)
-                .toLocaleString()}`}</p>
+              <p className="cart__total">{`TOTAL: ₦${totalPrice.toLocaleString()}`}</p>
 
               <button className="cart__button" onClick={() => setStage(2)}>
                 Confirm
@@ -166,14 +194,15 @@ const CartModal = ({ setIsCartClicked, cartIconRef }) => {
             </>
           ) : !isLoggedIn ? (
             <p className="cart__prompt">Log in to access cart</p>
-          ) : !myCart?.length ? (
+          ) : !user.myCart?.length ? (
             <p className="cart__prompt">There are no meals in your cart.</p>
           ) : null
         ) : (
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              dispatch(updateUser(address));
+              await dispatch(updateAddress(address));
+              initializePayment(onSuccess);
             }}
             className="cart__address"
           >
