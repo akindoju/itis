@@ -27,17 +27,17 @@ function App() {
 
   return (
     <Router>
-      {/* <StartAtTop> */}
-      {isNotAtTop && <ScrollTopBtn />}
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
+      <StartAtTop>
+        {isNotAtTop && <ScrollTopBtn />}
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
 
-        <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About />} />
 
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-      {/* </StartAtTop> */}
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </StartAtTop>
     </Router>
   );
 }
