@@ -152,8 +152,6 @@ const SearchItem = ({ name, price, img, id }) => {
               })
             );
 
-            console.log({ response });
-
             if (response.payload.message === "success") {
               startTimer(setSuccess);
             } else {

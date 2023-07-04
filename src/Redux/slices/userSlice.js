@@ -149,7 +149,6 @@ export const updateCart = createAsyncThunk(
         return { cartArr: [...cartArr, payload.meal], message: "success" };
       }
     } catch (error) {
-      console.log({ error });
       throw new Error("Oops! Something went wrong");
     }
   }
@@ -167,7 +166,6 @@ export const updateAddress = createAsyncThunk(
 
       dispatch(updateUser({ ...user, address: payload }));
     } catch (error) {
-      console.log({ error });
       throw new Error("Oops! Something went wrong");
     }
   }
