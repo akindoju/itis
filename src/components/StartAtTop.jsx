@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 
-const StartAtTop = ({ children }) => {
+export const StartAtTop = ({ children }) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -10,5 +10,3 @@ const StartAtTop = ({ children }) => {
 
   return children;
 };
-
-export default StartAtTop;

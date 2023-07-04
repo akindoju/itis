@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Homepage from "./Pages/Homepage/Homepage";
-import StartAtTop from "./Components/StartAtTop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/NavBar";
 import ScrollTopBtn from "./Components/ScrollTopBtn/ScrollTopBtn";
 import emailjs from "@emailjs/browser";
+import { StartAtTop } from "./Components/StartAtTop";
 
 function App() {
   const [isNotAtTop, setIsNotAtTop] = useState(false);
